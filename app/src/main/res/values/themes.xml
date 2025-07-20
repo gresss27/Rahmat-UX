@@ -8,6 +8,16 @@
     <style name="NoRippleStyle" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="rippleColor">@android:color/transparent</item>
         <item name="itemIconSize">24dp</item> <!-- or 28dp -->
+        <item name="itemTextAppearanceActive">@style/BottomNavTextMultiline</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavTextMultiline</item>
+
+    </style>
+    <style name="BottomNavTextMultiline" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
 
