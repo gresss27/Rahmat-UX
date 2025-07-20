@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_swipe"
+        android:icon="@drawable/ic_swipe"
+        android:title="Swipe" />
+
+    <item
+        android:id="@+id/navigation_explore"
+        android:icon="@drawable/ic_explore"
+        android:title="Explore" />
+
+    <item
+        android:id="@+id/navigation_add_campaign"
+        android:icon="@drawable/ic_add_campaign"
+        android:title="Add" />
+
+    <item
+        android:id="@+id/navigation_social"
+        android:icon="@drawable/ic_social"
+        android:title="Social" />
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/ic_user"
+        android:title="User" />
+</menu>
