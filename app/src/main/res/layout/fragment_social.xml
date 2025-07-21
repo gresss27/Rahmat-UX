@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SocialFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SocialFragment" />
-
-</FrameLayout>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SocialFragment"> <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recycler_view_social"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:padding="8dp"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    tools:listitem="@layout/item_campaign_test" /> </FrameLayout>
