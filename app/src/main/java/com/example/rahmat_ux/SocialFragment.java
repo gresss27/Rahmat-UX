@@ -1,21 +1,23 @@
-package com.example.rahmat_ux; // Sesuaikan dengan nama paketmu
+package com.example.rahmat_ux;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.rahmat_ux.data.DummyDataRepository; // Impor Repository
-import com.example.rahmat_ux.databinding.FragmentSocialBinding; // Impor Binding yang sesuai
-import com.example.rahmat_ux.model.Campaign; // Impor Model
+import com.example.rahmat_ux.adapter.CampaignAdapterTest; // Adapter diubah ke ...Test
+import com.example.rahmat_ux.data.DummyDataRepository;
+import com.example.rahmat_ux.databinding.FragmentSocialBinding; // Binding diubah ke FragmentSocialBinding
+import com.example.rahmat_ux.model.Campaign;
+
+import java.util.List;
 
 public class SocialFragment extends Fragment {
 
-    // Gunakan binding class yang sesuai dengan nama file XML
     private FragmentSocialBinding binding;
 
     @Nullable
@@ -29,19 +31,14 @@ public class SocialFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Beri aksi pada tombol
-        binding.buttonLoadData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Panggil method dari repository untuk mendapatkan data
-                Campaign detail = DummyDataRepository.getDonationDetail();
+        List<Campaign> campaignList = DummyDataRepository.getCampaignList();
 
-                // Gunakan data dari objek 'detail' untuk mengisi komponen UI
-                binding.textViewDonationTitle.setText(detail.getTitle());
-                binding.textViewOrganizerName.setText("Penyelenggara: " + detail.getOrganizerName());
-                binding.imageViewOrganizerLogo.setImageResource(detail.getOrganizerImageResId());
-            }
-        });
+        // Gunakan adapter yang sudah diubah namanya
+        CampaignAdapterTest adapter = new CampaignAdapterTest(campaignList);
+
+        // Atur RecyclerView dengan ID yang sesuai
+        binding.recyclerViewSocial.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerViewSocial.setAdapter(adapter);
     }
 
     @Override

@@ -24,9 +24,9 @@ public class Campaign {
     private final int organizerImageResId;
 
     public Campaign(String title, int mainImageResId, String dateStarted, String timeRemaining,
-                          long amountCollected, long targetAmount,
-                          int foodProgress, int clothingProgress, int medicineProgress,
-                          String description, String organizerName, String organizerOccupation, int organizerImageResId) {
+                    long amountCollected, long targetAmount,
+                    int foodProgress, int clothingProgress, int medicineProgress,
+                    String description, String organizerName, String organizerOccupation, int organizerImageResId) {
         this.title = title;
         this.mainImageResId = mainImageResId;
         this.dateStarted = dateStarted;
