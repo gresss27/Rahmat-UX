@@ -13,6 +13,21 @@
         android:theme="@style/Theme.RahmatUX"
         tools:targetApi="31">
         <activity
+            android:name=".MoneyDonationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TopUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DonationStoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DonatorListActivity"
+            android:exported="false" />
+        <activity
             android:name=".DonationDetailActivity"
             android:exported="false" />
         <activity
