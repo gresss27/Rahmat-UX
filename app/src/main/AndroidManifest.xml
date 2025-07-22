@@ -31,6 +31,9 @@
             android:name=".DonatorListActivity"
             android:exported="false" />
         <activity
+            android:name=".setting"
+            android:exported="false" />
+        <activity
             android:name=".DonationDetailActivity"
             android:exported="false" />
         <activity
