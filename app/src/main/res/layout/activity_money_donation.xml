@@ -18,6 +18,7 @@
 
         >
         <ImageView
+            android:id="@+id/btnBack"
             android:layout_width="20dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
@@ -509,12 +510,12 @@
             app:cardElevation="4dp"
             android:layout_marginHorizontal="5dp"
             android:layout_marginBottom="15dp"
-            android:background="@color/green_primary"
+            android:backgroundTint="@color/green_primary"
             >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/money_card_green"
+                android:backgroundTint="@color/green_primary"
                 >
                 <TextView
                     android:layout_width="match_parent"
