@@ -1,6 +1,8 @@
 package com.example.rahmat_ux;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -9,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.rahmat_ux.adapter.CarouselBannerAdapter; // Ensure this path is correct
 import com.example.rahmat_ux.adapter.CardExploreAdapter; // Your adapter for RecyclerView
@@ -41,6 +44,27 @@ public class ExploreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_explore, container, false);
+
+//        NOTIFIKASI
+        ImageView iconKanan = rootView.findViewById(R.id.icon_kanan);
+        iconKanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+//        MASUK KE DETAIL DONASI
+        // New banner listener
+        CardView bannerRekomendasi = rootView.findViewById(R.id.bannerRekomendasi);
+        bannerRekomendasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Initialize ViewPager2 for banner carousel
         viewPager = rootView.findViewById(R.id.viewPager);

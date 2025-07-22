@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -95,6 +96,7 @@ public class DonationDetailActivity extends AppCompatActivity {
                 // Handle the close button inside the dialog
                 ImageView btnClose = dialogView.findViewById(R.id.btnClose);
                 btnClose.setOnClickListener(view -> dialog.dismiss());
+
             }
         });
 
@@ -123,6 +125,16 @@ public class DonationDetailActivity extends AppCompatActivity {
                 // Handle the close button inside the dialog
                 ImageView btnClose = dialogView.findViewById(R.id.btnClose);
                 btnClose.setOnClickListener(view -> dialog.dismiss());
+
+                AppCompatButton btnDonasiUang = dialogView.findViewById(R.id.btnDonasiUang);
+                btnDonasiUang.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss(); // optional: close dialog
+                        Intent intent = new Intent(DonationDetailActivity.this, MoneyDonationActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
 
