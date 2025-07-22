@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:background="@color/background"
+    android:paddingBottom="80dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SwipeFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <!-- Background box for top buttons -->
+    <FrameLayout
+        android:id="@+id/topButtonContainer"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="@color/green_primary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Tombol Donasi -->
+        <Button
+            android:id="@+id/btnDonasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp10.000"
+            android:drawableLeft="@drawable/ic_donate"
+            app:iconPadding="8dp"
+            android:backgroundTint="@android:color/transparent"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textFontWeight="500"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="16dp"/>
+
+        <!-- Tombol Top Up -->
+        <Button
+            android:id="@+id/btnTopUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp 50.000"
+            android:textSize="14sp"
+            android:textFontWeight="500"
+            android:drawableLeft="@drawable/ic_top_up"
+            android:backgroundTint="@android:color/transparent"
+            android:textColor="@android:color/black"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="16dp"/>
+    </FrameLayout>
+
+
+    <!-- Swipe View -->
+    <FrameLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topButtonContainer"
+        app:layout_constraintBottom_toTopOf="@+id/bottomActions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Tombol Accept dan Decline -->
+    <LinearLayout
+        android:id="@+id/bottomActions"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SwipeFragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDecline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textFontWeight="700"
+            android:drawableEnd="@drawable/ic_close"
+            android:background="@drawable/bg_decline_button"
+            android:backgroundTint="@null"
+            android:textAllCaps="false"
+            android:paddingEnd="16dp"
+            android:text="Tolak"
+            android:textColor="@android:color/black"/>
+
+        <Space
+            android:layout_width="32dp"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAccept"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textFontWeight="700"
+            android:paddingStart="16dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_donate"
+            android:background="@drawable/bg_accept_button"
+            android:textAllCaps="false"
+            android:text="Donasi"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
