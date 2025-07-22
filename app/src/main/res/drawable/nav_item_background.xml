@@ -12,8 +12,9 @@
                         android:width="72dp"
                         android:height="72dp"
                         android:gravity="center">
-                        <shape android:shape="oval">
+                        <shape android:shape="rectangle">
                             <solid android:color="#C1E762"/>
+                            <corners android:radius="16dp" /> <!-- Optional rounded corners -->
                         </shape>
                     </item>
 

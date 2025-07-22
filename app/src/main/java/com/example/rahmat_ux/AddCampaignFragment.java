@@ -1,5 +1,6 @@
 package com.example.rahmat_ux;
 // this file name is AddCampaignFragment
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,9 @@ public class AddCampaignFragment extends Fragment {
         btnSubmitted = view.findViewById(R.id.btnSubmitted);
         btnOngoing = view.findViewById(R.id.btnOngoing);
         btnCompleted = view.findViewById(R.id.btnCompleted);
-
+        Button btnCreateCampaign = view.findViewById(R.id.btnCreateCampaign);
+        filterCampaigns("Diajukan");
+        setSelectedButton("Diajukan");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         allCampaigns = DummyDataRepository.getCampaignList();
 
@@ -54,6 +57,11 @@ public class AddCampaignFragment extends Fragment {
             setSelectedButton("Selesai");
         });
         filterCampaigns("Diajukan");
+
+        btnCreateCampaign.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CreateCampaignActivity.class);
+            startActivity(intent);
+        });
         return view;
     }
 

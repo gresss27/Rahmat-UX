@@ -33,21 +33,38 @@ public class CampaignStatusAdapter extends RecyclerView.Adapter<CampaignStatusAd
     @Override
     public void onBindViewHolder(@NonNull CampaignViewHolder holder, int position) {
         Campaign campaign = campaigns.get(position);
+
         holder.title.setText(campaign.getTitle());
+        holder.thumbnail.setImageResource(campaign.getMainImageResId());
+
+        String status = campaign.getStatus();
 
         if (campaign.getStatus().equals("Diajukan")) {
-            holder.status.setText("Menunggu persetujuan");
+            // Sembunyikan data progress
+            holder.collected.setVisibility(View.GONE);
+            holder.target.setVisibility(View.GONE);
             holder.progressBar.setVisibility(View.GONE);
-            holder.remainingDays.setText("Sisa " + campaign.getRemainingDays() + " hari");
-        } else {
-            holder.progressBar.setVisibility(View.VISIBLE);
-            int progress = (int) ((campaign.getAmountCollected() * 100.0) / campaign.getTargetAmount());
-            holder.status.setText(String.format("Terkumpul: Rp%,d / Rp%,d", campaign.getAmountCollected(), campaign.getTargetAmount()));
-            holder.progressBar.setProgress(progress);
-            holder.remainingDays.setText(campaign.getStatus().equals("Selesai") ? "Selesai" : "Sisa " + campaign.getRemainingDays() + " hari");
-        }
 
-        holder.thumbnail.setImageResource(campaign.getMainImageResId());
+            // Tampilkan status proses
+            holder.remainingDays.setText("Sedang diproses");
+
+        } else {
+            int progress = (int) ((campaign.getAmountCollected() * 100.0) / campaign.getTargetAmount());
+            holder.progressBar.setProgress(progress);
+            holder.progressBar.setVisibility(View.VISIBLE);
+
+            holder.collected.setVisibility(View.VISIBLE);
+            holder.target.setVisibility(View.VISIBLE);
+
+            holder.collected.setText(String.format("Rp%,d", campaign.getAmountCollected()));
+            holder.target.setText(String.format("Rp%,d", campaign.getTargetAmount()));
+
+            if (status.equals("Selesai")) {
+                holder.remainingDays.setText("Selesai");
+            } else {
+                holder.remainingDays.setText("Sisa " + campaign.getRemainingDays() + " hari");
+            }
+        }
     }
 
     @Override
@@ -57,14 +74,15 @@ public class CampaignStatusAdapter extends RecyclerView.Adapter<CampaignStatusAd
 
     static class CampaignViewHolder extends RecyclerView.ViewHolder {
         ImageView thumbnail;
-        TextView title, status, remainingDays;
+        TextView title, collected, target, remainingDays, status;
         ProgressBar progressBar;
 
         CampaignViewHolder(@NonNull View itemView) {
             super(itemView);
             thumbnail = itemView.findViewById(R.id.imgCampaignThumbnail);
             title = itemView.findViewById(R.id.tvCampaignTitle);
-            status = itemView.findViewById(R.id.tvCampaignStatus);
+            collected = itemView.findViewById(R.id.tvCampaignCollected);
+            target = itemView.findViewById(R.id.tvCampaignTarget);
             remainingDays = itemView.findViewById(R.id.tvRemainingDays);
             progressBar = itemView.findViewById(R.id.progressBar);
         }
