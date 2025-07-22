@@ -11,4 +11,30 @@
         android:layout_height="match_parent"
         android:text="Explore fragment" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnDonationDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lihat Donasi"
+            android:layout_gravity="center"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"/>
+        <Button
+            android:id="@+id/btnNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifikasi"
+            android:layout_gravity="center"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
+
+
+
+
 </FrameLayout>

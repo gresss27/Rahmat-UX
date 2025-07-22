@@ -2,6 +2,8 @@ package com.example.rahmat_ux.data;
 
 import com.example.rahmat_ux.model.Campaign;
 import com.example.rahmat_ux.R;
+import com.example.rahmat_ux.model.Donator;
+import com.example.rahmat_ux.model.Notification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,4 +70,41 @@ public class DummyDataRepository {
 
         return campaignList;
     }
+
+    public static List<Donator> getDonatorList() {
+        List<Donator> donatorList = new ArrayList<>();
+
+        donatorList.add(new Donator("Andi Pratama", "Rp100.000", "2 menit lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Siti Nurhaliza", "1 Dus Mie Instan", "5 menit lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Bagus Santoso", "Rp250.000", "10 menit lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Dewi Anggraini", "5kg Beras", "15 menit lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Rizky Maulana", "Rp75.000", "30 menit lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Nur Aisyah", "2 Kotak Susu", "35 menit lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Yoga Prabowo", "Rp200.000", "45 menit lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Melati Ramadhani", "Selimut & Pakaian Layak", "1 jam lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Fadli Rahman", "Rp500.000", "1 jam 15 menit lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Indah Lestari", "1 Paket Alat Tulis", "2 jam lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Ahmad Zaki", "Rp150.000", "2 jam 30 menit lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Maria Fransiska", "Paket Makanan Siap Saji", "3 jam lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Hendra Wijaya", "Rp300.000", "4 jam lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Yulia Hartanti", "Mainan Anak-anak", "5 jam lalu", R.drawable.campaign_yatim));
+        donatorList.add(new Donator("Gilang Aditya", "Rp50.000", "6 jam lalu", R.drawable.campaign_yatim));
+
+        return donatorList;
+    }
+
+    public static List<Notification> getNotificationList() {
+        List<Notification> list = new ArrayList<>();
+        int imageResId = R.drawable.campaign_yatim; // Same image for all
+
+        list.add(new Notification("18 Feb 2020", "Donasi Berhasil: Ayo Bantu Bengkulu Pulih dari Gempa", "Kamu berdonasi sebesar Rp10.000", imageResId));
+        list.add(new Notification("18 Feb 2020", "Donasi Menunggu: Ayo Bantu Bengkulu Pulih dari Gempa", "Yuk antar donasi barangmu ke drop point dalam 3 hari!", imageResId));
+        list.add(new Notification("18 Feb 2020", "Donasi Diterima: Ayo Bantu Bengkulu Pulih dari Gempa", "Donasi barangmu telah kami terima. Terima kasih!", imageResId));
+        list.add(new Notification("18 Feb 2020", "Waktu Pengantaran Habis: Ayo Bantu Bengkulu Pulih dari Gempa", "Barang belum dikirim ke drop point. Silakan jadwalkan ulang pengantaran.", imageResId));
+        list.add(new Notification("18 Feb 2020", "Kampanye Baru: Akses Nutrisi Masih Terbatas, Donasi Beras Sekarang! Bantu Pulihkan Masa Depan Mereka", "Yuk jadi donatur pertama dan bantu selamatkan nyawa anak-anak.", imageResId));
+
+        return list;
+    }
+
+
 }
