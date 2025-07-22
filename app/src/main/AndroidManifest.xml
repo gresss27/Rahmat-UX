@@ -13,6 +13,21 @@
         android:theme="@style/Theme.RahmatUX"
         tools:targetApi="31">
         <activity
+            android:name=".MoneyDonationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TopUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DonationStoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DonatorListActivity"
+            android:exported="false" />
+        <activity
             android:name=".DonationDetailActivity"
             android:exported="false" />
         <activity
@@ -24,6 +39,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddEditItemActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".GoodsDonationSummaryActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".DeliveryDetailsActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

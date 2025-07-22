@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/green_primary"/> <!-- Warna hijau -->
+    <corners android:radius="16dp"/> <!-- Radius sudut untuk membuatnya bulat -->
+    <size android:width="100dp" android:height="100dp"/> <!-- Ukuran 55x55 -->
+</shape>
