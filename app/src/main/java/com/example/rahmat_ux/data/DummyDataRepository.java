@@ -19,7 +19,7 @@ public class DummyDataRepository {
                 13440231L, 300000000L,
                 30, 50, 20,
                 "Bantu penuhi kebutuhan akses pendidikan yang layak untuk anak-anak difabel.",
-                "Yayasan Harapan Bangsa", "Lembaga Sosial", R.drawable.logo_organizer
+                "Yayasan Harapan Bangsa", "Lembaga Sosial", R.drawable.logo_organizer, "Terima kasih kakak kakak atas bantuannya, semoga Allah SWT memberi berkah"
         ));
 
         // Data 2: Sedekah Subuh (Beras)
@@ -30,7 +30,7 @@ public class DummyDataRepository {
                 3500000L, 25000000L,
                 90, 10, 5,
                 "Bantu pulihkan masa depan mereka dengan memenuhi kebutuhan pangan pokok.",
-                "Sedekah Subuh", "Komunitas Relawan", R.drawable.logo_organizer
+                "Sedekah Subuh", "Komunitas Relawan", R.drawable.logo_organizer, "Beras sudah diberikan kepada seluruh orang yang membutuhkan, terima kasih orang baik!"
         ));
 
         // Data 3: Stunting
@@ -40,8 +40,8 @@ public class DummyDataRepository {
                 "01 Juli 2025", "Sisa 76 hari",
                 10140251L, 250000000L,
                 85, 40, 60,
-                "ARURAT Stunting & Gizi Buruk Kronis. Cegah stunting dengan memberikan gizi terbaik.",
-                "Anak Sehat Indonesia", "Organisasi Kesehatan", R.drawable.logo_organizer
+                "DARURAT Stunting & Gizi Buruk Kronis. Cegah stunting dengan memberikan gizi terbaik.",
+                "Anak Sehat Indonesia", "Organisasi Kesehatan", R.drawable.logo_organizer, "Bantuanmu sudah menyelamatkan nasib banyak anak dari stunting dan kekurangan gizi!"
         ));
 
         // Data 4: Yatim Piatu Disabilitas (Buku)
@@ -52,7 +52,7 @@ public class DummyDataRepository {
                 5250000L, 50000000L,
                 10, 95, 15,
                 "Tanpa keluarga, mereka butuh uluran tangan kita. Buku adalah jendela dunia, mari buka jendela itu untuk mereka.",
-                "Pustaka Harapan", "Gerakan Literasi", R.drawable.logo_organizer
+                "Pustaka Harapan", "Gerakan Literasi", R.drawable.logo_organizer, "5000 buku sudah diberikan kepada anak-anak yang gemar membaca, bantuanmu sangat diapresiasi!"
         ));
 
         // Data 5: Gempa Bengkulu
@@ -63,7 +63,7 @@ public class DummyDataRepository {
                 203324000L, 250000000L,
                 75, 75, 75,
                 "Bantu pembangunan kembali rumah warga yang hancur akibat gempa.",
-                "Bantuanmu Team", "Tim Tanggap Bencana", R.drawable.logo_organizer
+                "Bantuanmu Team", "Tim Tanggap Bencana", R.drawable.logo_organizer, "10 rumah baru telah dibangun dan banyak keluarga sudah mendapatkan tempat tinggal!"
         ));
 
         return campaignList;

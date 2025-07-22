@@ -23,10 +23,12 @@ public class Campaign {
     private final String organizerOccupation;
     private final int organizerImageResId;
 
+    private final String lastChat;
+
     public Campaign(String title, int mainImageResId, String dateStarted, String timeRemaining,
                     long amountCollected, long targetAmount,
                     int foodProgress, int clothingProgress, int medicineProgress,
-                    String description, String organizerName, String organizerOccupation, int organizerImageResId) {
+                    String description, String organizerName, String organizerOccupation, int organizerImageResId, String lastChat) {
         this.title = title;
         this.mainImageResId = mainImageResId;
         this.dateStarted = dateStarted;
@@ -40,6 +42,7 @@ public class Campaign {
         this.organizerName = organizerName;
         this.organizerOccupation = organizerOccupation;
         this.organizerImageResId = organizerImageResId;
+        this.lastChat = lastChat;
     }
 
     // --- Getter Methods ---
@@ -61,4 +64,8 @@ public class Campaign {
     }
 
     public int getOrganizerImageResId() { return organizerImageResId; }
+
+    public String getLastChat(){
+        return lastChat;
+    }
 }

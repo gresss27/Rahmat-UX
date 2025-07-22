@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="16dp"
-    app:cardElevation="2dp"
-    app:cardUseCompatPadding="true"
+    android:elevation="4dp"
+    app:strokeWidth="0dp"
+    android:layout_marginBottom="12dp"
     app:cardBackgroundColor="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,16 +18,16 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_image"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             app:cardCornerRadius="22.5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/image_view_profile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/campaign_gempa" />
         </com.google.android.material.card.MaterialCardView>
@@ -38,7 +39,10 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="8dp"
             android:textColor="@android:color/black"
-            android:textSize="15sp"
+            android:textSize="12sp"
+            android:textFontWeight="500"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintStart_toEndOf="@id/card_view_image"
             app:layout_constraintEnd_toStartOf="@id/image_view_options"
             app:layout_constraintTop_toTopOf="@id/card_view_image"
@@ -48,8 +52,9 @@
             android:id="@+id/text_view_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textSize="12sp"
+            android:textSize="10sp"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintStart_toStartOf="@id/text_view_title"
             app:layout_constraintEnd_toEndOf="@id/text_view_title"
             app:layout_constraintTop_toBottomOf="@id/text_view_title"
@@ -59,21 +64,22 @@
             android:id="@+id/progress_bar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
-            android:layout_height="6dp"
+            android:layout_height="7dp"
             android:layout_marginTop="6dp"
-            android:progressDrawable="@drawable/ic_progress_bar"
+            android:progressDrawable="@drawable/ic_progress_bar2"
+            tools:progress="70"
             app:layout_constraintTop_toBottomOf="@id/text_view_description"
             app:layout_constraintStart_toStartOf="@id/text_view_description"
-            app:layout_constraintEnd_toEndOf="@id/text_view_description"
-            tools:progress="70" />
+            app:layout_constraintEnd_toEndOf="@id/text_view_description" />
 
         <ImageView
             android:id="@+id/image_view_options"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:src="@drawable/ic_options"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_view_title" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
