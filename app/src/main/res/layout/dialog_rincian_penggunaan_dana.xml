@@ -100,7 +100,8 @@
                 android:paddingStart="8dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:text="Rp193.157.800"
@@ -123,7 +124,8 @@
                 android:paddingStart="8dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:text="Rp50.000.000"
@@ -145,7 +147,8 @@
                 android:paddingStart="8dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:text="Rp25.000.000"
@@ -162,12 +165,13 @@
             android:layout_marginStart="48dp">
 
             <TextView
-                android:text="Fasilitas Sanitasi dan Air  Bersih"
+                android:text="Fasilitas Sanitasi dan Air Bersih"
                 android:textSize="12sp"
                 android:paddingStart="8dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:text="Rp20.000.000"
@@ -189,7 +193,8 @@
                 android:paddingStart="8dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:text="Rp50.000.000"
@@ -216,7 +221,8 @@
                 android:paddingStart="8dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:text="Rp50.000.000"
@@ -246,12 +252,13 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:text="Dana untuk   Operasional Yayasan Rahmat*"
+                android:text="Dana untuk Operasional Yayasan Rahmat*"
                 android:textSize="14sp"
                 android:paddingStart="8dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:text="Rp193.157.800"
