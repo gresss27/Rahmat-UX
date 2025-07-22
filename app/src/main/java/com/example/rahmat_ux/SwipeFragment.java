@@ -3,13 +3,16 @@ package com.example.rahmat_ux;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +22,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.rahmat_ux.data.DummyDataRepository;
 import com.example.rahmat_ux.model.Campaign;
-
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.animation.TranslateAnimation;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -58,25 +56,27 @@ public class SwipeFragment extends Fragment {
 
         // Tampilkan kartu pertama
         showNextCard();
+
+        // Tambahkan gesture swipe manual
         cardContainer.setOnTouchListener((v, event) -> {
             if (currentCardView != null) {
                 gestureDetector.onTouchEvent(event);
             }
             return true;
         });
+
         return view;
     }
 
     private void showNextCard() {
-        cardContainer.removeAllViews();  // Clear old views
+        cardContainer.removeAllViews();
 
-        // Show current and next card (if exists)
         for (int i = 0; i < 2; i++) {
             int index = (currentIndex + i) % campaignList.size();
             Campaign campaign = campaignList.get(index);
             View cardView = inflater.inflate(R.layout.item_donation_card, cardContainer, false);
 
-            // Fill data
+            // Bind data
             ImageView thumbnail = cardView.findViewById(R.id.thumbnailImage);
             TextView title = cardView.findViewById(R.id.campaignTitle);
             TextView amount = cardView.findViewById(R.id.campaignAmount);
@@ -84,12 +84,15 @@ public class SwipeFragment extends Fragment {
             TextView organizerName = cardView.findViewById(R.id.organizerName);
 
             title.setText(campaign.getTitle());
-            amount.setText(String.format("Terkumpul: Rp%,d", campaign.getAmountCollected()));
+            long remaining = campaign.getTargetAmount() - campaign.getAmountCollected();
+            amount.setText(String.format("Rp%,d untuk mencapai target", remaining));
             thumbnail.setImageResource(campaign.getMainImageResId());
             organizerName.setText(campaign.getOrganizerName());
             organizerImage.setImageResource(campaign.getOrganizerImageResId());
 
-            cardContainer.addView(cardView, 0); // Add to bottom of the stack
+            // Simpan data ke tag agar bisa dipakai di gesture tap
+            cardView.setTag(R.id.tag_campaign_data, campaign);
+            cardContainer.addView(cardView, 0);
         }
 
         currentCardView = cardContainer.getChildAt(cardContainer.getChildCount() - 1);
@@ -97,6 +100,7 @@ public class SwipeFragment extends Fragment {
 
     private void swipeLeft() {
         if (cardContainer.getChildCount() == 0) return;
+
         View topCard = cardContainer.getChildAt(cardContainer.getChildCount() - 1);
 
         ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(
@@ -113,7 +117,7 @@ public class SwipeFragment extends Fragment {
             @Override
             public void onAnimationEnd(android.animation.Animator animation) {
                 cardContainer.removeView(topCard);
-                currentIndex = (currentIndex + 1) % campaignList.size(); // Infinite loop
+                currentIndex = (currentIndex + 1) % campaignList.size(); // Looping
                 showNextCard();
             }
         });
@@ -121,6 +125,7 @@ public class SwipeFragment extends Fragment {
 
     private void swipeRight() {
         if (cardContainer.getChildCount() == 0) return;
+
         View topCard = cardContainer.getChildAt(cardContainer.getChildCount() - 1);
 
         ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(
@@ -139,7 +144,7 @@ public class SwipeFragment extends Fragment {
             @Override
             public void onAnimationEnd(android.animation.Animator animation) {
                 cardContainer.removeView(topCard);
-                currentIndex = (currentIndex + 1) % campaignList.size(); // Infinite loop
+                currentIndex = (currentIndex + 1) % campaignList.size(); // Looping
                 showNextCard();
             }
         });
@@ -165,8 +170,61 @@ public class SwipeFragment extends Fragment {
             }
             return false;
         }
+        private void toggleOverlay() {
+            if (currentCardView == null) return;
+
+            View overlayBackground = currentCardView.findViewById(R.id.cardOverlayBackground);
+            View overlayContent = currentCardView.findViewById(R.id.cardOverlayContent);
+            TextView overlayTitle = currentCardView.findViewById(R.id.overlayTitle);
+            TextView overlayDescription = currentCardView.findViewById(R.id.overlayDescription);
+
+            // Komponen dasar yang akan disembunyikan
+            TextView baseTitle = currentCardView.findViewById(R.id.campaignTitle);
+            TextView baseAmount = currentCardView.findViewById(R.id.campaignAmount);
+            TextView baseOrganizerName = currentCardView.findViewById(R.id.organizerName);
+            ImageView baseOrganizerProfile = currentCardView.findViewById(R.id.organizerProfile);
+
+            boolean isOverlayVisible = overlayContent.getVisibility() == View.VISIBLE;
+
+            Campaign campaign = campaignList.get((currentIndex - 1 + campaignList.size()) % campaignList.size());
+
+            if (isOverlayVisible) {
+                overlayContent.animate()
+                        .translationY(overlayContent.getHeight())
+                        .alpha(0f)
+                        .setDuration(300)
+                        .withEndAction(() -> {
+                            overlayContent.setVisibility(View.GONE);
+                            overlayBackground.setVisibility(View.GONE);
+                            baseTitle.setVisibility(View.VISIBLE);
+                            baseAmount.setVisibility(View.VISIBLE);
+                            baseOrganizerName.setVisibility(View.VISIBLE);
+                            baseOrganizerProfile.setVisibility(View.VISIBLE);
+                        });
+            } else {
+                overlayTitle.setText(campaign.getTitle());
+                overlayDescription.setText(campaign.getDescription());
+
+                overlayBackground.setVisibility(View.VISIBLE);
+                overlayContent.setVisibility(View.VISIBLE);
+                overlayContent.setTranslationY(overlayContent.getHeight());
+                overlayContent.setAlpha(0f);
+                overlayContent.animate()
+                        .translationY(0f)
+                        .alpha(1f)
+                        .setDuration(300);
+
+                baseTitle.setVisibility(View.INVISIBLE);
+                baseAmount.setVisibility(View.INVISIBLE);
+                baseOrganizerName.setVisibility(View.INVISIBLE);
+                baseOrganizerProfile.setVisibility(View.INVISIBLE);
+            }
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            toggleOverlay(); // panggil fungsi toggle overlay saat tap
+            return true;
+        }
     }
-
-
 }
-

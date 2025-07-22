@@ -42,10 +42,10 @@
 
         <TextView
             android:id="@+id/campaignAmount"
-            android:textColor="@android:color/white"
-            android:text="Terkumpul: Rp0"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:text="Rp%,d untuk mencapai target"
+            android:textColor="@android:color/white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -71,5 +71,39 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"/>
         </LinearLayout>
+    </LinearLayout>
+    <!-- Tambahkan di akhir FrameLayout -->
+    <View
+        android:id="@+id/cardOverlayBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/cardOverlayContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="@android:color/transparent"
+        android:padding="24dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/overlayTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/overlayDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
     </LinearLayout>
 </FrameLayout>
