@@ -4,7 +4,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="0dp"
     android:background="@drawable/sample_thumbnail"
     android:elevation="8dp">
@@ -13,6 +12,7 @@
         android:id="@+id/thumbnailImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/thumbnailimage"
         android:scaleType="centerCrop" />
 
     <!-- Gradient Overlay -->
@@ -35,7 +35,7 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="@android:color/white"
-            android:text="Judul Kampanye"
+            android:text="@string/judul_kampanye"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             />
@@ -44,7 +44,7 @@
             android:id="@+id/campaignAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rp%,d untuk mencapai target"
+            android:text="@string/rp_d_untuk_mencapai_target"
             android:textColor="@android:color/white" />
 
         <LinearLayout
@@ -60,6 +60,7 @@
                 android:layout_height="32dp"
                 android:background="@drawable/circle_mask"
                 android:clipToOutline="true"
+                android:contentDescription="@string/profile_image"
                 android:src="@drawable/logo_organizer"
                 android:layout_marginEnd="8dp"
                 android:scaleType="centerCrop" />
@@ -67,7 +68,7 @@
             <TextView
                 android:id="@+id/organizerName"
                 android:textColor="@android:color/white"
-                android:text="Nama Penyelenggara"
+                android:text="@string/nama_penyelenggara"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"/>
         </LinearLayout>

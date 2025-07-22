@@ -2,6 +2,7 @@ package com.example.rahmat_ux;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -12,7 +13,6 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +35,7 @@ public class SwipeFragment extends Fragment {
     private GestureDetector gestureDetector;
     private View currentCardView;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -68,6 +69,7 @@ public class SwipeFragment extends Fragment {
         return view;
     }
 
+    @SuppressLint("DefaultLocale")
     private void showNextCard() {
         cardContainer.removeAllViews();
 
@@ -156,6 +158,7 @@ public class SwipeFragment extends Fragment {
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            assert e1 != null;
             float diffX = e2.getX() - e1.getX();
             float diffY = e2.getY() - e1.getY();
             if (Math.abs(diffX) > Math.abs(diffY)) {
@@ -222,7 +225,7 @@ public class SwipeFragment extends Fragment {
         }
 
         @Override
-        public boolean onSingleTapUp(MotionEvent e) {
+        public boolean onSingleTapUp(@NonNull MotionEvent e) {
             toggleOverlay(); // panggil fungsi toggle overlay saat tap
             return true;
         }
