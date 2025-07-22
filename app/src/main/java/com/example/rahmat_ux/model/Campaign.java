@@ -22,13 +22,14 @@ public class Campaign {
     private final String organizerName;
     private final String organizerOccupation;
     private final int organizerImageResId;
-
     private final String lastChat;
+    private final String status;
+    private final int remainingDays;
 
     public Campaign(String title, int mainImageResId, String dateStarted, String timeRemaining,
                     long amountCollected, long targetAmount,
                     int foodProgress, int clothingProgress, int medicineProgress,
-                    String description, String organizerName, String organizerOccupation, int organizerImageResId, String lastChat) {
+                    String description, String organizerName, String organizerOccupation, int organizerImageResId, String lastChat, String status, int remainingDays) {
         this.title = title;
         this.mainImageResId = mainImageResId;
         this.dateStarted = dateStarted;
@@ -43,6 +44,8 @@ public class Campaign {
         this.organizerOccupation = organizerOccupation;
         this.organizerImageResId = organizerImageResId;
         this.lastChat = lastChat;
+        this.status = status;
+        this.remainingDays = remainingDays;
     }
 
     // --- Getter Methods ---
@@ -64,6 +67,14 @@ public class Campaign {
     }
 
     public int getOrganizerImageResId() { return organizerImageResId; }
+
+    public int getRemainingDays() {
+        return remainingDays;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 
     public String getLastChat(){
         return lastChat;
