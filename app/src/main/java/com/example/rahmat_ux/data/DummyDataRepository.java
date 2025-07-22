@@ -13,8 +13,9 @@ public class DummyDataRepository {
 
         // Data 1: Anak Difabel
         campaignList.add(new Campaign(
-                "URGENT! Puluhan Anak-anak Difabel Butuh Bantuanmu",
-                R.drawable.campaign_difabel,
+                "Akses Pendidikan Masih Terbatas , 1x Donasi Bisa Buka Jalan untuk Masa Depan Mereka",
+//                R.drawable.campaign_difabel
+                R.drawable.banner1,
                 "10 Juli 2025", "Sisa 76 hari",
                 13440231L, 300000000L,
                 30, 50, 20,
@@ -24,8 +25,9 @@ public class DummyDataRepository {
 
         // Data 2: Sedekah Subuh (Beras)
         campaignList.add(new Campaign(
-                "Akses Nutrisi Masih Terbatas, Donasi Beras Sekarang!",
-                R.drawable.campaign_beras,
+                "Akses Nutrisi Masih Terbatas, Donasi Beras Sekarang! Bantu Pulihkan Masa Depan Mereka",
+//                R.drawable.campaign_beras,
+                R.drawable.banner5,
                 "15 Juni 2025", "Sisa 76 hari",
                 3500000L, 25000000L,
                 90, 10, 5,
@@ -36,7 +38,8 @@ public class DummyDataRepository {
         // Data 3: Stunting
         campaignList.add(new Campaign(
                 "Akses Nutrisi yang Masih Terbatas bagi Anak dengan Risiko Stunting",
-                R.drawable.campaign_stunting,
+//                R.drawable.campaign_stunting,
+                R.drawable.banner3,
                 "01 Juli 2025", "Sisa 76 hari",
                 10140251L, 250000000L,
                 85, 40, 60,
@@ -46,8 +49,9 @@ public class DummyDataRepository {
 
         // Data 4: Yatim Piatu Disabilitas (Buku)
         campaignList.add(new Campaign(
-                "Yatim Difabel Butuh Dukungan! Donasi Buku, Hadirkan Harapan Lewat Pendidikan",
-                R.drawable.campaign_yatim,
+                "Anak Yatim Difabel Butuh Dukungan!Donasi Buku, Hadirkan Harapan Lewat Pendidikan",
+//                R.drawable.campaign_yatim,
+                R.drawable.banner2,
                 "20 Juni 2025", "Sisa 76 hari",
                 5250000L, 50000000L,
                 10, 95, 15,
@@ -55,14 +59,15 @@ public class DummyDataRepository {
                 "Pustaka Harapan", "Gerakan Literasi", R.drawable.logo_organizer
         ));
 
-        // Data 5: Gempa Bengkulu
+        // Data 5: Ternate Banjir Bandang
         campaignList.add(new Campaign(
-                "Ayo Bantu Bengkulu Pulih dari Gempa",
-                R.drawable.campaign_gempa,
+                "Solidaritas untuk Ternate: Mari Bersama Pulihkan Kehidupan Pasca Banjir Bandang",
+//                R.drawable.campaign_gempa,
+                R.drawable.banner4,
                 "27 Mei 2025", "Sisa 23 hari",
                 203324000L, 250000000L,
                 75, 75, 75,
-                "Bantu pembangunan kembali rumah warga yang hancur akibat gempa.",
+                "Bantu pembangunan kembali rumah warga yang hancur akibat banjir bandang.",
                 "Bantuanmu Team", "Tim Tanggap Bencana", R.drawable.logo_organizer
         ));
 
