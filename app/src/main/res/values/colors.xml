@@ -6,4 +6,5 @@
     <color name="green_primary">#C1E762</color>
     <color name="red_primary">#FF6F6A</color>
     <color name="blue_primary">#81D7FF</color>
+    <color name="green_unselected">#D2EA94</color>
 </resources>
