@@ -1,14 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserFragment">
+    android:fillViewport="true">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="UserFragment" />
+        android:layout_height="wrap_content"
+        android:background="@color/background">
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/greenBackgroundCard"
+            android:layout_width="match_parent"
+            android:layout_height="370dp"
+            android:layout_marginTop="-20dp"
+            android:backgroundTint="@color/green_primary"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp" />
+
+        <ImageView
+            android:id="@+id/settingIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_setting"
+            android:contentDescription="Setting Icon"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/profilgede"
+            android:contentDescription="Profile Image"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"
+            android:background="@drawable/profilgede"
+            android:layout_marginTop="60dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/profileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mr. Green Alien"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppins_bold"
+            android:textFontWeight="700"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/profileImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/editProfile"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_edit"
+            android:contentDescription="Edit Profile"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/profileName"
+            app:layout_constraintBottom_toBottomOf="@id/profileName"
+            app:layout_constraintStart_toEndOf="@id/profileName"
+            />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/balanceCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:strokeWidth="0dp"
+            app:layout_constraintTop_toBottomOf="@id/profileName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools">
+
+                <ImageView
+                    android:id="@+id/myImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/saldo"
+                    android:contentDescription="Deskripsi Gambar Saya"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/secondImageBoxCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:strokeWidth="0dp"
+            app:layout_constraintTop_toBottomOf="@id/balanceCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/imageInsideSecondBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/usermenu"
+                    android:contentDescription="Gambar di dalam box kedua"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/judulstatistik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Statistik"  android:textSize="18sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppins_medium"
+            android:textFontWeight="700"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="start"
+            android:layout_marginStart="25dp" android:layout_marginEnd="25dp"   app:layout_constraintTop_toBottomOf="@id/secondImageBoxCard" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/centeredImageBelowSecondBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/garfik"
+            android:contentDescription="Gambar tengah di bawah box kedua"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="70dp"
+            app:layout_constraintTop_toBottomOf="@id/judulstatistik" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
