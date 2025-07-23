@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".setting"
     android:background="@color/background"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -40,23 +42,23 @@
 
     </LinearLayout>
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_constraintTop_toBottomOf="@id/TopAtas"
-       app:layout_constraintStart_toStartOf="parent"
-       android:paddingVertical="5dp"
-       android:paddingHorizontal="16dp"
-       android:layout_marginTop="5dp"
-       android:id="@+id/donasiSebagaiAnonim"
-       >
-       <androidx.cardview.widget.CardView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           app:cardCornerRadius="16dp"
-           app:cardElevation="4dp"
-           android:layout_margin="5dp"
-           >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/TopAtas"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/donasiSebagaiAnonim"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_margin="5dp"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,8 +85,8 @@
                     android:trackTint="@color/background"
                     android:layout_marginLeft="100dp"/>
             </LinearLayout>
-       </androidx.cardview.widget.CardView>
-   </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -328,16 +330,16 @@
                 android:orientation="horizontal"
                 android:paddingHorizontal="10dp"
                 >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="FAQ"
-                        android:textSize="16dp"
-                        android:textStyle="normal"
-                        android:textFontWeight="600"
-                        android:font="@font/poppins_semibold"
-                        android:textColor="@color/black"
-                        />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FAQ"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    android:textFontWeight="600"
+                    android:font="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    />
                 <LinearLayout
                     android:layout_width="22dp"
                     android:layout_height="22dp"
@@ -380,23 +382,22 @@
                 android:paddingHorizontal="10dp"
                 android:background="@color/red_primary"
                 >
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Delete Account"
-                        android:textSize="16dp"
-                        android:textStyle="normal"
-                        android:textFontWeight="600"
-                        android:font="@font/poppins_semibold"
-                        android:textColor="@color/black"
-                        android:textAlignment="center"
-                        />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Delete Account"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    android:textFontWeight="600"
+                    android:font="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

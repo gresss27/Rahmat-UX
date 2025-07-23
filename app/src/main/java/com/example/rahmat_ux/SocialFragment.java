@@ -9,14 +9,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.rahmat_ux.adapter.CampaignAdapterTest; // Adapter diubah ke ...Test
+import com.example.rahmat_ux.adapter.ChannelListAdapter;
 import com.example.rahmat_ux.data.DummyDataRepository;
-import com.example.rahmat_ux.databinding.FragmentSocialBinding; // Binding diubah ke FragmentSocialBinding
+import com.example.rahmat_ux.databinding.FragmentSocialBinding;
 import com.example.rahmat_ux.model.Campaign;
 
 import java.util.List;
 
-public class SocialFragment extends Fragment {
+// --- PERUBAHAN 1: Implementasikan interface di sini ---
+public class SocialFragment extends Fragment implements ChannelListAdapter.OnItemClickListener {
 
     private FragmentSocialBinding binding;
 
@@ -32,11 +33,11 @@ public class SocialFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         List<Campaign> campaignList = DummyDataRepository.getCampaignList();
+        ChannelListAdapter adapter = new ChannelListAdapter(campaignList);
 
-        // Gunakan adapter yang sudah diubah namanya
-        CampaignAdapterTest adapter = new CampaignAdapterTest(campaignList);
+        // --- PERUBAHAN 2: Daftarkan listener-nya di sini ---
+        adapter.setOnItemClickListener(this);
 
-        // Atur RecyclerView dengan ID yang sesuai
         binding.recyclerViewSocial.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewSocial.setAdapter(adapter);
     }
@@ -45,5 +46,25 @@ public class SocialFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    // Metode ini sekarang akan dipanggil saat item di RecyclerView diklik
+    @Override
+    public void onItemClick(Campaign campaign) {
+        CampaignChannelFragment detailFragment = new CampaignChannelFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("campaign_title", campaign.getTitle());
+        bundle.putString("organizer_name", campaign.getOrganizerName());
+        bundle.putInt("campaign_image", campaign.getMainImageResId());
+        bundle.putLong("amount_collected", campaign.getAmountCollected());
+        bundle.putLong("target_amount", campaign.getTargetAmount());
+
+        detailFragment.setArguments(bundle);
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, detailFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

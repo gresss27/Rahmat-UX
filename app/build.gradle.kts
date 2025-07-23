@@ -50,5 +50,7 @@ dependencies {
     // Dependensi lain jika ada
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
+
 
 }

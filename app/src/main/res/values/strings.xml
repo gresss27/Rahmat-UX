@@ -7,4 +7,11 @@
     <string name="nama_penyelenggara">Nama Penyelenggara</string>
     <string name="profile_image">profile_image</string>
     <string name="thumbnailimage">ThumbnailImage</string>
+        <string-array name="campaign_types">
+            <item>Kesehatan</item>
+            <item>Pendidikan</item>
+            <item>Bencana Alam</item>
+            <item>Kebutuhan Pribadi</item>
+        </string-array>
+
 </resources>

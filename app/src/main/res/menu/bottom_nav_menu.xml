@@ -13,7 +13,7 @@
     <item
         android:id="@+id/navigation_add_campaign"
         android:icon="@drawable/ic_add_campaign"
-        android:title="Galang Dana" />
+        android:title="Galang Dana"/>
 
     <item
         android:id="@+id/navigation_social"

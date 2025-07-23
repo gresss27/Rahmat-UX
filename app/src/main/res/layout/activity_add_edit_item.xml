@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".AddEditItemActivity">
+
+    <!-- 1. HEADER (Fixed di Atas) -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="@color/green_primary"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"/>
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tambahkan Barang"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- 2. TOMBOL SUBMIT (Fixed di Bawah) -->
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_submit"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Tambahkan Barang"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:backgroundTint="@color/green_primary"
+            app:cornerRadius="30dp"
+            app:textAllCaps="false"
+            android:elevation="0dp"/>
+    </LinearLayout>
+
+    <!-- 3. KONTEN UTAMA (Statis, tidak bisa di-scroll) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Bagian Kategori -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kategori"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <RadioGroup
+                android:id="@+id/radio_group_category"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E0E0E0" />
+
+                <RadioButton
+                    android:id="@+id/radio_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Bahan Makanan"
+                    android:textSize="12sp"
+                    android:layoutDirection="rtl"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E0E0E0" />
+                <RadioButton
+                    android:id="@+id/radio_clothing"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Pakaian dan Selimut"
+                    android:textSize="12sp"
+                    android:layoutDirection="rtl"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E0E0E0" />
+                <RadioButton
+                    android:id="@+id/radio_medicine"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Obat-obatan"
+                    android:textSize="12sp"
+                    android:layoutDirection="rtl"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <!-- Bagian Nama Barang -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Barang"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:hint="Indomie rasa mie goreng aceh..."
+                    android:background="@drawable/edit_text_background"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Bagian Jumlah Barang -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jumlah Barang"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_item_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:hint="3 kardus..."
+                    android:background="@drawable/edit_text_background"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Bagian Catatan -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Catatan (opsional)"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:minLines="5"
+                    android:gravity="top"
+                    android:textSize="10sp"
+                    android:hint="3 kardus..."
+                    android:background="@drawable/edit_text_background"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

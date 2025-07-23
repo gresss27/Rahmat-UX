@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="375dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_dialog_rounded"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_cross"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rincian Penggunaan Dana"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Penggalang dana sudah mengumpulkan dana selama 5 hari."
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black" />
+
+        <!-- Dana Terkumpul -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100%"
+                android:textColor="@android:color/black"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_dialog_rounded"
+                android:backgroundTint="@color/green_primary" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Dana Terkumpul"
+                android:paddingStart="8dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:text="Rp203.324.000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Dana Penggalangan -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dialog_rounded"
+                android:backgroundTint="@color/green_primary"
+                android:text="95%"
+                android:textColor="@android:color/black"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:textSize="12sp"
+                android:layout_marginStart="8dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="Dana untuk Penggalangan Dana"
+                android:textSize="14sp"
+                android:paddingStart="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:text="Rp193.157.800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Rincian Dana Penggalangan -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:text="Perbaikan Rumah Warga Terdampak"
+                android:textSize="12sp"
+                android:paddingStart="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:text="Rp50.000.000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginStart="48dp">
+
+            <TextView
+                android:text="Penyediaan Tenda Darurat"
+                android:textSize="12sp"
+                android:paddingStart="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:text="Rp25.000.000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginStart="48dp">
+
+            <TextView
+                android:text="Fasilitas Sanitasi dan Air Bersih"
+                android:textSize="12sp"
+                android:paddingStart="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:text="Rp20.000.000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginStart="48dp">
+
+            <TextView
+                android:text="Distribusi Makanan dan Minuman"
+                android:textSize="12sp"
+                android:paddingStart="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:text="Rp50.000.000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginVertical="8dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginStart="48dp">
+
+            <TextView
+                android:text="Belum Dicairkan"
+                android:paddingStart="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:text="Rp50.000.000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+<!--        Dana Operasional Yayasan Rahmat-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dialog_rounded"
+                android:backgroundTint="@color/green_primary"
+                android:text="5%"
+                android:textColor="@android:color/black"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:textSize="12sp"
+                android:layout_marginStart="12dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="Dana untuk Operasional Yayasan Rahmat*"
+                android:textSize="14sp"
+                android:paddingStart="8dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:text="Rp193.157.800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* Donasi untuk operasional Yayasan Rahmat agar donasi semakin aman, mudah dan transparan. Maksimal 5% dari donasi terkumpul."
+            android:textSize="8dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:background="@drawable/bg_dialog_rounded"
+            android:backgroundTint="@color/green_primary"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terakhir diperbarui: 31 Mei 2025 - 18.00 WIB"
+            android:textSize="12sp"
+            android:layout_marginTop="16dp"/>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
