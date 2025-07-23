@@ -3,6 +3,7 @@ package com.example.rahmat_ux;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -95,6 +96,16 @@ public class SwipeFragment extends Fragment {
             // Simpan data ke tag agar bisa dipakai di gesture tap
             cardView.setTag(R.id.tag_campaign_data, campaign);
             cardContainer.addView(cardView, 0);
+
+//            Title diklik pindah ke donation detail
+            title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
+                    startActivity(intent);
+                }
+            });
+
         }
 
         currentCardView = cardContainer.getChildAt(cardContainer.getChildCount() - 1);

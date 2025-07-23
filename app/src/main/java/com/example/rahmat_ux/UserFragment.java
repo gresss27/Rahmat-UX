@@ -1,5 +1,6 @@
 package com.example.rahmat_ux;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +62,28 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user, container, false);
+
+
     }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ImageView settingIcon = view.findViewById(R.id.settingIcon);
+        ImageView editProfile = view.findViewById(R.id.editProfile);
+
+        settingIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), SettingActivity.class);
+            startActivity(intent);
+        });
+        editProfile.setOnClickListener(v -> {
+
+        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+        startActivity(intent);
+        });
+
+
+    }
+
 }
