@@ -1,50 +1,77 @@
 package com.example.rahmat_ux;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private ImageView backButton;
-    private EditText inputName, inputJob, inputEmail, inputPhone;
-    private Button updateProfileButton;
+    private ImageView profileImage;
+
+    private ActivityResultLauncher<String> pickImageLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile); // Pastikan nama filenya activity_edit_profile.xml
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_edit_profile);
 
-        // Inisialisasi View
-        backButton = findViewById(R.id.backButton);
-        inputName = findViewById(R.id.inputName);
-        inputJob = findViewById(R.id.inputJob);
-        inputEmail = findViewById(R.id.inputEmail);
-        inputPhone = findViewById(R.id.inputPhone);
-        updateProfileButton = findViewById(R.id.updateProfileButton);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
-        // Tombol kembali
-        backButton.setOnClickListener(v -> finish());
+        profileImage = findViewById(R.id.profileImage);
 
-        // Tombol ubah profil (sementara tampilkan data di logcat)
+        pickImageLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri != null) {
+                        profileImage.setImageURI(uri);
+                    }
+                });
+
+        ImageView editProfileImage = findViewById(R.id.editProfileImage);
+
+        editProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickImageLauncher.launch("image/*");
+            }
+        });
+
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        Button updateProfileButton = findViewById(R.id.updateProfileButton);
         updateProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = inputName.getText().toString();
-                String job = inputJob.getText().toString();
-                String email = inputEmail.getText().toString();
-                String phone = inputPhone.getText().toString();
-
-                // TODO: Simpan data ini ke database / API atau shared preferences
-                // Contoh debug log
-                android.util.Log.d("EditProfile", "Nama: " + name + ", Pekerjaan: " + job + ", Email: " + email + ", Telpon: " + phone);
-
-                // Misalnya tampilkan Toast
-                android.widget.Toast.makeText(EditProfileActivity.this, "Profil diperbarui!", android.widget.Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
         });
+
+        TextView pageTitle = findViewById(R.id.pageTitle);
+        pageTitle.setText("Edit Profil");
     }
 }

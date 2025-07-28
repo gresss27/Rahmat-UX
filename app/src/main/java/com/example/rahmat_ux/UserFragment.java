@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,16 +74,29 @@ public class UserFragment extends Fragment {
         ImageView settingIcon = view.findViewById(R.id.settingIcon);
         ImageView editProfile = view.findViewById(R.id.editProfile);
 
+        LinearLayout column1 = view.findViewById(R.id.column1);
+        LinearLayout column2 = view.findViewById(R.id.column2);
+
         settingIcon.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), SettingActivity.class);
             startActivity(intent);
         });
         editProfile.setOnClickListener(v -> {
 
-        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
-        startActivity(intent);
+            Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+            startActivity(intent);
         });
 
+        column1.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), MenungguPenyelesaianActivity.class); // Ganti dengan Activity tujuan Rahmat
+            startActivity(intent);
+        });
+
+        // Mengatur OnClickListener untuk column2 (Status Donasi)
+        column2.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), StatusDonasiActivity.class); // Ganti dengan Activity tujuan Rahmat
+            startActivity(intent);
+        });
 
     }
 
