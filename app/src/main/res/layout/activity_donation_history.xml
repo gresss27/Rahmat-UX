@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/background">
+
+    <!--    HEADER-->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:background="@color/green_primary"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cross"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Isi Saldo"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="0dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Tab Filter -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:padding="0dp"
+                android:textFontWeight="500"
+                android:background="@drawable/rounded_green_button"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                android:text="Semua Kategori"
+                android:backgroundTint="@color/green_primary"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:padding="0dp"
+                android:textFontWeight="500"
+                android:background="@drawable/rounded_green_button"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                android:text="Uang"
+                android:backgroundTint="@color/green_primary"
+                android:layout_marginHorizontal="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:padding="0dp"
+                android:textFontWeight="500"
+                android:background="@drawable/rounded_green_button"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                android:text="Barang"
+                android:backgroundTint="@color/green_primary"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hari ini"
+            android:textSize="12sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_donation_history"
+            android:paddingBottom="16dp"
+            android:clipToPadding="false"/>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
