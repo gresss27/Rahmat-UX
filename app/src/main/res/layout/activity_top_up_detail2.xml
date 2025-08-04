@@ -97,6 +97,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/textBankName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Virtual Account BCA"
@@ -274,9 +275,10 @@
         android:elevation="2dp">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKembali"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kembali ke Halaman Utama"
+            android:text="Kembali"
             android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/black"

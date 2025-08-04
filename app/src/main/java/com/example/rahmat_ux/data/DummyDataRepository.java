@@ -1,5 +1,6 @@
 package com.example.rahmat_ux.data;
 
+import com.example.rahmat_ux.model.Bank;
 import com.example.rahmat_ux.model.Campaign;
 import com.example.rahmat_ux.R;
 import com.example.rahmat_ux.model.Donator;
@@ -147,5 +148,16 @@ public class DummyDataRepository {
         return list;
     }
 
+    public static List<Bank> getBankList() {
+        List<Bank> list = new ArrayList<>();
+
+        list.add(new Bank("Bank BCA", R.drawable.bank_bca));
+        list.add(new Bank("Bank Mandiri", R.drawable.bank_bca));
+        list.add(new Bank("Bank BRI", R.drawable.bank_bca));
+        list.add(new Bank("Bank BNI", R.drawable.bank_bca));
+        list.add(new Bank("Bank Syariah Indonesia", R.drawable.bank_bca));
+
+        return list;
+    }
 
 }

@@ -97,6 +97,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/textBankName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Virtual Account BCA"
@@ -345,6 +346,7 @@
         android:elevation="2dp">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKonfirmasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Konfirmasi Pembayaran"

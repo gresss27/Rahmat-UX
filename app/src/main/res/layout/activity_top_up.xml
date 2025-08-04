@@ -76,6 +76,7 @@
                         android:textSize="16sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerBank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:listitem="@layout/item_bank_transfer"/>
