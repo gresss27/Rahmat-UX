@@ -30,6 +30,11 @@ public class CardExploreAdapter extends RecyclerView.Adapter<CardExploreAdapter.
         return new CampaignViewHolder(view);
     }
 
+    public void setCampaigns(List<Campaign> newCampaigns) {
+        this.campaignList = newCampaigns;
+        // notifyDataSetChanged() akan dipanggil dari fragment
+    }
+
     @Override
     public void onBindViewHolder(@NonNull CampaignViewHolder holder, int position) {
         Campaign campaign = campaignList.get(position);

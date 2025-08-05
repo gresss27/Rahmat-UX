@@ -36,10 +36,13 @@ public class ExploreFragment extends Fragment {
     private RecyclerView campaignRecyclerView;
     private RecyclerView newCampaignRecyclerView;
 
-
+    // Adapters
+    private CardExploreAdapter campaignAdapter;
+    private CardExploreAdapter newCampaignAdapter;
     public ExploreFragment() {
         // Required public empty constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -111,18 +114,16 @@ public class ExploreFragment extends Fragment {
             handler.postDelayed(runnable, delay);
         }
 
-        // Initialize RecyclerView for campaigns
+        // Initialize RecyclerViews and their adapters
         campaignRecyclerView = rootView.findViewById(R.id.campaignRecyclerView);
         campaignRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         newCampaignRecyclerView = rootView.findViewById(R.id.newCampaignRecyclerView);
         newCampaignRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        // Set adapter for RecyclerView
-        List<Campaign> campaignList = DummyDataRepository.getCampaignList();
-        CardExploreAdapter campaignAdapter = new CardExploreAdapter(campaignList);
-        campaignRecyclerView.setAdapter(campaignAdapter);
-        newCampaignRecyclerView.setAdapter(campaignAdapter);
+        // Panggil updateCampaigns untuk pertama kali
+        updateCampaigns();
+
         return rootView;
     }
 
@@ -152,5 +153,32 @@ public class ExploreFragment extends Fragment {
         handler = null;
         viewPager = null;
         imageResources = null;
+    }
+
+    // Metode baru untuk mengambil dan memperbarui data campaign
+    private void updateCampaigns() {
+        // Ambil data terbaru dari repository menggunakan instance singleton
+        List<Campaign> ongoingCampaigns = DummyDataRepository.getInstance().getCampaignsByStatus("Berlangsung");
+        List<Campaign> newCampaigns = DummyDataRepository.getInstance().getCampaignsByStatus("Diajukan");
+
+        // Perbarui adapter untuk ongoing campaigns
+        if (campaignAdapter == null) {
+            campaignAdapter = new CardExploreAdapter(ongoingCampaigns);
+            campaignRecyclerView.setAdapter(campaignAdapter);
+        } else {
+            // Jika adapter sudah ada, berikan data baru
+            campaignAdapter.setCampaigns(ongoingCampaigns);
+            campaignAdapter.notifyDataSetChanged();
+        }
+
+        // Perbarui adapter untuk new campaigns
+        if (newCampaignAdapter == null) {
+            newCampaignAdapter = new CardExploreAdapter(newCampaigns);
+            newCampaignRecyclerView.setAdapter(newCampaignAdapter);
+        } else {
+            // Jika adapter sudah ada, berikan data baru
+            newCampaignAdapter.setCampaigns(newCampaigns);
+            newCampaignAdapter.notifyDataSetChanged();
+        }
     }
 }

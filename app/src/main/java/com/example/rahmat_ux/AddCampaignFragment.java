@@ -1,5 +1,5 @@
 package com.example.rahmat_ux;
-// this file name is AddCampaignFragment
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +27,9 @@ public class AddCampaignFragment extends Fragment {
     private Button btnSubmitted, btnOngoing, btnCompleted;
     private List<Campaign> allCampaigns;
 
+    // Tambahkan variabel untuk status yang sedang aktif
+    private String currentStatus = "Diajukan";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,38 +40,45 @@ public class AddCampaignFragment extends Fragment {
         btnOngoing = view.findViewById(R.id.btnOngoing);
         btnCompleted = view.findViewById(R.id.btnCompleted);
         Button btnCreateCampaign = view.findViewById(R.id.btnCreateCampaign);
-        filterCampaigns("Diajukan");
-        setSelectedButton("Diajukan");
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        allCampaigns = DummyDataRepository.getCampaignList();
+        // Ganti dengan getInstance()
+        allCampaigns = DummyDataRepository.getInstance().getCampaignList();
 
         btnSubmitted.setOnClickListener(v -> {
             filterCampaigns("Diajukan");
-            setSelectedButton("Diajukan");
         });
 
         btnOngoing.setOnClickListener(v -> {
             filterCampaigns("Berlangsung");
-            setSelectedButton("Berlangsung");
         });
 
         btnCompleted.setOnClickListener(v -> {
             filterCampaigns("Selesai");
-            setSelectedButton("Selesai");
         });
-        filterCampaigns("Diajukan");
 
         btnCreateCampaign.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), CreateCampaignActivity.class);
             startActivity(intent);
         });
+
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Panggil filterCampaigns setiap kali fragment kembali ke layar
+        filterCampaigns(currentStatus);
+    }
+
     private void filterCampaigns(String status) {
-        List<Campaign> filtered = DummyDataRepository.getCampaignsByStatus(status);
+        currentStatus = status;
+        // Ganti dengan getInstance()
+        List<Campaign> filtered = DummyDataRepository.getInstance().getCampaignsByStatus(status);
         adapter = new CampaignStatusAdapter(filtered);
         recyclerView.setAdapter(adapter);
+        setSelectedButton(status);
     }
 
     private void setSelectedButton(String selectedStatus) {
@@ -82,5 +92,4 @@ public class AddCampaignFragment extends Fragment {
         btnCompleted.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(),
                 selectedStatus.equals("Selesai") ? R.color.green_primary : R.color.green_unselected));
     }
-
 }

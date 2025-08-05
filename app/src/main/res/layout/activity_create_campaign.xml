@@ -69,25 +69,26 @@
         <TextView android:text="Jenis Galang Dana" style="@style/LabelStyle"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
-        <Spinner
-            android:id="@+id/spinnerCampaignType"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/edittext_selector"
-            android:spinnerMode="dropdown" />
+            <Spinner
+                android:id="@+id/spinnerCampaignType"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/spinner_background"
+                android:spinnerMode="dropdown" />
 
         <!-- Tanggal Berakhir -->
         <TextView android:text="Tanggal Galang Dana Berakhir" style="@style/LabelStyle"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
-        <EditText
-            android:id="@+id/etEndDate"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:focusable="false"
-            android:textSize="14sp"
-            android:background="@drawable/edittext_selector"
-            android:padding="8dp" />
+            <EditText
+                android:id="@+id/etEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:focusable="false"
+                android:textSize="14sp"
+                android:background="@drawable/edittext_selector"
+                android:padding="8dp"
+                android:drawableEnd="@drawable/ic_calendar" />
 
         <!-- Cover dan Deskripsi -->
             <LinearLayout
@@ -107,20 +108,22 @@
             android:layout_marginTop="8dp">
 
             <FrameLayout
+                android:id="@+id/uploadImageContainer"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="165dp"
                 android:background="@drawable/edittext_selector">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imagePlaceholder"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:text="Upload Sampul"
-                    android:textColor="@android:color/darker_gray"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"/>
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Campaign Image"
+                    android:src="@drawable/ic_image_placeholder"
+                    android:padding="8dp"/>
             </FrameLayout>
-
             <EditText
                 android:id="@+id/inputDeskripsi"
                 android:layout_width="0dp"

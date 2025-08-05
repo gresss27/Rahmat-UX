@@ -5,14 +5,20 @@ import com.example.rahmat_ux.model.Campaign;
 import com.example.rahmat_ux.R;
 import com.example.rahmat_ux.model.Donator;
 import com.example.rahmat_ux.model.Notification;
+import com.example.rahmat_ux.model.Story;
+import com.example.rahmat_ux.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DummyDataRepository {
 
-    public static List<Campaign> getCampaignList() {
-        List<Campaign> campaignList = new ArrayList<>();
+    private static DummyDataRepository instance;
+    private List<Campaign> campaignList;
+    private User currentUser;
+
+    private DummyDataRepository() {
+        campaignList = new ArrayList<>();
 
         // Data 1: Anak Difabel
         campaignList.add(new Campaign(
@@ -41,7 +47,6 @@ public class DummyDataRepository {
         // Data 3: Stunting
         campaignList.add(new Campaign(
                 "Akses Nutrisi yang Masih Terbatas bagi Anak dengan Risiko Stunting",
-//                R.drawable.campaign_stunting,
                 R.drawable.banner3,
                 "01 Juli 2025", "Sisa 76 hari",
                 10140251L, 250000000L,
@@ -97,15 +102,42 @@ public class DummyDataRepository {
                 "Selesai", 0
         ));
 
+        currentUser = new User("John Doe", 50000, 10000);
+
+    }
+
+    public static DummyDataRepository getInstance() {
+        if (instance == null) {
+            instance = new DummyDataRepository();
+        }
+        return instance;
+    }
+
+    // --- Metode baru untuk User ---
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void updateCurrentUserBalance(long newBalance) {
+        currentUser.setBalance(newBalance);
+    }
+
+    public void updateCurrentUserDonationPerSwipe(long newNominal) {
+        currentUser.setDonationPerSwipe(newNominal);
+    }
 
 
+    public List<Campaign> getCampaignList() {
         return campaignList;
     }
 
-    public static List<Campaign> getCampaignsByStatus(String status) {
-        List<Campaign> all = getCampaignList();
+    public void addCampaign(Campaign campaign) {
+        this.campaignList.add(campaign);
+    }
+
+    public List<Campaign> getCampaignsByStatus(String status) {
         List<Campaign> filtered = new ArrayList<>();
-        for (Campaign c : all) {
+        for (Campaign c : campaignList) {
             if (c.getStatus().equalsIgnoreCase(status)) {
                 filtered.add(c);
             }
@@ -113,9 +145,8 @@ public class DummyDataRepository {
         return filtered;
     }
 
-    public static List<Donator> getDonatorList() {
+    public List<Donator> getDonatorList() {
         List<Donator> donatorList = new ArrayList<>();
-
         donatorList.add(new Donator("Andi Pratama", "Rp100.000", "2 menit lalu", R.drawable.campaign_yatim));
         donatorList.add(new Donator("Siti Nurhaliza", "1 Dus Mie Instan", "5 menit lalu", R.drawable.campaign_yatim));
         donatorList.add(new Donator("Bagus Santoso", "Rp250.000", "10 menit lalu", R.drawable.campaign_yatim));
@@ -131,33 +162,27 @@ public class DummyDataRepository {
         donatorList.add(new Donator("Hendra Wijaya", "Rp300.000", "4 jam lalu", R.drawable.campaign_yatim));
         donatorList.add(new Donator("Yulia Hartanti", "Mainan Anak-anak", "5 jam lalu", R.drawable.campaign_yatim));
         donatorList.add(new Donator("Gilang Aditya", "Rp50.000", "6 jam lalu", R.drawable.campaign_yatim));
-
         return donatorList;
     }
 
-    public static List<Notification> getNotificationList() {
+    public List<Notification> getNotificationList() {
         List<Notification> list = new ArrayList<>();
         int imageResId = R.drawable.campaign_yatim; // Same image for all
-
         list.add(new Notification("18 Feb 2020", "Donasi Berhasil: Ayo Bantu Bengkulu Pulih dari Gempa", "Kamu berdonasi sebesar Rp10.000", imageResId));
         list.add(new Notification("18 Feb 2020", "Donasi Menunggu: Ayo Bantu Bengkulu Pulih dari Gempa", "Yuk antar donasi barangmu ke drop point dalam 3 hari!", imageResId));
         list.add(new Notification("18 Feb 2020", "Donasi Diterima: Ayo Bantu Bengkulu Pulih dari Gempa", "Donasi barangmu telah kami terima. Terima kasih!", imageResId));
         list.add(new Notification("18 Feb 2020", "Waktu Pengantaran Habis: Ayo Bantu Bengkulu Pulih dari Gempa", "Barang belum dikirim ke drop point. Silakan jadwalkan ulang pengantaran.", imageResId));
         list.add(new Notification("18 Feb 2020", "Kampanye Baru: Akses Nutrisi Masih Terbatas, Donasi Beras Sekarang! Bantu Pulihkan Masa Depan Mereka", "Yuk jadi donatur pertama dan bantu selamatkan nyawa anak-anak.", imageResId));
-
         return list;
     }
 
-    public static List<Bank> getBankList() {
+    public List<Bank> getBankList() {
         List<Bank> list = new ArrayList<>();
-
         list.add(new Bank("Bank BCA", R.drawable.bank_bca));
         list.add(new Bank("Bank Mandiri", R.drawable.bank_bca));
         list.add(new Bank("Bank BRI", R.drawable.bank_bca));
         list.add(new Bank("Bank BNI", R.drawable.bank_bca));
         list.add(new Bank("Bank Syariah Indonesia", R.drawable.bank_bca));
-
         return list;
     }
-
 }

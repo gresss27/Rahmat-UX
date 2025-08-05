@@ -35,8 +35,8 @@ public class TopUpActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerBank);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<Bank> bankList = DummyDataRepository.getBankList();
-        BankAdapter adapter = new BankAdapter(DummyDataRepository.getBankList(), bank -> {
+        List<Bank> bankList = DummyDataRepository.getInstance().getBankList();
+        BankAdapter adapter = new BankAdapter(DummyDataRepository.getInstance().getBankList(), bank -> {
             Intent intent = new Intent(TopUpActivity.this, InputBalanceActivity.class);
             intent.putExtra("selected_bank_name", bank.getBankName());
             intent.putExtra("selected_bank_image", bank.getBankLogoResId());
