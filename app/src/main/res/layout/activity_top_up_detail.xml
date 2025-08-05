@@ -71,6 +71,7 @@
 
                     <!-- Donator name -->
                     <TextView
+                        android:id="@+id/textAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp300.000"
@@ -133,7 +134,7 @@
                                 android:layout_height="wrap_content" />
 
                             <TextView
-                                android:id="@+id/textName"
+                                android:id="@+id/textVA"
                                 android:text="7002708127323649"
                                 android:textStyle="bold"
                                 android:textSize="24sp"
@@ -141,6 +142,7 @@
                                 android:layout_height="wrap_content" />
 
                             <Button
+                                android:id="@+id/btnSalin"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="@color/green_primary"

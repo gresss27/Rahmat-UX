@@ -22,6 +22,7 @@ public class DummyDataRepository {
 
         // Data 1: Anak Difabel
         campaignList.add(new Campaign(
+                1,
                 "URGENT! Puluhan Anak-anak Difabel Butuh Bantuanmu",
                 R.drawable.campaign_difabel,
                 "10 Juli 2025", "Sisa 76 hari",
@@ -34,6 +35,7 @@ public class DummyDataRepository {
 
         // Data 2: Sedekah Subuh (Beras)
         campaignList.add(new Campaign(
+                2,
                 "Akses Nutrisi Masih Terbatas, Donasi Beras Sekarang! Bantu Pulihkan Masa Depan Mereka",
                 R.drawable.banner5,
                 "15 Juni 2025", "Sisa 76 hari",
@@ -46,6 +48,7 @@ public class DummyDataRepository {
 
         // Data 3: Stunting
         campaignList.add(new Campaign(
+                3,
                 "Akses Nutrisi yang Masih Terbatas bagi Anak dengan Risiko Stunting",
                 R.drawable.banner3,
                 "01 Juli 2025", "Sisa 76 hari",
@@ -58,6 +61,7 @@ public class DummyDataRepository {
 
         // Data 4: Yatim Piatu Disabilitas (Buku)
         campaignList.add(new Campaign(
+                4,
                 "Anak Yatim Difabel Butuh Dukungan!Donasi Buku, Hadirkan Harapan Lewat Pendidikan",
                 R.drawable.banner2,
                 "20 Juni 2025", "Sisa 76 hari",
@@ -70,6 +74,7 @@ public class DummyDataRepository {
 
         // Data 5: Ternate Banjir Bandang
         campaignList.add(new Campaign(
+                5,
                 "Solidaritas untuk Ternate: Mari Bersama Pulihkan Kehidupan Pasca Banjir Bandang",
                 R.drawable.banner4,
                 "27 Mei 2025", "Sisa 23 hari",
@@ -81,6 +86,7 @@ public class DummyDataRepository {
         ));
 
         campaignList.add(new Campaign(
+                6,
                 "Bantu Renovasi Sekolah Rusak di Pelosok",
                 R.drawable.campaign_gempa,
                 "18 Juli 2025", "Sisa 45 hari",
@@ -92,6 +98,7 @@ public class DummyDataRepository {
         ));
 
         campaignList.add(new Campaign(
+                7,
                 "Donasi Air Bersih untuk Warga Kekeringan",
                 R.drawable.campaign_gempa,
                 "01 Mei 2025", "Selesai",

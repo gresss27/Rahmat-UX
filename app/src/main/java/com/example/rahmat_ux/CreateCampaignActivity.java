@@ -131,6 +131,7 @@ public class CreateCampaignActivity extends AppCompatActivity {
         Button btnAddStory = findViewById(R.id.btnAddStory);
         storyListContainer = findViewById(R.id.storyListContainer);
 
+        int generatedId = DummyDataRepository.getInstance().getCampaignList().size() + 1;
         btnAddStory = findViewById(R.id.btnAddStory);
         btnAddStory.setOnClickListener(v -> {
             // Inisialisasi newCampaign dengan data dasar, setiap kali tombol diklik
@@ -138,6 +139,7 @@ public class CreateCampaignActivity extends AppCompatActivity {
             // Data dasar bisa diisi dari input field yang sudah diisi
             if (newCampaign == null) {
                 newCampaign = new Campaign(
+                        generatedId,
                         "", // title
                         R.drawable.campaign_gempa, // mainImageResId
                         "", // dateStarted
@@ -203,6 +205,7 @@ public class CreateCampaignActivity extends AppCompatActivity {
 
             // Buat objek Campaign baru
             Campaign newCampaign = new Campaign(
+                    generatedId,
                     title,
                     R.drawable.campaign_gempa,
                     "Sekarang",

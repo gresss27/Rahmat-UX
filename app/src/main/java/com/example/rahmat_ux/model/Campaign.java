@@ -5,6 +5,7 @@ import java.util.List;
 public class Campaign {
 
     // Data Utama
+    private final int id; // Unique ID for each campaign
     private final String title;
     private final int mainImageResId;
     private final String dateStarted;
@@ -29,10 +30,11 @@ public class Campaign {
     private final int remainingDays;
     private List<Story> stories; // Tambahkan properti ini
 
-    public Campaign(String title, int mainImageResId, String dateStarted, String timeRemaining,
+    public Campaign(int id, String title, int mainImageResId, String dateStarted, String timeRemaining,
                     long amountCollected, long targetAmount,
                     int foodProgress, int clothingProgress, int medicineProgress,
                     String description, String organizerName, String organizerOccupation, int organizerImageResId, String lastChat, String status, int remainingDays) {
+        this.id = id;
         this.title = title;
         this.mainImageResId = mainImageResId;
         this.dateStarted = dateStarted;
@@ -51,7 +53,8 @@ public class Campaign {
         this.remainingDays = remainingDays;
     }
 
-    public Campaign(String title, int mainImageResId, String dateStarted, String timeRemaining, long amountCollected, long targetAmount, int foodProgress, int clothingProgress, int medicineProgress, String description, String organizerName, String organizerOccupation, int organizerImageResId, String lastChat, String status, int remainingDays, List<Story> stories) {
+    public Campaign(int id, String title, int mainImageResId, String dateStarted, String timeRemaining, long amountCollected, long targetAmount, int foodProgress, int clothingProgress, int medicineProgress, String description, String organizerName, String organizerOccupation, int organizerImageResId, String lastChat, String status, int remainingDays, List<Story> stories) {
+        this.id = id;
         this.title = title;
         this.mainImageResId = mainImageResId;
         this.dateStarted = dateStarted;
@@ -73,7 +76,7 @@ public class Campaign {
 
 
     // --- Getter Methods ---
-
+    public int getId() { return id; }
     public String getTitle() { return title; }
     public int getMainImageResId() { return mainImageResId; }
     public String getDateStarted() { return dateStarted; }

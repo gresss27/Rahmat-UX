@@ -35,6 +35,14 @@ public class TopUpDetail2Activity extends AppCompatActivity {
             textBankName.setText("Virtual Account " + bankName);  // or just bankName if it's already formatted
         }
 
+//        BALANCE
+        String amount = getIntent().getStringExtra("amount");
+        TextView textAmount = findViewById(R.id.textAmount);
+        if (amount != null) {
+            textAmount.setText("Rp" + formatCurrency(amount)); // Format it just like before
+        }
+
+
         ImageView btnBack = findViewById(R.id.btnBack);
         MaterialButton btnKembali = findViewById(R.id.btnKembali);
 
@@ -52,5 +60,14 @@ public class TopUpDetail2Activity extends AppCompatActivity {
         btnBack.setOnClickListener(goToTopUpActivity);
         btnKembali.setOnClickListener(goToTopUpActivity);
 
+    }
+
+    private String formatCurrency(String amount) {
+        try {
+            long number = Long.parseLong(amount.replace(".", "").replace(",", ""));
+            return String.format("%,d", number).replace(',', '.');
+        } catch (NumberFormatException e) {
+            return amount;
+        }
     }
 }
