@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rahmat_ux.adapter.DonatorAdapter;
 import com.example.rahmat_ux.data.DummyDataRepository;
+import com.example.rahmat_ux.model.Campaign;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
@@ -46,6 +47,21 @@ public class DonationDetailActivity extends AppCompatActivity {
                 onBackPressed(); // Navigates back to the previous screen
             }
         });
+
+        TextView textTitle = findViewById(R.id.textTitle);
+
+        int donationId = getIntent().getIntExtra("campaign_id", -1);
+
+        if (donationId != -1) {
+            // Directly use your repository
+            Campaign campaign = DummyDataRepository.getInstance().getDonationById(donationId);
+
+            if (campaign != null) {
+                textTitle.setText(campaign.getTitle());
+            } else {
+                textTitle.setText("Donation not found");
+            }
+        }
 
 
 //        BACA SELENGKAPNYA DESKRIPSI

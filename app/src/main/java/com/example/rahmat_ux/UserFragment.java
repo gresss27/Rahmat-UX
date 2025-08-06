@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -99,9 +100,9 @@ public class UserFragment extends Fragment {
         });
 
 //        NAVIGATE TO TOP UP ACTIVITY
-        ImageView myImageView = view.findViewById(R.id.myImageView);
+        Button topUpButton = view.findViewById(R.id.topUpButton);
 
-        myImageView.setOnClickListener(new View.OnClickListener() {
+        topUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(requireContext(), TopUpActivity.class);

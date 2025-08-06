@@ -1,19 +1,25 @@
 package com.example.rahmat_ux.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.rahmat_ux.DonationDetailActivity;
 import com.example.rahmat_ux.R;
 import java.util.List;
 
 public class CarouselBannerAdapter extends RecyclerView.Adapter<CarouselBannerAdapter.CarouselViewHolder> {
     private List<Integer> imageResources;  // Menggunakan List<Integer> untuk ID gambar drawable
+    private List<Integer> donationIds;
 
-    public CarouselBannerAdapter(List<Integer> imageResources) {
+    public CarouselBannerAdapter(List<Integer> imageResources, List<Integer> donationIds) {
         this.imageResources = imageResources;
+        this.donationIds = donationIds;
     }
 
     @NonNull
@@ -25,9 +31,19 @@ public class CarouselBannerAdapter extends RecyclerView.Adapter<CarouselBannerAd
 
     @Override
     public void onBindViewHolder(@NonNull CarouselViewHolder holder, int position) {
-        int imageRes = imageResources.get(position);  // Mendapatkan ID gambar dari List<Integer>
-        holder.imageView.setImageResource(imageRes);  // Memuat gambar dari drawable menggunakan ID
+        int imageRes = imageResources.get(position);
+        int donationId = donationIds.get(position);
+
+        holder.imageView.setImageResource(imageRes);
+
+        holder.imageView.setOnClickListener(v -> {
+            Context context = holder.itemView.getContext();
+            Intent intent = new Intent(context, DonationDetailActivity.class);
+            intent.putExtra("campaign_id", donationId); // Pass the correct ID
+            context.startActivity(intent);
+        });
     }
+
 
     @Override
     public int getItemCount() {

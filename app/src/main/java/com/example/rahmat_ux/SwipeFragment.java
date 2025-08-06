@@ -126,10 +126,16 @@ public class SwipeFragment extends Fragment {
             title.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
-                    startActivity(intent);
+                    // Ambil campaign dari tag
+                    Campaign clickedCampaign = (Campaign) cardView.getTag(R.id.tag_campaign_data);
+                    if (clickedCampaign != null) {
+                        Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
+                        intent.putExtra("campaign_id", clickedCampaign.getId()); // Pass campaign ID
+                        startActivity(intent);
+                    }
                 }
             });
+
 
         }
 

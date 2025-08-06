@@ -152,6 +152,13 @@ public class DummyDataRepository {
         return filtered;
     }
 
+    public Campaign getDonationById(int id) {
+        for (Campaign c : campaignList) {
+            if (c.getId() == id) return c;
+        }
+        return null;
+    }
+
     public List<Donator> getDonatorList() {
         List<Donator> donatorList = new ArrayList<>();
         donatorList.add(new Donator("Andi Pratama", "Rp100.000", "2 menit lalu", R.drawable.campaign_yatim));

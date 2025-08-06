@@ -58,13 +58,13 @@ public class ExploreFragment extends Fragment {
             }
         });
 
-//        MASUK KE DETAIL DONASI
-        // New banner listener
+//        REKOMENDASI DONASI
         CardView bannerRekomendasi = rootView.findViewById(R.id.bannerRekomendasi);
         bannerRekomendasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
+                intent.putExtra("campaign_id", 5);
                 startActivity(intent);
             }
         });
@@ -81,7 +81,11 @@ public class ExploreFragment extends Fragment {
                 R.drawable.banner5
         );
 
-        CarouselBannerAdapter carouselAdapter = new CarouselBannerAdapter(imageResources);
+        List<Integer> donationIdList = Arrays.asList(
+                1, 4, 3, 5, 2
+        );
+
+        CarouselBannerAdapter carouselAdapter = new CarouselBannerAdapter(imageResources, donationIdList);
         viewPager.setAdapter(carouselAdapter);
 
         runnable = new Runnable() {
@@ -163,7 +167,7 @@ public class ExploreFragment extends Fragment {
 
         // Perbarui adapter untuk ongoing campaigns
         if (campaignAdapter == null) {
-            campaignAdapter = new CardExploreAdapter(ongoingCampaigns);
+            campaignAdapter = new CardExploreAdapter(requireContext(), ongoingCampaigns);
             campaignRecyclerView.setAdapter(campaignAdapter);
         } else {
             // Jika adapter sudah ada, berikan data baru
@@ -173,7 +177,7 @@ public class ExploreFragment extends Fragment {
 
         // Perbarui adapter untuk new campaigns
         if (newCampaignAdapter == null) {
-            newCampaignAdapter = new CardExploreAdapter(newCampaigns);
+            newCampaignAdapter = new CardExploreAdapter(requireContext(), newCampaigns);
             newCampaignRecyclerView.setAdapter(newCampaignAdapter);
         } else {
             // Jika adapter sudah ada, berikan data baru
