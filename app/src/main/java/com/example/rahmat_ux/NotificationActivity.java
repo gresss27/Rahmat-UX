@@ -30,7 +30,6 @@ public class NotificationActivity extends AppCompatActivity {
 //        MENAMPILKAN DATA DI RECYCLERVIEW
         RecyclerView recyclerView = findViewById(R.id.recyclerNotifications);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        NotificationAdapter adapter = new NotificationAdapter(DummyDataRepository.getNotificationList());
-        recyclerView.setAdapter(adapter);
+        NotificationAdapter adapter = new NotificationAdapter(DummyDataRepository.getInstance().getNotificationList());        recyclerView.setAdapter(adapter);
     }
 }

@@ -40,7 +40,7 @@ public class DonatorListActivity extends AppCompatActivity {
 //        LIST DONASI
         RecyclerView recyclerDonators = findViewById(R.id.recyclerDonators);
         recyclerDonators.setLayoutManager(new LinearLayoutManager(this));
-        DonatorAdapter adapter = new DonatorAdapter(DummyDataRepository.getDonatorList(), 0); // 0 = show all
+        DonatorAdapter adapter = new DonatorAdapter(DummyDataRepository.getInstance().getDonatorList(), 0);
         recyclerDonators.setAdapter(adapter);
 
 

@@ -3,26 +3,36 @@ package com.example.rahmat_ux;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.inputmethod.EditorInfo;
+import androidx.cardview.widget.CardView;
+import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.rahmat_ux.data.DummyDataRepository;
 import com.example.rahmat_ux.model.Campaign;
+import com.example.rahmat_ux.model.User;
 
 import java.util.List;
 
@@ -36,27 +46,37 @@ public class SwipeFragment extends Fragment {
     private GestureDetector gestureDetector;
     private View currentCardView;
 
+    private Button btnDonasi;
+    private Button btnTopUp;
+
+
     @SuppressLint("ClickableViewAccessibility")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        campaignList = DummyDataRepository.getInstance().getCampaignsByStatus("Berlangsung");
 
         View view = inflater.inflate(R.layout.fragment_swipe, container, false);
         this.inflater = inflater;
         gestureDetector = new GestureDetector(getContext(), new GestureListener());
 
         cardContainer = view.findViewById(R.id.cardContainer);
-        campaignList = DummyDataRepository.getCampaignList();
 
         Button btnDecline = view.findViewById(R.id.btnDecline);
         Button btnAccept = view.findViewById(R.id.btnAccept);
+        btnDonasi = view.findViewById(R.id.btnDonasi);
+        btnTopUp = view.findViewById(R.id.btnTopUp);
+
+        btnTopUp.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getBalance()));
+        btnDonasi.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getDonationPerSwipe()));
+
 
         btnDecline.setOnClickListener(v -> swipeLeft());
         btnAccept.setOnClickListener(v -> swipeRight());
+        btnDonasi.setOnClickListener(v -> showDonationNominalDialog());
 
-        // Tampilkan kartu pertama
         showNextCard();
 
         // Tambahkan gesture swipe manual
@@ -69,7 +89,12 @@ public class SwipeFragment extends Fragment {
 
         return view;
     }
-
+    @SuppressLint("DefaultLocale")
+    private String formatRupiah(long amount) {
+        // Simple formatting for demonstration
+        java.text.NumberFormat format = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("in", "ID"));
+        return format.format(amount).replace(",00", "");
+    }
     @SuppressLint("DefaultLocale")
     private void showNextCard() {
         cardContainer.removeAllViews();
@@ -138,6 +163,24 @@ public class SwipeFragment extends Fragment {
 
     private void swipeRight() {
         if (cardContainer.getChildCount() == 0) return;
+        Campaign currentCampaign = campaignList.get(currentIndex);
+
+        User currentUser = DummyDataRepository.getInstance().getCurrentUser();
+        long nominalDonasiPerSwipe = currentUser.getDonationPerSwipe();
+        long saldo = currentUser.getBalance();
+
+        // Cek saldo sebelum donasi
+        if (saldo < nominalDonasiPerSwipe) {
+            Toast.makeText(getContext(), "Saldo tidak cukup!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        long newAmountCollected = currentCampaign.getAmountCollected() + nominalDonasiPerSwipe;
+        currentCampaign.setAmountCollected(newAmountCollected);
+
+        // Kurangi saldo
+        long newSaldo = saldo - nominalDonasiPerSwipe;
+        DummyDataRepository.getInstance().updateCurrentUserBalance(newSaldo);
+        btnTopUp.setText(formatRupiah(newSaldo));
 
         View topCard = cardContainer.getChildAt(cardContainer.getChildCount() - 1);
 
@@ -151,7 +194,7 @@ public class SwipeFragment extends Fragment {
         animator.setInterpolator(new AccelerateInterpolator());
         animator.start();
 
-        Toast.makeText(getContext(), "Donasi berhasil!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Donasi sebesar " + formatRupiah(nominalDonasiPerSwipe) + " berhasil!", Toast.LENGTH_SHORT).show();
 
         animator.addListener(new android.animation.AnimatorListenerAdapter() {
             @Override
@@ -241,4 +284,59 @@ public class SwipeFragment extends Fragment {
             return true;
         }
     }
+
+    // ...
+    private void showDonationNominalDialog() {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_donation_nominal);
+
+        // Atur posisi dan ukuran dialog
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            window.setGravity(Gravity.BOTTOM);
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        CardView card5k = dialog.findViewById(R.id.card5k);
+        CardView card10k = dialog.findViewById(R.id.card10k);
+        CardView card25k = dialog.findViewById(R.id.card25k);
+        CardView card50k = dialog.findViewById(R.id.card50k);
+        EditText otherNominalInput = dialog.findViewById(R.id.otherNominalInput);
+        Button btnSaveNominal = dialog.findViewById(R.id.btnSaveNominal); // Inisialisasi tombol "Simpan"
+
+        // Tambahkan listener untuk setiap CardView
+        card5k.setOnClickListener(v -> updateNominalAndDismiss(5000, dialog));
+        card10k.setOnClickListener(v -> updateNominalAndDismiss(10000, dialog));
+        card25k.setOnClickListener(v -> updateNominalAndDismiss(25000, dialog));
+        card50k.setOnClickListener(v -> updateNominalAndDismiss(50000, dialog));
+
+        // Tambahkan listener untuk tombol "Simpan"
+        btnSaveNominal.setOnClickListener(v -> {
+            String input = otherNominalInput.getText().toString();
+            if (!input.isEmpty()) {
+                long nominal = Long.parseLong(input);
+                if (nominal >= 1000) {
+                    updateNominalAndDismiss(nominal, dialog);
+                } else {
+                    Toast.makeText(getContext(), "Donasi minimal Rp1.000", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "Nominal tidak boleh kosong", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Hapus OnEditorActionListener yang lama
+        // otherNominalInput.setOnEditorActionListener(...);
+
+        dialog.show();
+    }
+
+    private void updateNominalAndDismiss(long nominal, Dialog dialog) {
+        DummyDataRepository.getInstance().updateCurrentUserDonationPerSwipe(nominal);
+        btnDonasi.setText(formatRupiah(nominal));
+        dialog.dismiss();
+    }
+
+
 }

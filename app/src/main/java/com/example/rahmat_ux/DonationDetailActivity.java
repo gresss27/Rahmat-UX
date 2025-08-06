@@ -172,7 +172,7 @@ public class DonationDetailActivity extends AppCompatActivity {
 //      3 DONATUR TERAKHIR
         RecyclerView recyclerDonators = findViewById(R.id.recyclerDonators);
         recyclerDonators.setLayoutManager(new LinearLayoutManager(this));
-        DonatorAdapter adapter = new DonatorAdapter(DummyDataRepository.getDonatorList(), 3);
+        DonatorAdapter adapter = new DonatorAdapter(DummyDataRepository.getInstance().getDonatorList(), 3);
         recyclerDonators.setAdapter(adapter);
 
 

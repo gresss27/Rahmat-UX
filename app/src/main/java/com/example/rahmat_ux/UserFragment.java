@@ -98,6 +98,17 @@ public class UserFragment extends Fragment {
             startActivity(intent);
         });
 
+//        NAVIGATE TO TOP UP ACTIVITY
+        ImageView myImageView = view.findViewById(R.id.myImageView);
+
+        myImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), TopUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 }
