@@ -110,6 +110,17 @@ public class UserFragment extends Fragment {
             }
         });
 
+//        NAVIGATE TO DONATION HISTORY
+        LinearLayout column3 = view.findViewById(R.id.column3);
+        column3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DonationHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 }

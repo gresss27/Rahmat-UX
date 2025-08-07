@@ -3,6 +3,7 @@ package com.example.rahmat_ux.data;
 import com.example.rahmat_ux.R;
 import com.example.rahmat_ux.model.Bank;
 import com.example.rahmat_ux.model.Campaign;
+import com.example.rahmat_ux.model.DonationHistory;
 import com.example.rahmat_ux.model.Donator;
 import com.example.rahmat_ux.model.Notification;
 import com.example.rahmat_ux.model.Story;
@@ -231,6 +232,68 @@ public class DummyDataRepository {
         list.add(new Bank("Bank BRI", R.drawable.bank_bri));
         list.add(new Bank("Bank BNI", R.drawable.bank_bni));
         list.add(new Bank("Bank Syariah Indonesia", R.drawable.bank_syariah));
+        return list;
+    }
+
+    public List<DonationHistory> getDonationHistoryList() {
+        List<DonationHistory> list = new ArrayList<>();
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Berhasil",
+                "-10.000",
+                R.drawable.banner1,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "Top Up Saldo",
+                "Top Up Berhasil",
+                "+500.000",
+                R.drawable.bank_bca,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Diterima",
+                "3 stel pakaian",
+                R.drawable.banner1,
+                "barang"
+        ));
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Berhasil",
+                "-25.000",
+                R.drawable.banner1,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Diterima",
+                "2 paket obat",
+                R.drawable.banner1,
+                "barang"
+        ));
+
+        list.add(new DonationHistory(
+                "Top Up Saldo",
+                "Top Up Berhasil",
+                "+100.000",
+                R.drawable.bank_bca,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Diterima",
+                "5 kg beras",
+                R.drawable.banner1,
+                "barang"
+        ));
+
         return list;
     }
 }
