@@ -196,8 +196,26 @@ public class CreateCampaignActivity extends AppCompatActivity {
     private Campaign createDraftCampaign() {
         int generatedId = DummyDataRepository.getInstance().getCampaignList().size() + 1;
         Campaign draft = new Campaign(
-                generatedId, "", "", "", 0L, 0L, "", "", "", 0,
-                "Draft", 0, new ArrayList<>(), "", "", 0
+                generatedId,                      // id
+                "",                               // title
+                0,                                // mainImageResId
+                "",                               // dateStarted
+                "",                               // timeRemaining
+                0L,                               // amountCollected
+                0L,                               // targetAmount
+                "", 0,                            // item1Name, item1Progress
+                "", 0,                            // item2Name, item2Progress
+                "", 0,                            // item3Name, item3Progress
+                "",                               // description
+                "",                               // longDescription
+                "", "",                           // organizerName, organizerOccupation
+                0,                                // organizerImageResId
+                "",                               // lastChat
+                "Draft",                          // status
+                0,                                // remainingDays
+                new ArrayList<>(),                // stories
+                "",                               // coverImageUri
+                ""                                // storyTitle
         );
         DummyDataRepository.getInstance().addCampaign(draft);
         return draft;

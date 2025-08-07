@@ -53,6 +53,7 @@
 
             <!-- Top Image -->
             <ImageView
+                android:id="@+id/donationImage"
                 android:layout_width="match_parent"
                 android:layout_height="256dp"
                 android:src="@drawable/campaign_gempa"
@@ -83,6 +84,7 @@
                     android:weightSum="1">
 
                     <TextView
+                        android:id="@+id/startDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sejak: 27 Mei 2025"
@@ -90,6 +92,7 @@
                         android:layout_weight="0.5"/>
 
                     <TextView
+                        android:id="@+id/daysRemaining"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sisa 23 hari"
@@ -117,6 +120,7 @@
                         android:paddingVertical="16dp">
 
                         <TextView
+                            android:id="@+id/amountCollected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rp203.324.000"
@@ -130,6 +134,7 @@
                             android:weightSum="1">
 
                             <TextView
+                                android:id="@+id/targetAmount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Terkumpul dari Rp250.000.000"
@@ -137,6 +142,7 @@
                                 android:layout_weight="0.5"/>
 
                             <TextView
+                                android:id="@+id/moneyRemaining"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Rp46.676.000 untuk mencapai target"
@@ -146,6 +152,7 @@
                         </LinearLayout>
 
                         <ProgressBar
+                            android:id="@+id/progressBarMoney"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="8dp"
@@ -226,6 +233,7 @@
                                 </FrameLayout>
 
                                 <TextView
+                                    android:id="@+id/labelFood"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Bahan Makanan"
@@ -269,6 +277,7 @@
                                 </FrameLayout>
 
                                 <TextView
+                                    android:id="@+id/labelClothes"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Pakaian dan Selimut"
@@ -313,6 +322,7 @@
                                 </FrameLayout>
 
                                 <TextView
+                                    android:id="@+id/labelMedicine"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Obat-obatan"
@@ -417,6 +427,7 @@
                                 android:layout_height="48dp"
                                 app:cardCornerRadius="32dp">
                                 <ImageView
+                                    android:id="@+id/organizerProfile"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/campaign_yatim"
@@ -431,12 +442,14 @@
                                 android:layout_marginStart="16dp">
 
                                 <TextView
+                                    android:id="@+id/organizerName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Hidayat Tuh Rahmat"
                                     android:textSize="14sp" />
 
                                 <TextView
+                                    android:id="@+id/organizerOccupation"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Pengusaha"
@@ -575,7 +588,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="1.234"
+                                    android:text="15"
                                     android:textStyle="bold"
                                     android:textSize="12sp"
                                     android:background="@color/green_primary"
