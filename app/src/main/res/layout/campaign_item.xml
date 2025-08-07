@@ -117,6 +117,21 @@ android:layout_marginBottom="8dp">
             android:layout_marginTop="6dp"
             android:layout_marginEnd="4dp" />
     </FrameLayout>
+    <Button
+        android:id="@+id/btnDeleteDraft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hapus"
+        android:textSize="10sp"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="end"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="4dp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:background="@drawable/rounded_button_red"/>
 </LinearLayout>
+
 </LinearLayout>
 

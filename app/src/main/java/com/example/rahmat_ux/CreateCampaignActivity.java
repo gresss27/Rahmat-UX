@@ -43,22 +43,24 @@ import java.util.Objects;
 
 public class CreateCampaignActivity extends AppCompatActivity {
 
-    private EditText etEndDate, etItemInput;
+    private TextView tvEndDate;
+    private EditText etItemInput, inputTitle, inputDeskripsi, inputTargetUang, inputOrganizerName, inputContact, inputDonationAddress, inputBankAccountNumber, inputBankAccountName;
     private LinearLayout storyListContainer;
 
     private FlexboxLayout pillContainer;
     private ImageView imagePlaceholder;
+    private Button btnAddStory;
 
     private Uri selectedImageUri;
 
     private ActivityResultLauncher<Intent> galleryLauncher;
     private ActivityResultLauncher<Uri> cameraLauncher;
     private ActivityResultLauncher<String> requestPermissionLauncher;
-
-    private int storyCount = 0;
-    private Uri cameraImageUri;
-    private Campaign newCampaign;
     private ActivityResultLauncher<Intent> storyLauncher;
+
+    private Campaign currentDraftCampaign;
+    private Uri cameraImageUri;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,12 +68,22 @@ public class CreateCampaignActivity extends AppCompatActivity {
 
         // Inisialisasi UI
         ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(v -> onBackPressed());
 
-        etEndDate = findViewById(R.id.etEndDate);
-        etEndDate.setOnClickListener(v -> showDatePicker());
+        tvEndDate = findViewById(R.id.tvEndDate);
+        tvEndDate.setOnClickListener(v -> showDatePicker());
 
         imagePlaceholder = findViewById(R.id.imagePlaceholder);
+        imagePlaceholder.setOnClickListener(v -> showImageSourceDialog());
+
+        inputTitle = findViewById(R.id.inputTitle);
+        inputDeskripsi = findViewById(R.id.inputDeskripsi);
+        inputTargetUang = findViewById(R.id.inputTargetUang);
+        inputOrganizerName = findViewById(R.id.inputOrganizerName);
+        inputContact = findViewById(R.id.inputContact);
+        inputDonationAddress = findViewById(R.id.inputDonationAddress);
+        inputBankAccountNumber = findViewById(R.id.inputBankAccountNumber);
+        inputBankAccountName = findViewById(R.id.inputBankAccountName);
 
         // Inisialisasi ActivityResultLaunchers
         galleryLauncher = registerForActivityResult(
@@ -81,8 +93,7 @@ public class CreateCampaignActivity extends AppCompatActivity {
                         selectedImageUri = result.getData().getData();
                         previewImage();
                     }
-                }
-        );
+                });
 
         requestPermissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(),
@@ -94,7 +105,6 @@ public class CreateCampaignActivity extends AppCompatActivity {
                     }
                 });
 
-
         cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.TakePicture(),
                 success -> {
@@ -102,24 +112,32 @@ public class CreateCampaignActivity extends AppCompatActivity {
                         selectedImageUri = cameraImageUri;
                         previewImage();
                     }
-                }
-        );
+                });
 
-        imagePlaceholder.setOnClickListener(v -> showImageSourceDialog());
+        storyLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                        ArrayList<Story> updatedStories = (ArrayList<Story>) result.getData().getSerializableExtra("updated_campaign_stories");
+                        String storyTitle = result.getData().getStringExtra("story_title");
+
+                        if (currentDraftCampaign != null) {
+                            currentDraftCampaign.setStories(updatedStories);
+                            currentDraftCampaign.setStoryTitle(storyTitle);
+                            updateStoryButtonText();
+                        }
+                    }
+                });
 
         Spinner spinnerType = findViewById(R.id.spinnerCampaignType);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.campaign_types,
-                R.layout.spinner_item
-        );
+                this, R.array.campaign_types, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerType.setAdapter(adapter);
 
         etItemInput = findViewById(R.id.etItemInput);
         pillContainer = findViewById(R.id.pillContainer);
         Button btnAddItem = findViewById(R.id.btnAddItem);
-
         btnAddItem.setOnClickListener(v -> {
             String item = etItemInput.getText().toString().trim();
             if (!item.isEmpty()) {
@@ -128,105 +146,120 @@ public class CreateCampaignActivity extends AppCompatActivity {
             }
         });
 
-        Button btnAddStory = findViewById(R.id.btnAddStory);
-        storyListContainer = findViewById(R.id.storyListContainer);
-
-        int generatedId = DummyDataRepository.getInstance().getCampaignList().size() + 1;
         btnAddStory = findViewById(R.id.btnAddStory);
         btnAddStory.setOnClickListener(v -> {
-            // Inisialisasi newCampaign dengan data dasar, setiap kali tombol diklik
-            // Ini memastikan objek Campaign selalu tersedia dan tidak null
-            // Data dasar bisa diisi dari input field yang sudah diisi
-            if (newCampaign == null) {
-                newCampaign = new Campaign(
-                        generatedId,
-                        "", // title
-                        R.drawable.campaign_gempa, // mainImageResId
-                        "", // dateStarted
-                        "", // timeRemaining
-                        0L, // amountCollected
-                        0L, // targetAmount
-                        0, 0, 0, // progress
-                        "", // description
-                        "", // organizerName
-                        "", // organizerOccupation
-                        R.drawable.logo_organizer, // organizerImageResId
-                        "", // lastChat
-                        "Draft", // status - Perubahan di sini
-                        0 // remainingDays
-                );
-            }
-
             Intent intent = new Intent(CreateCampaignActivity.this, CreateStoryActivity.class);
-            intent.putExtra("campaign_data", (CharSequence) newCampaign);
+            if (currentDraftCampaign == null) {
+                currentDraftCampaign = createDraftCampaign();
+            }
+            intent.putExtra("campaign_data", currentDraftCampaign);
             storyLauncher.launch(intent);
         });
 
-        storyLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                        // Perbarui stories dari hasil CreateStoryActivity
-                        ArrayList<Story> updatedStories = (ArrayList<Story>) result.getData().getSerializableExtra("updated_campaign_stories");
-                        if (newCampaign != null) {
-                            newCampaign.setStories(updatedStories);
-                        }
-                    }
-                }
-        );
-
         Button btnSubmit = findViewById(R.id.btnSubmitCampaign);
-        btnSubmit.setOnClickListener(v -> {
-            EditText inputTitle = findViewById(R.id.inputTitle);
-            EditText inputDeskripsi = findViewById(R.id.inputDeskripsi);
-            EditText inputTargetUang = findViewById(R.id.inputTargetUang);
+        btnSubmit.setOnClickListener(v -> submitCampaign());
+    }
 
-            String title = inputTitle.getText().toString().trim();
-            String description = inputDeskripsi.getText().toString().trim();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveDraftCampaign();
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Simpan Draft?");
+        builder.setMessage("Apakah Anda ingin menyimpan galang dana ini sebagai draft atau menghapusnya?");
+        builder.setPositiveButton("Simpan Draft", (dialog, which) -> {
+            saveDraftCampaign();
+            super.onBackPressed();
+        });
+        builder.setNegativeButton("Hapus", (dialog, which) -> {
+            if (currentDraftCampaign != null) {
+                DummyDataRepository.getInstance().removeCampaign(currentDraftCampaign);
+            }
+            super.onBackPressed();
+        });
+        builder.setNeutralButton("Batal", (dialog, which) -> dialog.dismiss());
+        builder.show();
+    }
+
+    private void updateStoryButtonText() {
+        if (currentDraftCampaign != null && currentDraftCampaign.getStoryTitle() != null && !currentDraftCampaign.getStoryTitle().isEmpty()) {
+            btnAddStory.setText(currentDraftCampaign.getStoryTitle());
+        } else {
+            btnAddStory.setText("Tambahkan Cerita (+)");
+        }
+    }
+
+    private Campaign createDraftCampaign() {
+        int generatedId = DummyDataRepository.getInstance().getCampaignList().size() + 1;
+        Campaign draft = new Campaign(
+                generatedId, "", "", "", 0L, 0L, "", "", "", 0,
+                "Draft", 0, new ArrayList<>(), "", "", 0
+        );
+        DummyDataRepository.getInstance().addCampaign(draft);
+        return draft;
+    }
+
+    private void saveDraftCampaign() {
+        String title = inputTitle.getText().toString().trim();
+        String description = inputDeskripsi.getText().toString().trim();
+        String targetText = inputTargetUang.getText().toString().trim();
+
+        // Cek jika ada field yang diisi
+        boolean anyFieldFilled = !title.isEmpty() || !description.isEmpty() ||
+                !targetText.isEmpty() || selectedImageUri != null;
+
+        // Jika draft belum ada, tapi ada isian -> buat dulu
+        if (currentDraftCampaign == null && anyFieldFilled) {
+            currentDraftCampaign = createDraftCampaign();
+        }
+
+        // Jika draft sudah ada, atau baru dibuat di atas
+        if (currentDraftCampaign != null) {
             long targetAmount = 0;
             try {
-                targetAmount = Long.parseLong(inputTargetUang.getText().toString().trim());
+                targetAmount = Long.parseLong(targetText);
             } catch (NumberFormatException e) {
-                Toast.makeText(this, "Target Uang tidak valid", Toast.LENGTH_SHORT).show();
-                return;
+                // Biarkan targetAmount 0 jika tidak valid
             }
 
-            if (title.isEmpty() || description.isEmpty() || etEndDate.getText().toString().isEmpty()) {
-                Toast.makeText(this, "Mohon lengkapi semua data", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (newCampaign != null) {
-                DummyDataRepository.getInstance().addCampaign(newCampaign);
-                Toast.makeText(this, "Ajukan galang dana berhasil", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                Toast.makeText(this, "Harap lengkapi data dan cerita galang dana", Toast.LENGTH_SHORT).show();
+            currentDraftCampaign.setTitle(title);
+            currentDraftCampaign.setDescription(description);
+            currentDraftCampaign.setTargetAmount(targetAmount);
+
+            if (selectedImageUri != null) {
+                currentDraftCampaign.setCoverImageUri(selectedImageUri.toString());
             }
 
-            // Buat objek Campaign baru
-            Campaign newCampaign = new Campaign(
-                    generatedId,
-                    title,
-                    R.drawable.campaign_gempa,
-                    "Sekarang",
-                    "Sisa 90 hari",
-                    0L,
-                    targetAmount,
-                    0, 0, 0,
-                    description,
-                    "Penggalang Baru",
-                    "Pengguna",
-                    R.drawable.logo_organizer,
-                    "",
-                    "Diajukan",
-                    90
-            );
+            DummyDataRepository.getInstance().updateCampaign(currentDraftCampaign);
+            Toast.makeText(this, "Draft tersimpan", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void submitCampaign() {
+        if (inputTitle.getText().toString().isEmpty() || inputDeskripsi.getText().toString().isEmpty() ||
+                tvEndDate.getText().toString().isEmpty() || inputTargetUang.getText().toString().isEmpty() ||
+                inputOrganizerName.getText().toString().isEmpty() || inputContact.getText().toString().isEmpty() ||
+                inputDonationAddress.getText().toString().isEmpty() || inputBankAccountNumber.getText().toString().isEmpty() ||
+                inputBankAccountName.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Mohon lengkapi semua data", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            DummyDataRepository.getInstance().addCampaign(newCampaign);
+        if (currentDraftCampaign == null) {
+            currentDraftCampaign = createDraftCampaign();
+        }
+        currentDraftCampaign.setTitle(inputTitle.getText().toString());
+        currentDraftCampaign.setDescription(inputDeskripsi.getText().toString());
+        currentDraftCampaign.setTargetAmount(Long.parseLong(inputTargetUang.getText().toString()));
+        currentDraftCampaign.setCoverImageUri(selectedImageUri != null ? selectedImageUri.toString() : null);
+        currentDraftCampaign.setStatus("Diajukan");
 
-            Toast.makeText(this, "Ajukan galang dana berhasil", Toast.LENGTH_SHORT).show();
-            finish();
-        });
+        DummyDataRepository.getInstance().updateCampaign(currentDraftCampaign);
+        Toast.makeText(this, "Galang dana berhasil diajukan!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private void showDatePicker() {
@@ -236,7 +269,7 @@ public class CreateCampaignActivity extends AppCompatActivity {
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog dpd = new DatePickerDialog(this, (view, year1, monthOfYear, dayOfMonth) -> {
-            etEndDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1);
+            tvEndDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1);
         }, year, month, day);
 
         dpd.show();
@@ -256,13 +289,13 @@ public class CreateCampaignActivity extends AppCompatActivity {
         builder.setTitle("Pilih Sumber Gambar");
         String[] options = {"Ambil dari Kamera", "Pilih dari Galeri"};
         builder.setItems(options, (dialog, which) -> {
-            if (which == 0) { // Kamera
+            if (which == 0) {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                     dispatchTakePictureIntent();
                 } else {
                     requestPermissionLauncher.launch(Manifest.permission.CAMERA);
                 }
-            } else { // Galeri
+            } else {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 galleryLauncher.launch(intent);
             }

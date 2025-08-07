@@ -1,8 +1,8 @@
 package com.example.rahmat_ux.data;
 
+import com.example.rahmat_ux.R;
 import com.example.rahmat_ux.model.Bank;
 import com.example.rahmat_ux.model.Campaign;
-import com.example.rahmat_ux.R;
 import com.example.rahmat_ux.model.Donator;
 import com.example.rahmat_ux.model.Notification;
 import com.example.rahmat_ux.model.Story;
@@ -20,97 +20,15 @@ public class DummyDataRepository {
     private DummyDataRepository() {
         campaignList = new ArrayList<>();
 
-        // Data 1: Anak Difabel
-        campaignList.add(new Campaign(
-                1,
-                "URGENT! Puluhan Anak-anak Difabel Butuh Bantuanmu",
-                R.drawable.campaign_difabel,
-                "10 Juli 2025", "Sisa 76 hari",
-                13440231L, 300000000L,
-                30, 50, 20,
-                "Bantu penuhi kebutuhan akses pendidikan yang layak untuk anak-anak difabel.",
-                "Yayasan Harapan Bangsa", "Lembaga Sosial", R.drawable.logo_organizer, "Terima kasih kakak kakak atas bantuannya, semoga Allah SWT memberi berkah",
-                "Berlangsung", 76
-        ));
-
-        // Data 2: Sedekah Subuh (Beras)
-        campaignList.add(new Campaign(
-                2,
-                "Akses Nutrisi Masih Terbatas, Donasi Beras Sekarang! Bantu Pulihkan Masa Depan Mereka",
-                R.drawable.banner5,
-                "15 Juni 2025", "Sisa 76 hari",
-                3500000L, 25000000L,
-                90, 10, 5,
-                "Bantu pulihkan masa depan mereka dengan memenuhi kebutuhan pangan pokok.",
-                "Sedekah Subuh", "Komunitas Relawan", R.drawable.logo_organizer, "Beras sudah diberikan kepada seluruh orang yang membutuhkan, terima kasih orang baik!",
-                "Berlangsung", 76
-        ));
-
-        // Data 3: Stunting
-        campaignList.add(new Campaign(
-                3,
-                "Akses Nutrisi yang Masih Terbatas bagi Anak dengan Risiko Stunting",
-                R.drawable.banner3,
-                "01 Juli 2025", "Sisa 76 hari",
-                10140251L, 250000000L,
-                85, 40, 60,
-                "DARURAT Stunting & Gizi Buruk Kronis. Cegah stunting dengan memberikan gizi terbaik.",
-                "Anak Sehat Indonesia", "Organisasi Kesehatan", R.drawable.logo_organizer, "Bantuanmu sudah menyelamatkan nasib banyak anak dari stunting dan kekurangan gizi!",
-                "Berlangsung", 76
-        ));
-
-        // Data 4: Yatim Piatu Disabilitas (Buku)
-        campaignList.add(new Campaign(
-                4,
-                "Anak Yatim Difabel Butuh Dukungan!Donasi Buku, Hadirkan Harapan Lewat Pendidikan",
-                R.drawable.banner2,
-                "20 Juni 2025", "Sisa 76 hari",
-                5250000L, 50000000L,
-                10, 95, 15,
-                "Tanpa keluarga, mereka butuh uluran tangan kita. Buku adalah jendela dunia, mari buka jendela itu untuk mereka.",
-                "Pustaka Harapan", "Gerakan Literasi", R.drawable.logo_organizer, "5000 buku sudah diberikan kepada anak-anak yang gemar membaca, bantuanmu sangat diapresiasi!",
-                "Berlangsung", 76
-        ));
-
-        // Data 5: Ternate Banjir Bandang
-        campaignList.add(new Campaign(
-                5,
-                "Solidaritas untuk Ternate: Mari Bersama Pulihkan Kehidupan Pasca Banjir Bandang",
-                R.drawable.banner4,
-                "27 Mei 2025", "Sisa 23 hari",
-                203324000L, 250000000L,
-                75, 75, 75,
-                "Bantu pembangunan kembali rumah warga yang hancur akibat gempa.",
-                "Bantuanmu Team", "Tim Tanggap Bencana", R.drawable.logo_organizer, "10 rumah baru telah dibangun dan banyak keluarga sudah mendapatkan tempat tinggal!",
-                "Berlangsung", 23
-        ));
-
-        campaignList.add(new Campaign(
-                6,
-                "Bantu Renovasi Sekolah Rusak di Pelosok",
-                R.drawable.campaign_gempa,
-                "18 Juli 2025", "Sisa 45 hari",
-                0L, 100000000L,
-                0, 0, 0,
-                "Sekolah di pedalaman masih kekurangan fasilitas belajar. Yuk bantu wujudkan ruang belajar yang layak.",
-                "Aksi Cerdas Nusantara", "Komunitas Pendidikan", R.drawable.logo_organizer, "Aajwndjanwdawdawjdnj",
-                "Diajukan", 45
-        ));
-
-        campaignList.add(new Campaign(
-                7,
-                "Donasi Air Bersih untuk Warga Kekeringan",
-                R.drawable.campaign_gempa,
-                "01 Mei 2025", "Selesai",
-                125000000L, 125000000L,
-                100, 100, 100,
-                "Kekeringan melanda desa kami. Terima kasih atas bantuannya yang telah mengalirkan air kehidupan.",
-                "Gerakan Air Untuk Semua", "Organisasi Sosial", R.drawable.logo_organizer, "asemlah",
-                "Selesai", 0
-        ));
+        campaignList.add(new Campaign(1, "URGENT! Puluhan Anak-anak Difabel Butuh Bantuanmu", R.drawable.campaign_difabel, "10 Juli 2025", "Sisa 76 hari", 13440231L, 300000000L, 30, 50, 20, "Bantu penuhi kebutuhan akses pendidikan yang layak untuk anak-anak difabel.", "Yayasan Harapan Bangsa", "Lembaga Sosial", R.drawable.logo_organizer, "Terima kasih kakak kakak atas bantuannya, semoga Allah SWT memberi berkah", "Berlangsung", 76));
+        campaignList.add(new Campaign(2, "Akses Nutrisi Masih Terbatas, Donasi Beras Sekarang! Bantu Pulihkan Masa Depan Mereka", R.drawable.banner5, "15 Juni 2025", "Sisa 76 hari", 3500000L, 25000000L, 90, 10, 5, "Bantu pulihkan masa depan mereka dengan memenuhi kebutuhan pangan pokok.", "Sedekah Subuh", "Komunitas Relawan", R.drawable.logo_organizer, "Beras sudah diberikan kepada seluruh orang yang membutuhkan, terima kasih orang baik!", "Berlangsung", 76));
+        campaignList.add(new Campaign(3, "Akses Nutrisi yang Masih Terbatas bagi Anak dengan Risiko Stunting", R.drawable.banner3, "01 Juli 2025", "Sisa 76 hari", 10140251L, 250000000L, 85, 40, 60, "DARURAT Stunting & Gizi Buruk Kronis. Cegah stunting dengan memberikan gizi terbaik.", "Anak Sehat Indonesia", "Organisasi Kesehatan", R.drawable.logo_organizer, "Bantuanmu sudah menyelamatkan nasib banyak anak dari stunting dan kekurangan gizi!", "Berlangsung", 76));
+        campaignList.add(new Campaign(4, "Anak Yatim Difabel Butuh Dukungan!Donasi Buku, Hadirkan Harapan Lewat Pendidikan", R.drawable.banner2, "20 Juni 2025", "Sisa 76 hari", 5250000L, 50000000L, 10, 95, 15, "Tanpa keluarga, mereka butuh uluran tangan kita. Buku adalah jendela dunia, mari buka jendela itu untuk mereka.", "Pustaka Harapan", "Gerakan Literasi", R.drawable.logo_organizer, "5000 buku sudah diberikan kepada anak-anak yang gemar membaca, bantuanmu sangat diapresiasi!", "Berlangsung", 76));
+        campaignList.add(new Campaign(5, "Solidaritas untuk Ternate: Mari Bersama Pulihkan Kehidupan Pasca Banjir Bandang", R.drawable.banner4, "27 Mei 2025", "Sisa 23 hari", 203324000L, 250000000L, 75, 75, 75, "Bantu pembangunan kembali rumah warga yang hancur akibat gempa.", "Bantuanmu Team", "Tim Tanggap Bencana", R.drawable.logo_organizer, "10 rumah baru telah dibangun dan banyak keluarga sudah mendapatkan tempat tinggal!", "Berlangsung", 23));
+        campaignList.add(new Campaign(6, "Bantu Renovasi Sekolah Rusak di Pelosok", R.drawable.campaign_gempa, "18 Juli 2025", "Sisa 45 hari", 0L, 100000000L, 0, 0, 0, "Sekolah di pedalaman masih kekurangan fasilitas belajar. Yuk bantu wujudkan ruang belajar yang layak.", "Aksi Cerdas Nusantara", "Komunitas Pendidikan", R.drawable.logo_organizer, "Aajwndjanwdawdawjdnj", "Diajukan", 45));
+        campaignList.add(new Campaign(7, "Donasi Air Bersih untuk Warga Kekeringan", R.drawable.campaign_gempa, "01 Mei 2025", "Selesai", 125000000L, 125000000L, 100, 100, 100, "Kekeringan melanda desa kami. Terima kasih atas bantuannya yang telah mengalirkan air kehidupan.", "Gerakan Air Untuk Semua", "Organisasi Sosial", R.drawable.logo_organizer, "asemlah", "Selesai", 0));
 
         currentUser = new User("John Doe", 50000, 10000);
-
     }
 
     public static DummyDataRepository getInstance() {
@@ -120,26 +38,30 @@ public class DummyDataRepository {
         return instance;
     }
 
-    // --- Metode baru untuk User ---
-    public User getCurrentUser() {
-        return currentUser;
-    }
+    public User getCurrentUser() { return currentUser; }
+    public void updateCurrentUserBalance(long newBalance) { currentUser.setBalance(newBalance); }
+    public void updateCurrentUserDonationPerSwipe(long newNominal) { currentUser.setDonationPerSwipe(newNominal); }
 
-    public void updateCurrentUserBalance(long newBalance) {
-        currentUser.setBalance(newBalance);
-    }
-
-    public void updateCurrentUserDonationPerSwipe(long newNominal) {
-        currentUser.setDonationPerSwipe(newNominal);
-    }
-
-
-    public List<Campaign> getCampaignList() {
-        return campaignList;
-    }
+    public List<Campaign> getCampaignList() { return campaignList; }
 
     public void addCampaign(Campaign campaign) {
+        if (campaign.getId() == 0) {
+            campaign.setId(campaignList.size() + 1);
+        }
         this.campaignList.add(campaign);
+    }
+
+    public void updateCampaign(Campaign updatedCampaign) {
+        for (int i = 0; i < campaignList.size(); i++) {
+            if (campaignList.get(i).getId() == updatedCampaign.getId()) {
+                campaignList.set(i, updatedCampaign);
+                return;
+            }
+        }
+    }
+
+    public void removeCampaign(Campaign campaign) {
+        campaignList.remove(campaign);
     }
 
     public List<Campaign> getCampaignsByStatus(String status) {

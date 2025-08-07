@@ -235,6 +235,7 @@ public class SwipeFragment extends Fragment {
         }
         private void toggleOverlay() {
             if (currentCardView == null) return;
+            Campaign campaign = campaignList.get(currentIndex);
 
             View overlayBackground = currentCardView.findViewById(R.id.cardOverlayBackground);
             View overlayContent = currentCardView.findViewById(R.id.cardOverlayContent);
@@ -249,7 +250,7 @@ public class SwipeFragment extends Fragment {
 
             boolean isOverlayVisible = overlayContent.getVisibility() == View.VISIBLE;
 
-            Campaign campaign = campaignList.get((currentIndex - 1 + campaignList.size()) % campaignList.size());
+//            Campaign campaign = campaignList.get((currentIndex - 1 + campaignList.size()) % campaignList.size());
 
             if (isOverlayVisible) {
                 overlayContent.animate()
@@ -291,7 +292,6 @@ public class SwipeFragment extends Fragment {
         }
     }
 
-    // ...
     private void showDonationNominalDialog() {
         final Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_donation_nominal);
