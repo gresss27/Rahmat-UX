@@ -24,11 +24,10 @@ public class AddCampaignFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private CampaignStatusAdapter adapter;
-    private Button btnSubmitted, btnOngoing, btnCompleted;
+    private Button btnDraft, btnSubmitted, btnOngoing, btnCompleted;
     private List<Campaign> allCampaigns;
 
-    // Tambahkan variabel untuk status yang sedang aktif
-    private String currentStatus = "Diajukan";
+    private String currentStatus = "Draft";
 
     @Nullable
     @Override
@@ -36,14 +35,21 @@ public class AddCampaignFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_campaign, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerCampaigns);
+        btnDraft = view.findViewById(R.id.btnDraft);
         btnSubmitted = view.findViewById(R.id.btnSubmitted);
         btnOngoing = view.findViewById(R.id.btnOngoing);
         btnCompleted = view.findViewById(R.id.btnCompleted);
         Button btnCreateCampaign = view.findViewById(R.id.btnCreateCampaign);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        // Ganti dengan getInstance()
         allCampaigns = DummyDataRepository.getInstance().getCampaignList();
+
+// Sembunyikan tombol Draft jika tidak ada draft
+        boolean hasDraft = checkDraftExistence();
+        btnDraft.setVisibility(hasDraft ? View.VISIBLE : View.GONE);
+        btnDraft.setOnClickListener(v -> {
+            filterCampaigns("Draft");
+        });
 
         btnSubmitted.setOnClickListener(v -> {
             filterCampaigns("Diajukan");
@@ -62,27 +68,103 @@ public class AddCampaignFragment extends Fragment {
             startActivity(intent);
         });
 
+        // Pindahkan inisialisasi adapter ke sini
+        adapter = new CampaignStatusAdapter(DummyDataRepository.getInstance().getCampaignsByStatus(currentStatus));
+        recyclerView.setAdapter(adapter);
+        setSelectedButton(currentStatus);
+
+        // Set listener untuk item di RecyclerView
+        adapter.setOnItemClickListener(campaign -> {
+            if (campaign.getStatus().equals("Draft")) {
+                Intent intent = new Intent(getActivity(), CreateCampaignActivity.class);
+                intent.putExtra("campaign_data", campaign);
+                startActivity(intent);
+            } else {
+                // Tambahkan aksi lain jika bukan draft
+            }
+        });
+
+        adapter.setOnDeleteClickListener(campaign -> {
+            DummyDataRepository.getInstance().removeCampaign(campaign);
+
+            boolean stillhasDraft = checkDraftExistence();
+            btnDraft.setVisibility(stillhasDraft ? View.VISIBLE : View.GONE);
+
+            if ("Draft".equalsIgnoreCase(currentStatus)) {
+                if (stillhasDraft) {
+                    filterCampaigns("Draft");
+                } else {
+                    currentStatus = "Diajukan";
+                    filterCampaigns(currentStatus);
+                }
+            } else {
+                filterCampaigns(currentStatus); // tetap refresh tab sekarang
+            }
+        });
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        // Panggil filterCampaigns setiap kali fragment kembali ke layar
+        // Cek ulang apakah ada draft setelah kembali dari CreateCampaignActivity
+        boolean hasDraft = checkDraftExistence();
+        btnDraft.setVisibility(hasDraft ? View.VISIBLE : View.GONE);
+
+        // Jika status sebelumnya "Draft" dan sekarang sudah tidak ada, alihkan ke "Diajukan"
+        if ("Draft".equalsIgnoreCase(currentStatus) && !hasDraft) {
+            currentStatus = "Diajukan";
+        }
         filterCampaigns(currentStatus);
     }
-
+    private boolean checkDraftExistence() {
+        for (Campaign c : DummyDataRepository.getInstance().getCampaignList()) {
+            if ("Draft".equalsIgnoreCase(c.getStatus())) {
+                return true;
+            }
+        }
+        return false;
+    }
     private void filterCampaigns(String status) {
         currentStatus = status;
-        // Ganti dengan getInstance()
         List<Campaign> filtered = DummyDataRepository.getInstance().getCampaignsByStatus(status);
         adapter = new CampaignStatusAdapter(filtered);
         recyclerView.setAdapter(adapter);
         setSelectedButton(status);
+
+        // Tambahkan listener kembali ke adapter baru
+        adapter.setOnItemClickListener(campaign -> {
+            if ("Draft".equalsIgnoreCase(campaign.getStatus())) {
+                Intent intent = new Intent(getActivity(), CreateCampaignActivity.class);
+                intent.putExtra("campaign_data", campaign);
+                startActivity(intent);
+            }
+        });
+
+        adapter.setOnDeleteClickListener(campaign -> {
+            DummyDataRepository.getInstance().removeCampaign(campaign);
+
+            boolean stillhasDraft = checkDraftExistence();
+            btnDraft.setVisibility(stillhasDraft ? View.VISIBLE : View.GONE);
+
+            if ("Draft".equalsIgnoreCase(currentStatus)) {
+                if (stillhasDraft) {
+                    filterCampaigns("Draft");
+                } else {
+                    currentStatus = "Diajukan";
+                    filterCampaigns(currentStatus);
+                }
+            } else {
+                filterCampaigns(currentStatus); // tetap refresh tab sekarang
+            }
+        });
     }
 
+
     private void setSelectedButton(String selectedStatus) {
-        // Reset warna semua tombol
+        btnDraft.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(),
+                selectedStatus.equals("Draft") ? R.color.green_primary : R.color.green_unselected));
+
         btnSubmitted.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(),
                 selectedStatus.equals("Diajukan") ? R.color.green_primary : R.color.green_unselected));
 

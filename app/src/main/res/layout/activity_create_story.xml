@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".CreateStoryActivity">
 
-    <!-- Top Bar -->
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
@@ -44,7 +43,6 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Editor Area -->
     <ScrollView
         android:id="@+id/editorScrollView"
         android:layout_width="0dp"
@@ -62,41 +60,26 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Judul Cerita"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"/>
             <EditText
                 android:id="@+id/storyTitleInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tulis judul cerita Anda di sini..."
+                android:hint="Judul Donasi"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:background="@null"
                 android:inputType="textCapSentences|textMultiLine" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Isi Cerita"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"/>
-            <EditText
-                android:id="@+id/storyContentInput"
+            <LinearLayout
+                android:id="@+id/storyEditorContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="200dp"
-                android:hint="Tulis isi cerita Anda di sini..."
-                android:background="@null"
-                android:gravity="top"
-                android:inputType="textCapSentences|textMultiLine" />
+                android:orientation="vertical"
+                android:layout_marginTop="16dp" />
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Tools Bar -->
     <LinearLayout
         android:id="@+id/bottomToolsBar"
         android:layout_width="match_parent"

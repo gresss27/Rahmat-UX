@@ -1,13 +1,14 @@
 package com.example.rahmat_ux.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Campaign {
+public class Campaign implements Serializable {
 
     // Data Utama
-    private final int id; // Unique ID for each campaign
-    private final String title;
-    private final int mainImageResId;
+    private int id;
+    private String title;
+    private int mainImageResId;
     private final String dateStarted;
     private final String timeRemaining;
 
@@ -15,25 +16,42 @@ public class Campaign {
     private long amountCollected;
     private long targetAmount;
 
-    // Data Donasi Non-Tunai
-    private final int foodProgress;
-    private final int clothingProgress;
-    private final int medicineProgress;
+    // Data Donasi Non-Tunai (custom items)
+    private String item1Name;
+    private String item2Name;
+    private String item3Name;
+    private final int item1Progress;
+    private final int item2Progress;
+    private final int item3Progress;
 
     // Data Deskripsi & Penyelenggara
-    private final String description;
-    private final String organizerName;
-    private final String organizerOccupation;
-    private final int organizerImageResId;
-    private final String lastChat;
-    private final String status;
+    private String description;
+    private String longDescription;
+    private String organizerName;
+    private String organizerOccupation;
+    private int organizerImageResId;
+    private String lastChat;
+    private String status;
     private final int remainingDays;
-    private List<Story> stories; // Tambahkan properti ini
+    private String coverImageUri;
+    private String storyTitle;
+    private int item1Qty;
+    private int item2Qty;
+    private int item3Qty;
 
+    // Item unit (satuan barang)
+    private String item1Unit;
+    private String item2Unit;
+    private String item3Unit;
+    private List<Story> stories;
+
+    // --- Constructors ---
     public Campaign(int id, String title, int mainImageResId, String dateStarted, String timeRemaining,
-                    long amountCollected, long targetAmount,
-                    int foodProgress, int clothingProgress, int medicineProgress,
-                    String description, String organizerName, String organizerOccupation, int organizerImageResId, String lastChat, String status, int remainingDays) {
+                    long amountCollected, long targetAmount, String item1Name, int item1Progress,
+                    String item2Name, int item2Progress,
+                    String item3Name, int item3Progress, String longDescription, String coverImageUri, String storyTitle,
+                    String description, String organizerName, String organizerOccupation,
+                    int organizerImageResId, String lastChat, String status, int remainingDays) {
         this.id = id;
         this.title = title;
         this.mainImageResId = mainImageResId;
@@ -41,9 +59,15 @@ public class Campaign {
         this.timeRemaining = timeRemaining;
         this.amountCollected = amountCollected;
         this.targetAmount = targetAmount;
-        this.foodProgress = foodProgress;
-        this.clothingProgress = clothingProgress;
-        this.medicineProgress = medicineProgress;
+        this.item1Name = item1Name;
+        this.item2Name = item2Name;
+        this.item3Name = item3Name;
+        this.item1Progress = item1Progress;
+        this.item2Progress = item2Progress;
+        this.item3Progress = item3Progress;
+        this.longDescription = longDescription;
+        this.coverImageUri = coverImageUri;
+        this.storyTitle = storyTitle;
         this.description = description;
         this.organizerName = organizerName;
         this.organizerOccupation = organizerOccupation;
@@ -53,7 +77,16 @@ public class Campaign {
         this.remainingDays = remainingDays;
     }
 
-    public Campaign(int id, String title, int mainImageResId, String dateStarted, String timeRemaining, long amountCollected, long targetAmount, int foodProgress, int clothingProgress, int medicineProgress, String description, String organizerName, String organizerOccupation, int organizerImageResId, String lastChat, String status, int remainingDays, List<Story> stories) {
+    public Campaign(int id, String title, int mainImageResId, String dateStarted, String timeRemaining,
+                    long amountCollected, long targetAmount,
+                    String item1Name, int item1Progress, int item1Qty, String item1Unit,
+                    String item2Name, int item2Progress, int item2Qty, String item2Unit,
+                    String item3Name, int item3Progress, int item3Qty, String item3Unit,
+                    String description, String longDescription,
+                    String organizerName, String organizerOccupation,
+                    int organizerImageResId, String lastChat, String status, int remainingDays,
+                    List<Story> stories, String coverImageUri, String storyTitle) {
+
         this.id = id;
         this.title = title;
         this.mainImageResId = mainImageResId;
@@ -61,10 +94,25 @@ public class Campaign {
         this.timeRemaining = timeRemaining;
         this.amountCollected = amountCollected;
         this.targetAmount = targetAmount;
-        this.foodProgress = foodProgress;
-        this.clothingProgress = clothingProgress;
-        this.medicineProgress = medicineProgress;
+
+        this.item1Name = item1Name;
+        this.item1Progress = item1Progress;
+        this.item1Qty = item1Qty;
+        this.item1Unit = item1Unit;
+
+        this.item2Name = item2Name;
+        this.item2Progress = item2Progress;
+        this.item2Qty = item2Qty;
+        this.item2Unit = item2Unit;
+
+        this.item3Name = item3Name;
+        this.item3Progress = item3Progress;
+        this.item3Qty = item3Qty;
+        this.item3Unit = item3Unit;
+
         this.description = description;
+        this.longDescription = longDescription;
+
         this.organizerName = organizerName;
         this.organizerOccupation = organizerOccupation;
         this.organizerImageResId = organizerImageResId;
@@ -72,49 +120,79 @@ public class Campaign {
         this.status = status;
         this.remainingDays = remainingDays;
         this.stories = stories;
+        this.coverImageUri = coverImageUri;
+        this.storyTitle = storyTitle;
     }
 
 
-    // --- Getter Methods ---
+    // --- Getters ---
     public int getId() { return id; }
     public String getTitle() { return title; }
     public int getMainImageResId() { return mainImageResId; }
     public String getDateStarted() { return dateStarted; }
     public String getTimeRemaining() { return timeRemaining; }
+
     public long getAmountCollected() { return amountCollected; }
     public long getTargetAmount() { return targetAmount; }
-    public int getFoodProgress() { return foodProgress; }
-    public int getClothingProgress() { return clothingProgress; }
-    public int getMedicineProgress() { return medicineProgress; }
+    public void setAmountCollected(long amountCollected) { this.amountCollected = amountCollected; }
+
+    public String getItem1Name() { return item1Name; }
+    public String getItem2Name() { return item2Name; }
+    public String getItem3Name() { return item3Name; }
+
+    public int getItem1Progress() { return item1Progress; }
+    public int getItem2Progress() { return item2Progress; }
+    public int getItem3Progress() { return item3Progress; }
+
     public String getDescription() { return description; }
+
+    public String getLongDescription() { return longDescription; }
+
     public String getOrganizerName() { return organizerName; }
-
-    public String getOrganizerOccupation() {
-        return organizerOccupation;
-    }
-
+    public String getOrganizerOccupation() { return organizerOccupation; }
     public int getOrganizerImageResId() { return organizerImageResId; }
 
-    public int getRemainingDays() {
-        return remainingDays;
-    }
+    public String getLastChat() { return lastChat; }
+    public String getStatus() { return status; }
+    public int getRemainingDays() { return remainingDays; }
+    public List<Story> getStories() { return stories; }
+    public String getCoverImageUri() { return coverImageUri; }
+    public String getStoryTitle() { return storyTitle; }
 
-    public String getStatus() {
-        return status;
-    }
+    public int getItem1Qty() { return item1Qty; }
+    public void setItem1Qty(int qty) { this.item1Qty = qty; }
 
-    public void setAmountCollected(long amountCollected) {
-        this.amountCollected = amountCollected;
-    }
-    public List<Story> getStories() {
-        return stories;
-    }
+    public String getItem1Unit() { return item1Unit; }
+    public void setItem1Unit(String unit) { this.item1Unit = unit; }
 
-    public void setStories(List<Story> stories) {
-        this.stories = stories;
-    }
+    public int getItem2Qty() { return item2Qty; }
+    public void setItem2Qty(int qty) { this.item2Qty = qty; }
 
-    public String getLastChat(){
-        return lastChat;
-    }
+    public String getItem2Unit() { return item2Unit; }
+    public void setItem2Unit(String unit) { this.item2Unit = unit; }
+
+    public int getItem3Qty() { return item3Qty; }
+    public void setItem3Qty(int qty) { this.item3Qty = qty; }
+
+    public String getItem3Unit() { return item3Unit; }
+    public void setItem3Unit(String unit) { this.item3Unit = unit; }
+    public void setItem1Name(String name) { this.item1Name = name; }
+    public void setItem2Name(String name) { this.item2Name = name; }
+    public void setItem3Name(String name) { this.item3Name = name; }
+
+    public void setStories(List<Story> stories) { this.stories = stories; }
+    // --- Setter Methods ---
+    public void setId(int id) { this.id = id; }
+    public void setTitle(String title) { this.title = title; }
+    public void setTargetAmount(long targetAmount) { this.targetAmount = targetAmount; }
+    public void setDescription(String description) { this.description = description; }
+    public void setOrganizerName(String organizerName) { this.organizerName = organizerName; }
+    public void setOrganizerOccupation(String organizerOccupation) { this.organizerOccupation = organizerOccupation; }
+    public void setOrganizerImageResId(int organizerImageResId) { this.organizerImageResId = organizerImageResId; }
+    public void setLastChat(String lastChat) { this.lastChat = lastChat; }
+    public void setStatus(String status) { this.status = status; }
+    public void setCoverImageUri(String coverImageUri) { this.coverImageUri = coverImageUri; }
+    public void setStoryTitle(String storyTitle) { this.storyTitle = storyTitle; }
+    public void setMainImageResId(int mainImageResId) { this.mainImageResId = mainImageResId; }
+    public void setLongDescription(String longDescription) { this.longDescription = longDescription; }
 }

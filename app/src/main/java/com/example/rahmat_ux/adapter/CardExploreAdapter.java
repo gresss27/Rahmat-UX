@@ -1,5 +1,7 @@
 package com.example.rahmat_ux.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.rahmat_ux.DonationDetailActivity;
 import com.example.rahmat_ux.R;
 import com.example.rahmat_ux.model.Campaign;
 
@@ -17,9 +20,11 @@ import java.util.List;
 
 public class CardExploreAdapter extends RecyclerView.Adapter<CardExploreAdapter.CampaignViewHolder> {
 
+    private Context context;
     private List<Campaign> campaignList;
 
-    public CardExploreAdapter(List<Campaign> campaignList) {
+    public CardExploreAdapter(Context context, List<Campaign> campaignList) {
+        this.context = context;
         this.campaignList = campaignList;
     }
 
@@ -62,6 +67,13 @@ public class CardExploreAdapter extends RecyclerView.Adapter<CardExploreAdapter.
         // Untuk saat ini, saya akan mengomentari baris progress bar agar tidak error
         // jika Anda belum memutuskan atau belum ada ProgressBar yang sesuai di layout.
         // holder.campaignProgress.setProgress(campaign.getProgressPercentage()); // Baris ini sudah tidak ada di model Campaign
+
+//        HANDLE CLICK, NAVIGATE TO DONATION DETAIL
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DonationDetailActivity.class);
+            intent.putExtra("campaign_id", campaign.getId()); // Send ID or any needed data
+            context.startActivity(intent);
+        });
     }
 
     @Override

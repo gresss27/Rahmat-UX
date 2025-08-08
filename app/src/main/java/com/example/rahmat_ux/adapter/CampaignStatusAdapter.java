@@ -1,8 +1,10 @@
 package com.example.rahmat_ux.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,6 +20,26 @@ import java.util.List;
 public class CampaignStatusAdapter extends RecyclerView.Adapter<CampaignStatusAdapter.CampaignViewHolder> {
 
     private final List<Campaign> campaigns;
+    private OnItemClickListener listener;
+    private OnDeleteClickListener deleteClickListener;
+
+    // Interface klik item
+    public interface OnItemClickListener {
+        void onItemClick(Campaign campaign);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    // Interface klik delete
+    public interface OnDeleteClickListener {
+        void onDeleteClick(Campaign campaign);
+    }
+
+    public void setOnDeleteClickListener(OnDeleteClickListener listener) {
+        this.deleteClickListener = listener;
+    }
 
     public CampaignStatusAdapter(List<Campaign> campaigns) {
         this.campaigns = campaigns;
@@ -35,35 +57,53 @@ public class CampaignStatusAdapter extends RecyclerView.Adapter<CampaignStatusAd
         Campaign campaign = campaigns.get(position);
 
         holder.title.setText(campaign.getTitle());
-        holder.thumbnail.setImageResource(campaign.getMainImageResId());
+        if (campaign.getCoverImageUri() != null && !campaign.getCoverImageUri().isEmpty()) {
+            holder.thumbnail.setImageURI(Uri.parse(campaign.getCoverImageUri()));
+        } else if (campaign.getMainImageResId() != 0) {
+            holder.thumbnail.setImageResource(campaign.getMainImageResId());
+        } else {
+            holder.thumbnail.setImageResource(R.drawable.ic_image_placeholder); // placeholder default
+        }
 
         String status = campaign.getStatus();
+        if ("Draft".equalsIgnoreCase(status)) {
+            holder.deleteDraftButton.setVisibility(View.VISIBLE);
+            holder.deleteDraftButton.setOnClickListener(v -> {
+                if (deleteClickListener != null) {
+                    deleteClickListener.onDeleteClick(campaign);
+                }
+            });
+        } else {
+            holder.deleteDraftButton.setVisibility(View.GONE);
+        }
 
-        if (campaign.getStatus().equals("Diajukan")) {
-            // Sembunyikan data progress
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(campaign);
+            }
+        });
+
+        if (status.equals("Diajukan")) {
             holder.collected.setVisibility(View.GONE);
             holder.target.setVisibility(View.GONE);
             holder.progressBar.setVisibility(View.GONE);
-
-            // Tampilkan status proses
             holder.remainingDays.setText("Sedang diproses");
-
         } else {
-            int progress = (int) ((campaign.getAmountCollected() * 100.0) / campaign.getTargetAmount());
-            holder.progressBar.setProgress(progress);
-            holder.progressBar.setVisibility(View.VISIBLE);
-
             holder.collected.setVisibility(View.VISIBLE);
             holder.target.setVisibility(View.VISIBLE);
+            holder.progressBar.setVisibility(View.VISIBLE);
 
+            int progress = 0;
+            if (campaign.getTargetAmount() > 0) {
+                progress = (int) ((campaign.getAmountCollected() * 100.0) / campaign.getTargetAmount());
+            }
+            holder.progressBar.setProgress(progress);
             holder.collected.setText(String.format("Rp%,d", campaign.getAmountCollected()));
             holder.target.setText(String.format("Rp%,d", campaign.getTargetAmount()));
 
-            if (status.equals("Selesai")) {
-                holder.remainingDays.setText("Selesai");
-            } else {
-                holder.remainingDays.setText("Sisa " + campaign.getRemainingDays() + " hari");
-            }
+            holder.remainingDays.setText(
+                    status.equals("Selesai") ? "Selesai" : "Sisa " + campaign.getRemainingDays() + " hari"
+            );
         }
     }
 
@@ -74,8 +114,9 @@ public class CampaignStatusAdapter extends RecyclerView.Adapter<CampaignStatusAd
 
     static class CampaignViewHolder extends RecyclerView.ViewHolder {
         ImageView thumbnail;
-        TextView title, collected, target, remainingDays, status;
+        TextView title, collected, target, remainingDays;
         ProgressBar progressBar;
+        Button deleteDraftButton;
 
         CampaignViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,6 +126,7 @@ public class CampaignStatusAdapter extends RecyclerView.Adapter<CampaignStatusAd
             target = itemView.findViewById(R.id.tvCampaignTarget);
             remainingDays = itemView.findViewById(R.id.tvRemainingDays);
             progressBar = itemView.findViewById(R.id.progressBar);
+            deleteDraftButton = itemView.findViewById(R.id.btnDeleteDraft);
         }
     }
 }

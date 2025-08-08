@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -22,8 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rahmat_ux.adapter.DonatorAdapter;
 import com.example.rahmat_ux.data.DummyDataRepository;
+import com.example.rahmat_ux.model.Campaign;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+
 
 public class DonationDetailActivity extends AppCompatActivity {
 
@@ -46,6 +50,92 @@ public class DonationDetailActivity extends AppCompatActivity {
                 onBackPressed(); // Navigates back to the previous screen
             }
         });
+
+        TextView textTitle = findViewById(R.id.textTitle);
+
+        int donationId = getIntent().getIntExtra("campaign_id", -1);
+
+        if (donationId != -1) {
+            // Directly use your repository
+            Campaign campaign = DummyDataRepository.getInstance().getDonationById(donationId);
+
+            if (campaign != null) {
+                // Title
+                textTitle.setText(campaign.getTitle());
+
+                // Main Image
+                ImageView donationImage = findViewById(R.id.donationImage);
+                donationImage.setImageResource(campaign.getMainImageResId());
+
+                // Start Date and Remaining Days
+                TextView startDate = findViewById(R.id.startDate);
+                startDate.setText("Sejak: " + campaign.getDateStarted());
+
+                TextView daysRemaining = findViewById(R.id.daysRemaining);
+                daysRemaining.setText("Sisa " + campaign.getRemainingDays() + " hari");
+
+                // Deskripsi
+                TextView tvDeskripsi = findViewById(R.id.tvDeskripsi);
+                tvDeskripsi.setText(campaign.getLongDescription());
+
+                // Amount Collected
+                TextView amountCollected = findViewById(R.id.amountCollected);
+                amountCollected.setText(formatCurrency(campaign.getAmountCollected()));
+
+                // Target Amount
+                TextView targetAmount = findViewById(R.id.targetAmount);
+                targetAmount.setText("Terkumpul dari " + formatCurrency(campaign.getTargetAmount()));
+
+                // Money Remaining
+                TextView moneyRemaining = findViewById(R.id.moneyRemaining);
+                long remaining = campaign.getTargetAmount() - campaign.getAmountCollected();
+                moneyRemaining.setText(formatCurrency(remaining) + " untuk mencapai target");
+
+                // Progress Bar Money
+                ProgressBar progressBar = findViewById(R.id.progressBarMoney);
+                int progress = (int) ((double) campaign.getAmountCollected() / campaign.getTargetAmount() * 100);
+                progressBar.setProgress(progress);
+
+                // Progress indicators Items
+                CircularProgressIndicator progressFood = findViewById(R.id.progressFood);
+                TextView percentFood = findViewById(R.id.percentFood);
+                TextView labelFood = findViewById(R.id.labelFood);
+
+                CircularProgressIndicator progressClothes = findViewById(R.id.progressClothes);
+                TextView percentClothes = findViewById(R.id.percentClothes);
+                TextView labelClothes = findViewById(R.id.labelClothes);
+
+                CircularProgressIndicator progressMedicine = findViewById(R.id.progressMedicine);
+                TextView percentMedicine = findViewById(R.id.percentMedicine);
+                TextView labelMedicine = findViewById(R.id.labelMedicine);
+
+// Set values from the Campaign object
+                progressFood.setProgress(campaign.getItem1Progress());
+                percentFood.setText(campaign.getItem1Progress() + "%");
+                labelFood.setText(campaign.getItem1Name());
+
+                progressClothes.setProgress(campaign.getItem2Progress());
+                percentClothes.setText(campaign.getItem2Progress() + "%");
+                labelClothes.setText(campaign.getItem2Name());
+
+                progressMedicine.setProgress(campaign.getItem3Progress());
+                percentMedicine.setText(campaign.getItem3Progress() + "%");
+                labelMedicine.setText(campaign.getItem3Name());
+
+
+                // Organizer profile section
+                ImageView organizerProfile = findViewById(R.id.organizerProfile);
+                TextView organizerName = findViewById(R.id.organizerName);
+                TextView organizerOccupation = findViewById(R.id.organizerOccupation);
+
+                organizerName.setText(campaign.getOrganizerName());
+                organizerOccupation.setText(campaign.getOrganizerOccupation());
+                organizerProfile.setImageResource(campaign.getOrganizerImageResId());
+
+            } else {
+                textTitle.setText("Donation not found");
+            }
+        }
 
 
 //        BACA SELENGKAPNYA DESKRIPSI
@@ -193,5 +283,9 @@ public class DonationDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private String formatCurrency(long amount) {
+        return "Rp" + String.format("%,d", amount).replace(',', '.');
     }
 }

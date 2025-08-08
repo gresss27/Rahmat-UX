@@ -9,45 +9,55 @@
     app:cardElevation="0dp"
     android:background="@color/white">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:padding="16dp">
 
+        <!-- Thumbnail Image -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardImage"
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:cardCornerRadius="30dp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
-                android:id="@+id/imageDonator"
+                android:id="@+id/imageViewHistory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/campaign_yatim" />
         </androidx.cardview.widget.CardView>
 
+        <!-- Title and Status -->
         <LinearLayout
+            android:id="@+id/linearText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textAmount"
             android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginEnd="8dp">
 
             <TextView
-                android:id="@+id/textName"
+                android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ayo Bantu Bengkulu Pulih dari Gempa"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
 
             <TextView
-                android:id="@+id/textAmount"
+                android:id="@+id/textStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Donasi Berhasil"
@@ -55,14 +65,20 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
+        <!-- Amount -->
         <TextView
-            android:id="@+id/textTime"
+            android:id="@+id/textAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:text="-10.000"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:gravity="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

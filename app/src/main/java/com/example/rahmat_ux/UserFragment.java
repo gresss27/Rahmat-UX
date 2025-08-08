@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.rahmat_ux.model.User;
@@ -47,7 +48,7 @@ public class UserFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         userNameTextView = view.findViewById(R.id.userNameTextView);
@@ -61,6 +62,7 @@ public class UserFragment extends Fragment {
 
         ImageView settingIcon = view.findViewById(R.id.settingIcon);
         ImageView editProfile = view.findViewById(R.id.editProfile);
+
         LinearLayout column1 = view.findViewById(R.id.column1);
         LinearLayout column2 = view.findViewById(R.id.column2);
 
@@ -94,9 +96,18 @@ public class UserFragment extends Fragment {
         }
 
 
+//        NAVIGATE TO TOP UP ACTIVITY
+        Button topUpButton = view.findViewById(R.id.topUpButton);
         updateProfileUI();
     }
 
+        topUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), TopUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     private void updateProfileUI() {
@@ -119,6 +130,17 @@ public class UserFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+//        NAVIGATE TO DONATION HISTORY
+        LinearLayout column3 = view.findViewById(R.id.column3);
+        column3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DonationHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         if (requestCode == REQUEST_CODE_EDIT_PROFILE && resultCode == getActivity().RESULT_OK && data != null) {
             User updatedUser = data.getParcelableExtra(EXTRA_UPDATED_USER);
             if (updatedUser != null) {
@@ -127,23 +149,5 @@ public class UserFragment extends Fragment {
             }
         }
     }
+
 }
-
-
-
-
-////        NAVIGATE TO TOP UP ACTIVITY
-//
-//        ImageView myImageView = view.findViewById(R.id.myImageView);
-//
-//        myImageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(requireContext(), TopUpActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//    }
-//
-//}

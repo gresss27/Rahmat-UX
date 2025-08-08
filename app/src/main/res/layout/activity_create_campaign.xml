@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Nama file ini adalah activity_create_campaign.xml-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -11,11 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="64dp"
-        >
+        android:paddingBottom="64dp">
 
-        <!-- Top Bar -->
         <LinearLayout
+            android:id="@+id/topBar"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:background="@color/green_primary"
@@ -38,37 +38,40 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="16dp">
-        <!-- Intro Text -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Isi sesuai ketentuan agar lebih mudah ditindaklanjuti ya."
-            android:textColor="@android:color/black"
-            android:textSize="12sp" />
 
-        <!-- Judul -->
-        <TextView android:text="Judul" style="@style/LabelStyle"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Isi sesuai ketentuan agar lebih mudah ditindaklanjuti ya."
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
 
-        <!-- Jenis Galang Dana -->
-        <EditText
-            android:id="@+id/inputTitle"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:textSize="14sp"
-            android:background="@drawable/edittext_selector"
-            android:padding="12dp" />
+            <TextView style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Judul" />
 
-        <TextView android:text="Jenis Galang Dana" style="@style/LabelStyle"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            <EditText
+                android:id="@+id/inputTitle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Judul..."
+                android:background="@drawable/edittext_selector"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+            <TextView style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Galang Dana" />
+
             <Spinner
                 android:id="@+id/spinnerCampaignType"
                 android:layout_width="match_parent"
@@ -76,213 +79,274 @@
                 android:background="@drawable/spinner_background"
                 android:spinnerMode="dropdown" />
 
-        <!-- Tanggal Berakhir -->
-        <TextView android:text="Tanggal Galang Dana Berakhir" style="@style/LabelStyle"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
-            <EditText
-                android:id="@+id/etEndDate"
+            <TextView style="@style/LabelStyle"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:focusable="false"
-                android:textSize="14sp"
-                android:background="@drawable/edittext_selector"
-                android:padding="8dp"
-                android:drawableEnd="@drawable/ic_calendar" />
-
-        <!-- Cover dan Deskripsi -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView android:text="Cover/Sampul" style="@style/LabelStyle"
-                    android:layout_height="wrap_content"
-                    android:layout_width="200dp"/>
-                <TextView android:text="Deskripsi" style="@style/LabelStyle"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"/>
-            </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
-
-            <FrameLayout
-                android:id="@+id/uploadImageContainer"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="165dp"
-                android:background="@drawable/edittext_selector">
-
-                <ImageView
-                    android:id="@+id/imagePlaceholder"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="Campaign Image"
-                    android:src="@drawable/ic_image_placeholder"
-                    android:padding="8dp"/>
-            </FrameLayout>
-            <EditText
-                android:id="@+id/inputDeskripsi"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="165dp"
-                android:background="@drawable/edittext_selector"
-                android:padding="8dp"
-                android:layout_marginStart="8dp"
-                android:gravity="top"
-                android:hint="Deskripsi..."
-                android:textSize="14sp"
-                android:inputType="textMultiLine" />
-        </LinearLayout>
-
-        <!-- Target Uang -->
-        <TextView android:text="Target Uang" style="@style/LabelStyle"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:text="Tanggal Galang Dana Berakhir" />
 
             <TextView
-                android:text="Rp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="4dp" />
-
-            <EditText
-                android:id="@+id/inputTargetUang"
+                android:id="@+id/tvEndDate"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:inputType="number"
+                android:gravity="center_vertical"
+                android:hint="dd/mm/yyyy"
                 android:background="@drawable/edittext_selector"
-                android:padding="8dp"
-                android:textSize="14sp"/>
-        </LinearLayout>
-
-            <!-- Target Barang -->
-            <TextView android:text="Target Barang" style="@style/LabelStyle"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"/>
-
-            <com.google.android.flexbox.FlexboxLayout
-                android:id="@+id/pillContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                app:flexWrap="wrap"
-                app:flexDirection="row" />
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:drawableEnd="@drawable/ic_calendar"
+                android:textSize="14sp" />
 
             <LinearLayout
-                android:id="@+id/targetBarang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView style="@style/LabelStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Cover/Sampul" />
+                <TextView style="@style/LabelStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Deskripsi" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
+                android:layout_marginTop="8dp">
+
+                <FrameLayout
+                    android:id="@+id/uploadImageContainer"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="165dp"
+                    android:background="@drawable/edittext_selector">
+
+                    <ImageView
+                        android:id="@+id/imagePlaceholder"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Campaign Image"
+                        android:src="@drawable/ic_image_placeholder"
+                        android:padding="8dp"/>
+                </FrameLayout>
 
                 <EditText
-                    android:id="@+id/etItemInput"
+                    android:id="@+id/inputDeskripsi"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="165dp"
+                    android:hint="Deskripsi singkat..."
+                    android:background="@drawable/edittext_selector"
+                    android:padding="8dp"
+                    android:layout_marginStart="8dp"
+                    android:gravity="top"
+                    android:textSize="14sp"
+                    android:inputType="textMultiLine" />
+            </LinearLayout>
+
+            <TextView style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Target Uang" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    android:text="Rp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/inputTargetUang"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="0.00"
+                    android:background="@drawable/edittext_selector"
+                    android:padding="8dp"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Target Barang" />
+
+            <!-- Container untuk form target barang -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="8dp">
+
+                <!-- Judul kolom -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="4dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Barang"
+                        android:textStyle="bold"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Kuantitas"
+                        android:textStyle="bold"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Satuan"
+                        android:textStyle="bold"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <!-- Baris input -->
+                <LinearLayout
+                    android:id="@+id/containerBarang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Tenang, data pribadimu aman bersama kami -- data dengan tanda (**) tidak akan ditampilkan publik dan dijamin kerahasiaannya"
+                android:textSize="12sp"
+                android:textColor="@android:color/black" />
+
+            <TextView style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Penggalang" />
+
+            <EditText
+                android:id="@+id/inputOrganizerName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Nama penggalang..."
+                android:background="@drawable/edittext_selector"
+                android:padding="8dp"
+                android:textSize="14sp" />
+
+            <TextView style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nomor Handphone / Email (**)" />
+
+            <EditText
+                android:id="@+id/inputContact"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Nomor handphone / email..."
+                android:background="@drawable/edittext_selector"
+                android:padding="8dp"
+                android:textSize="14sp" />
+
+            <TextView style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alamat Tujuan Donasi" />
+
+            <EditText
+                android:id="@+id/inputDonationAddress"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Alamat tujuan donasi..."
+                android:background="@drawable/edittext_selector"
+                android:padding="8dp"
+                android:textSize="14sp" />
+
+            <TextView style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nomor Rekening Tujuan Donasi (**)" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/inputBankAccountNumber"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="48dp"
-                    android:hint="Tambah barang..."
+                    android:hint="nomor rekening..."
                     android:background="@drawable/edittext_selector"
                     android:padding="8dp"
-                    android:inputType="text"
-                    android:textSize="14sp"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnAddItem"
-                    android:layout_width="48dp"
+                    android:inputType="number"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:text="+"
-                    android:textSize="24sp"
-                    android:textColor="@android:color/black"
-                    android:background="@drawable/rounded_green_button"
-                    android:backgroundTint="@color/green_primary"
-                    android:textAllCaps="false" />
+                    android:gravity="center_vertical"
+                    android:layout_marginHorizontal="8dp"
+                    android:text="a.n" />
+                <EditText
+                    android:id="@+id/inputBankAccountName"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="48dp"
+                    android:hint="nama rekening..."
+                    android:background="@drawable/edittext_selector"
+                    android:padding="8dp"
+                    android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Catatan Data Pribadi -->
-        <TextView
-            android:text="Tenang, data pribadimu aman bersama kami -- data dengan tanda (**) tidak akan ditampilkan publik dan dijamin kerahasiaannya"
-            android:textSize="12sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="16dp"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            <TextView style="@style/LabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cerita Galang Dana" />
 
-        <!-- Data Pribadi -->
-        <TextView android:text="Nama Penggalang" style="@style/LabelStyle"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
-        <EditText android:layout_width="match_parent" android:layout_height="48dp" android:background="@drawable/edittext_selector" android:padding="8dp"
-            android:textSize="14sp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddStory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_green_button"
+                android:backgroundTint="@color/blue_primary"
+                android:text="Tambahkan Cerita (+)"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
 
-        <TextView android:text="No Handphone / Email (**)" style="@style/LabelStyle"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
-        <EditText android:layout_width="match_parent"
-            android:textSize="14sp"
-            android:layout_height="48dp" android:background="@drawable/edittext_selector" android:padding="8dp" />
-
-        <TextView android:text="Alamat Tujuan Donasi" style="@style/LabelStyle"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
-        <EditText android:layout_width="match_parent"
-            android:textSize="14sp"
-            android:layout_height="48dp" android:background="@drawable/edittext_selector" android:padding="8dp" />
-
-        <TextView android:text="Nomor Rekening Tujuan Donasi (**)" style="@style/LabelStyle"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
-        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <EditText android:layout_width="0dp"
-            android:textSize="14sp"
-                android:layout_weight="1" android:layout_height="48dp" android:background="@drawable/edittext_selector" android:padding="8dp" android:inputType="number" />
-            <TextView android:text="a.n" android:layout_width="wrap_content" android:layout_height="48dp" android:gravity="center_vertical" android:layout_marginHorizontal="8dp" />
-            <EditText android:layout_width="0dp"
-                android:textSize="14sp"
-                android:layout_weight="1" android:layout_height="48dp" android:background="@drawable/edittext_selector" android:padding="8dp" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmitCampaign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rounded_green_button"
+                android:backgroundTint="@color/green_primary"
+                android:text="Ajukan Galang Dana"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
         </LinearLayout>
-
-        <!-- Cerita Galang Dana -->
-        <TextView android:text="Cerita Galang Dana" style="@style/LabelStyle"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnAddStory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="+"
-            android:textAllCaps="false"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/storyListContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-
-        <!-- Button Ajukan -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSubmitCampaign"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/rounded_green_button"
-            android:backgroundTint="@color/green_primary"
-            android:text="Ajukan Galang Dana"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
-    </LinearLayout>
     </LinearLayout>
 </ScrollView>

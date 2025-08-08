@@ -126,10 +126,16 @@ public class SwipeFragment extends Fragment {
             title.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
-                    startActivity(intent);
+                    // Ambil campaign dari tag
+                    Campaign clickedCampaign = (Campaign) cardView.getTag(R.id.tag_campaign_data);
+                    if (clickedCampaign != null) {
+                        Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
+                        intent.putExtra("campaign_id", clickedCampaign.getId()); // Pass campaign ID
+                        startActivity(intent);
+                    }
                 }
             });
+
 
         }
 
@@ -229,6 +235,7 @@ public class SwipeFragment extends Fragment {
         }
         private void toggleOverlay() {
             if (currentCardView == null) return;
+            Campaign campaign = campaignList.get(currentIndex);
 
             View overlayBackground = currentCardView.findViewById(R.id.cardOverlayBackground);
             View overlayContent = currentCardView.findViewById(R.id.cardOverlayContent);
@@ -243,7 +250,7 @@ public class SwipeFragment extends Fragment {
 
             boolean isOverlayVisible = overlayContent.getVisibility() == View.VISIBLE;
 
-            Campaign campaign = campaignList.get((currentIndex - 1 + campaignList.size()) % campaignList.size());
+//            Campaign campaign = campaignList.get((currentIndex - 1 + campaignList.size()) % campaignList.size());
 
             if (isOverlayVisible) {
                 overlayContent.animate()
@@ -285,7 +292,6 @@ public class SwipeFragment extends Fragment {
         }
     }
 
-    // ...
     private void showDonationNominalDialog() {
         final Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_donation_nominal);
