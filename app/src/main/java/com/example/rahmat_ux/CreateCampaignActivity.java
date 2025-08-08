@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -60,7 +62,8 @@ public class CreateCampaignActivity extends AppCompatActivity {
 
     private Campaign currentDraftCampaign;
     private Uri cameraImageUri;
-
+    LinearLayout containerBarang;
+    private static final int MAX_BARIS = 3;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +87,8 @@ public class CreateCampaignActivity extends AppCompatActivity {
         inputDonationAddress = findViewById(R.id.inputDonationAddress);
         inputBankAccountNumber = findViewById(R.id.inputBankAccountNumber);
         inputBankAccountName = findViewById(R.id.inputBankAccountName);
-
+        containerBarang = findViewById(R.id.containerBarang);
+        tambahBarisBarang();
         // Inisialisasi ActivityResultLaunchers
         galleryLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -135,17 +139,6 @@ public class CreateCampaignActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerType.setAdapter(adapter);
 
-        etItemInput = findViewById(R.id.etItemInput);
-        pillContainer = findViewById(R.id.pillContainer);
-        Button btnAddItem = findViewById(R.id.btnAddItem);
-        btnAddItem.setOnClickListener(v -> {
-            String item = etItemInput.getText().toString().trim();
-            if (!item.isEmpty()) {
-                addItemPill(item);
-                etItemInput.setText("");
-            }
-        });
-
         btnAddStory = findViewById(R.id.btnAddStory);
         btnAddStory.setOnClickListener(v -> {
             Intent intent = new Intent(CreateCampaignActivity.this, CreateStoryActivity.class);
@@ -159,7 +152,45 @@ public class CreateCampaignActivity extends AppCompatActivity {
         Button btnSubmit = findViewById(R.id.btnSubmitCampaign);
         btnSubmit.setOnClickListener(v -> submitCampaign());
     }
+    private void tambahBarisBarang() {
+        if (containerBarang.getChildCount() >= MAX_BARIS) return; // Batas maksimal
 
+        View baris = getLayoutInflater().inflate(R.layout.item_target_barang, containerBarang, false);
+
+        EditText inputNama = baris.findViewById(R.id.inputNamaBarang);
+        EditText inputKuantitas = baris.findViewById(R.id.inputKuantitas);
+        EditText inputSatuan = baris.findViewById(R.id.inputSatuan);
+
+        TextWatcher watcher = new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (isLastRow(baris) && !isEmptyRow(baris)) {
+                    tambahBarisBarang();
+                }
+            }
+            @Override public void afterTextChanged(Editable s) {}
+        };
+
+        inputNama.addTextChangedListener(watcher);
+        inputKuantitas.addTextChangedListener(watcher);
+        inputSatuan.addTextChangedListener(watcher);
+
+        containerBarang.addView(baris);
+    }
+
+    private boolean isLastRow(View baris) {
+        return containerBarang.indexOfChild(baris) == containerBarang.getChildCount() - 1;
+    }
+
+    private boolean isEmptyRow(View baris) {
+        EditText inputNama = baris.findViewById(R.id.inputNamaBarang);
+        EditText inputKuantitas = baris.findViewById(R.id.inputKuantitas);
+        EditText inputSatuan = baris.findViewById(R.id.inputSatuan);
+
+        return inputNama.getText().toString().trim().isEmpty()
+                && inputKuantitas.getText().toString().trim().isEmpty()
+                && inputSatuan.getText().toString().trim().isEmpty();
+    }
     @Override
     protected void onPause() {
         super.onPause();
@@ -203,12 +234,15 @@ public class CreateCampaignActivity extends AppCompatActivity {
                 "",                               // timeRemaining
                 0L,                               // amountCollected
                 0L,                               // targetAmount
-                "", 0,                            // item1Name, item1Progress
-                "", 0,                            // item2Name, item2Progress
-                "", 0,                            // item3Name, item3Progress
+
+                "", 0, 0, "",                     // item1Name, item1Progress, item1Qty, item1Unit
+                "", 0, 0, "",                     // item2Name, item2Progress, item2Qty, item2Unit
+                "", 0, 0, "",                     // item3Name, item3Progress, item3Qty, item3Unit
+
                 "",                               // description
                 "",                               // longDescription
-                "", "",                           // organizerName, organizerOccupation
+                "",                               // organizerName
+                "",                               // organizerOccupation
                 0,                                // organizerImageResId
                 "",                               // lastChat
                 "Draft",                          // status
@@ -225,28 +259,69 @@ public class CreateCampaignActivity extends AppCompatActivity {
         String title = inputTitle.getText().toString().trim();
         String description = inputDeskripsi.getText().toString().trim();
         String targetText = inputTargetUang.getText().toString().trim();
+        String organizerName = inputOrganizerName.getText().toString().trim();
+        String contact = inputContact.getText().toString().trim();
+        String donationAddress = inputDonationAddress.getText().toString().trim();
+        String bankAccountNumber = inputBankAccountNumber.getText().toString().trim();
+        String bankAccountName = inputBankAccountName.getText().toString().trim();
 
-        // Cek jika ada field yang diisi
+        // Ambil data barang dari layout
+        String[] itemNames = new String[3];
+        int[] itemQtys = new int[3];
+        String[] itemUnits = new String[3];
+
+        for (int i = 0; i < Math.min(containerBarang.getChildCount(), 3); i++) {
+            View row = containerBarang.getChildAt(i);
+            EditText nama = row.findViewById(R.id.inputNamaBarang);
+            EditText qty = row.findViewById(R.id.inputKuantitas);
+            EditText unit = row.findViewById(R.id.inputSatuan);
+
+            itemNames[i] = nama.getText().toString().trim();
+            try {
+                itemQtys[i] = Integer.parseInt(qty.getText().toString().trim());
+            } catch (NumberFormatException e) {
+                itemQtys[i] = 0;
+            }
+            itemUnits[i] = unit.getText().toString().trim();
+        }
+
         boolean anyFieldFilled = !title.isEmpty() || !description.isEmpty() ||
-                !targetText.isEmpty() || selectedImageUri != null;
+                !targetText.isEmpty() || selectedImageUri != null ||
+                !organizerName.isEmpty() || !contact.isEmpty() ||
+                !donationAddress.isEmpty() || !bankAccountNumber.isEmpty() ||
+                !bankAccountName.isEmpty() ||
+                (itemNames[0] != null && !itemNames[0].isEmpty());
 
-        // Jika draft belum ada, tapi ada isian -> buat dulu
         if (currentDraftCampaign == null && anyFieldFilled) {
             currentDraftCampaign = createDraftCampaign();
         }
 
-        // Jika draft sudah ada, atau baru dibuat di atas
         if (currentDraftCampaign != null) {
             long targetAmount = 0;
             try {
                 targetAmount = Long.parseLong(targetText);
-            } catch (NumberFormatException e) {
-                // Biarkan targetAmount 0 jika tidak valid
-            }
+            } catch (NumberFormatException ignored) {}
 
             currentDraftCampaign.setTitle(title);
             currentDraftCampaign.setDescription(description);
             currentDraftCampaign.setTargetAmount(targetAmount);
+            currentDraftCampaign.setOrganizerName(organizerName);
+            currentDraftCampaign.setOrganizerOccupation(contact); // kalau occupation beda, ganti ini
+            currentDraftCampaign.setLongDescription(donationAddress);
+
+            // Simpan barang
+            if (itemNames.length > 0) {
+                currentDraftCampaign.setItem1Qty(itemQtys[0]);
+                currentDraftCampaign.setItem1Unit(itemUnits[0]);
+            }
+            if (itemNames.length > 1) {
+                currentDraftCampaign.setItem2Qty(itemQtys[1]);
+                currentDraftCampaign.setItem2Unit(itemUnits[1]);
+            }
+            if (itemNames.length > 2) {
+                currentDraftCampaign.setItem3Qty(itemQtys[2]);
+                currentDraftCampaign.setItem3Unit(itemUnits[2]);
+            }
 
             if (selectedImageUri != null) {
                 currentDraftCampaign.setCoverImageUri(selectedImageUri.toString());
@@ -257,28 +332,79 @@ public class CreateCampaignActivity extends AppCompatActivity {
         }
     }
     private void submitCampaign() {
-        if (inputTitle.getText().toString().isEmpty() || inputDeskripsi.getText().toString().isEmpty() ||
-                tvEndDate.getText().toString().isEmpty() || inputTargetUang.getText().toString().isEmpty() ||
-                inputOrganizerName.getText().toString().isEmpty() || inputContact.getText().toString().isEmpty() ||
-                inputDonationAddress.getText().toString().isEmpty() || inputBankAccountNumber.getText().toString().isEmpty() ||
-                inputBankAccountName.getText().toString().isEmpty()) {
+        if (inputTitle.getText().toString().trim().isEmpty() ||
+                inputDeskripsi.getText().toString().trim().isEmpty() ||
+                tvEndDate.getText().toString().trim().isEmpty() ||
+                inputTargetUang.getText().toString().trim().isEmpty() ||
+                inputOrganizerName.getText().toString().trim().isEmpty() ||
+                inputContact.getText().toString().trim().isEmpty() ||
+                inputDonationAddress.getText().toString().trim().isEmpty() ||
+                inputBankAccountNumber.getText().toString().trim().isEmpty() ||
+                inputBankAccountName.getText().toString().trim().isEmpty()) {
+
             Toast.makeText(this, "Mohon lengkapi semua data", Toast.LENGTH_SHORT).show();
             return;
+        }
+
+        // Baca data barang
+        String[] itemNames = new String[3];
+        int[] itemQtys = new int[3];
+        String[] itemUnits = new String[3];
+
+        for (int i = 0; i < Math.min(containerBarang.getChildCount(), 3); i++) {
+            View row = containerBarang.getChildAt(i);
+            EditText nama = row.findViewById(R.id.inputNamaBarang);
+            EditText qty = row.findViewById(R.id.inputKuantitas);
+            EditText unit = row.findViewById(R.id.inputSatuan);
+
+            itemNames[i] = nama.getText().toString().trim();
+            try {
+                itemQtys[i] = Integer.parseInt(qty.getText().toString().trim());
+            } catch (NumberFormatException e) {
+                itemQtys[i] = 0;
+            }
+            itemUnits[i] = unit.getText().toString().trim();
         }
 
         if (currentDraftCampaign == null) {
             currentDraftCampaign = createDraftCampaign();
         }
-        currentDraftCampaign.setTitle(inputTitle.getText().toString());
-        currentDraftCampaign.setDescription(inputDeskripsi.getText().toString());
-        currentDraftCampaign.setTargetAmount(Long.parseLong(inputTargetUang.getText().toString()));
-        currentDraftCampaign.setCoverImageUri(selectedImageUri != null ? selectedImageUri.toString() : null);
+
+        // Set data campaign
+        currentDraftCampaign.setTitle(inputTitle.getText().toString().trim());
+        currentDraftCampaign.setDescription(inputDeskripsi.getText().toString().trim());
+        currentDraftCampaign.setTargetAmount(Long.parseLong(inputTargetUang.getText().toString().trim()));
+        currentDraftCampaign.setOrganizerName(inputOrganizerName.getText().toString().trim());
+        currentDraftCampaign.setOrganizerOccupation(inputContact.getText().toString().trim()); // atau ganti kalau bukan occupation
+        currentDraftCampaign.setLongDescription(inputDonationAddress.getText().toString().trim());
+
+        // Set barang
+        currentDraftCampaign.setItem1Name(itemNames[0]);
+        currentDraftCampaign.setItem1Qty(itemQtys[0]);
+        currentDraftCampaign.setItem1Unit(itemUnits[0]);
+
+        currentDraftCampaign.setItem2Name(itemNames[1]);
+        currentDraftCampaign.setItem2Qty(itemQtys[1]);
+        currentDraftCampaign.setItem2Unit(itemUnits[1]);
+
+        currentDraftCampaign.setItem3Name(itemNames[2]);
+        currentDraftCampaign.setItem3Qty(itemQtys[2]);
+        currentDraftCampaign.setItem3Unit(itemUnits[2]);
+
+        // Set gambar
+        if (selectedImageUri != null) {
+            currentDraftCampaign.setCoverImageUri(selectedImageUri.toString());
+        }
+
         currentDraftCampaign.setStatus("Diajukan");
 
+        // Simpan ke repository
         DummyDataRepository.getInstance().updateCampaign(currentDraftCampaign);
+
         Toast.makeText(this, "Galang dana berhasil diajukan!", Toast.LENGTH_SHORT).show();
         finish();
     }
+
 
     private void showDatePicker() {
         final Calendar c = Calendar.getInstance();
