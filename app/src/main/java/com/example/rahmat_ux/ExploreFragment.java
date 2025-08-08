@@ -96,7 +96,11 @@ public class ExploreFragment extends Fragment {
                 R.drawable.banner5
         );
 
-        CarouselBannerAdapter carouselAdapter = new CarouselBannerAdapter(imageResources);
+        List<Integer> donationIdList = Arrays.asList(
+                1, 4, 3, 5, 2
+        );
+
+        CarouselBannerAdapter carouselAdapter = new CarouselBannerAdapter(imageResources, donationIdList);
         viewPager.setAdapter(carouselAdapter);
 
         runnable = new Runnable() {
@@ -269,7 +273,7 @@ public class ExploreFragment extends Fragment {
 
 
         if (campaignAdapter == null) {
-            campaignAdapter = new CardExploreAdapter(ongoingCampaigns);
+            campaignAdapter = new CardExploreAdapter(requireContext(), ongoingCampaigns);
             campaignRecyclerView.setAdapter(campaignAdapter);
         } else {
             campaignAdapter.setCampaigns(ongoingCampaigns);
@@ -278,7 +282,7 @@ public class ExploreFragment extends Fragment {
 
 
         if (newCampaignAdapter == null) {
-            newCampaignAdapter = new CardExploreAdapter(newCampaigns);
+            newCampaignAdapter = new CardExploreAdapter(requireContext(), newCampaigns);
             newCampaignRecyclerView.setAdapter(newCampaignAdapter);
         } else {
 
