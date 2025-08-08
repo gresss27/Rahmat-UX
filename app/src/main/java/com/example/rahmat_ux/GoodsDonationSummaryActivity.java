@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.rahmat_ux.databinding.ActivityGoodsDonationSummaryBinding;
+import com.example.rahmat_ux.model.Campaign;
 
 public class GoodsDonationSummaryActivity extends AppCompatActivity {
 
@@ -12,9 +13,21 @@ public class GoodsDonationSummaryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent prevIntent = getIntent();
+        Campaign campaign = (Campaign) prevIntent.getSerializableExtra("campaign");
         super.onCreate(savedInstanceState);
         binding = ActivityGoodsDonationSummaryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        assert campaign != null;
+        binding.item1Name.setText(campaign.getItem1Name());
+        binding.item2Name.setText(campaign.getItem2Name());
+        binding.item3Name.setText(campaign.getItem3Name());
+        binding.item1Progress.setProgress(campaign.getItem1Progress());
+        binding.item2Progress.setProgress(campaign.getItem2Progress());
+        binding.item3Progress.setProgress(campaign.getItem3Progress());
+        binding.item1Percent.setText(campaign.getItem1Progress() + "%");
+        binding.item2Percent.setText(campaign.getItem2Progress() + "%");
+        binding.item3Percent.setText(campaign.getItem3Progress() + "%");
 
         // Hapus pemanggilan setupRecyclerView() karena sudah tidak ada
         // setupRecyclerView();

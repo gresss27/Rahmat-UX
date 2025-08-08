@@ -106,7 +106,7 @@
                     android:background="#E0E0E0" />
 
                 <RadioButton
-                    android:id="@+id/radio_food"
+                    android:id="@+id/radio_item1"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Bahan Makanan"
@@ -119,7 +119,7 @@
                     android:layout_height="1dp"
                     android:background="#E0E0E0" />
                 <RadioButton
-                    android:id="@+id/radio_clothing"
+                    android:id="@+id/radio_item2"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Pakaian dan Selimut"
@@ -132,7 +132,7 @@
                     android:layout_height="1dp"
                     android:background="#E0E0E0" />
                 <RadioButton
-                    android:id="@+id/radio_medicine"
+                    android:id="@+id/radio_item3"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Obat-obatan"
