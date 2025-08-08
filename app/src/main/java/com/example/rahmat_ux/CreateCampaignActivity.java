@@ -419,15 +419,6 @@ public class CreateCampaignActivity extends AppCompatActivity {
         dpd.show();
     }
 
-    private void addItemPill(String itemText) {
-        View pill = getLayoutInflater().inflate(R.layout.item_pill, pillContainer, false);
-        TextView tv = pill.findViewById(R.id.tvPillText);
-        ImageView close = pill.findViewById(R.id.ivClose);
-        tv.setText(itemText);
-        close.setOnClickListener(v -> pillContainer.removeView(pill));
-        pillContainer.addView(pill);
-    }
-
     private void showImageSourceDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Pilih Sumber Gambar");
