@@ -109,7 +109,7 @@ public class DummyDataRepository {
                 "Selesai", 0
         ));
 
-        currentUser = new User("John Doe", 50000, 10000);
+        currentUser = new User("John Doe", "Mahasiswa", "john@example.com", 50000, 10000, "");
 
     }
 
