@@ -35,7 +35,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
+        <activity
+            android:name=".PengantaranActivity"
+            android:exported="false" />
         <activity
             android:name=".DonationHistoryActivity"
             android:exported="false" />

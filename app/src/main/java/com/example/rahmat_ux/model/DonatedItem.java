@@ -1,6 +1,8 @@
 package com.example.rahmat_ux.model;
 
-public class DonatedItem {
+import java.io.Serializable;
+
+public class DonatedItem implements Serializable {
     private String category;
     private String name;
     private String quantity;
