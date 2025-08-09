@@ -2,10 +2,10 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <!-- Memberi warna latar belakang solid (putih) -->
+    <!-- Warna latar belakang solid (putih) -->
     <solid android:color="@android:color/white" />
 
-    <!-- Membuat sudutnya sangat melengkung (rounded) -->
-    <corners android:radius="30dp" />
+    <!-- Sudut melengkung -->
+    <corners android:radius="16dp" />
 
 </shape>

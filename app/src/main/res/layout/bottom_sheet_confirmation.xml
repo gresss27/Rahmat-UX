@@ -27,8 +27,10 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:text="Gak jadi"
+            android:textStyle="bold"
             android:textColor="@color/green_primary"
             app:strokeColor="@color/green_primary"
+            app:backgroundTint="@color/white"
             app:cornerRadius="30dp"
             android:layout_marginEnd="8dp"/>
 
@@ -38,6 +40,7 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:text="Konfirmasi"
+            android:textStyle="bold"
             android:textColor="@android:color/white"
             app:backgroundTint="@color/green_primary"
             app:cornerRadius="30dp"

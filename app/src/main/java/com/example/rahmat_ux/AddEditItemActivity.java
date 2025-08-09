@@ -41,6 +41,8 @@ public class AddEditItemActivity extends AppCompatActivity {
         // MODIFIKASI 1: TAMBAHKAN LOGIKA UNTUK MODE EDIT
         // =====================================================================
         // Cek apakah intent membawa data untuk diedit
+
+
         if (intent.hasExtra("BARANG_UNTUK_DIEDIT")) {
             isModeEdit = true;
             DonatedItem barangEdit = (DonatedItem) intent.getSerializableExtra("BARANG_UNTUK_DIEDIT");
@@ -52,6 +54,36 @@ public class AddEditItemActivity extends AppCompatActivity {
                 binding.editTextItemQuantity.setText(barangEdit.getQuantity());
                 binding.editTextNotes.setText(barangEdit.getCategory()); // Asumsi 'notes' adalah 'category'
             }
+
+            String itemCategory = barangEdit.getCategory();
+
+            // Pastikan category tidak null untuk menghindari error
+            if (itemCategory != null) {
+                // Bandingkan dengan teks dari setiap RadioButton
+                if (itemCategory.equals(binding.radioItem1.getText().toString())) {
+                    binding.radioItem1.setChecked(true);
+                } else if (itemCategory.equals(binding.radioItem2.getText().toString())) {
+                    binding.radioItem2.setChecked(true);
+                } else if (itemCategory.equals(binding.radioItem3.getText().toString())) {
+                    binding.radioItem3.setChecked(true);
+                }
+            }
+            Log.d("DEBUG_CENTANG", "========================================");
+            Log.d("DEBUG_CENTANG", "Kategori dari Item yang diedit: '" + itemCategory + "'");
+
+            String rb1Text = binding.radioItem1.getText().toString();
+            String rb2Text = binding.radioItem2.getText().toString();
+            String rb3Text = binding.radioItem3.getText().toString();
+
+            Log.d("DEBUG_CENTANG", "Teks di RadioButton 1: '" + rb1Text + "'");
+            Log.d("DEBUG_CENTANG", "Teks di RadioButton 2: '" + rb2Text + "'");
+            Log.d("DEBUG_CENTANG", "Teks di RadioButton 3: '" + rb3Text + "'");
+
+            Log.d("DEBUG_CENTANG", "Hasil banding dengan RB1: " + itemCategory.equals(rb1Text));
+            Log.d("DEBUG_CENTANG", "========================================");
+
+            binding.toolbarTitle.setText("Edit Barang");
+            binding.buttonSubmit.setText("Simpan Perubahan");
         }
 
         // Tombol back di toolbar
@@ -82,7 +114,7 @@ public class AddEditItemActivity extends AppCompatActivity {
                 return;
             }
 
-            DonatedItem item = new DonatedItem(name, category, quantity);
+            DonatedItem item = new DonatedItem(category, name, quantity);
             Log.d(TAG, "Item yang dibuat: " + item.getName()); // <-- LOG 2
             if (isFirstAdd) {
                 // Logika untuk penambahan pertama, sudah benar

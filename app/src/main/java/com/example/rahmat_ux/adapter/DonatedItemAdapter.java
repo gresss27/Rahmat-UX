@@ -40,8 +40,7 @@ public class DonatedItemAdapter extends RecyclerView.Adapter<DonatedItemAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DonatedItem item = itemList.get(position);
-        // MODIFIKASI 4: Kirim 'position' ke method bind
-        holder.bind(item, position);
+        holder.bind(item); // Panggil bind tanpa 'position'
     }
 
     @Override
@@ -58,7 +57,7 @@ public class DonatedItemAdapter extends RecyclerView.Adapter<DonatedItemAdapter.
         }
 
         // MODIFIKASI 5: Method bind sekarang menerima 'position'
-        public void bind(DonatedItem item, int position) {
+        public void bind(DonatedItem item) { // Kita tidak perlu 'position' di sini lagi
             binding.textCategory.setText(item.getCategory());
             binding.textItemName.setText(item.getName());
             binding.textItemQuantity.setText(item.getQuantity());
@@ -66,16 +65,25 @@ public class DonatedItemAdapter extends RecyclerView.Adapter<DonatedItemAdapter.
             // Listener untuk Tombol Edit
             binding.buttonEdit.setOnClickListener(v -> {
                 if (actionListener != null) {
-                    // Kirim posisi item yang diklik
-                    actionListener.onEditClick(position);
+                    int currentPosition = getAdapterPosition();
+                    if (currentPosition != RecyclerView.NO_POSITION) { // Pengecekan keamanan
+                        actionListener.onEditClick(currentPosition);
+                    }
                 }
             });
 
-            // MODIFIKASI 6: Tambahkan Listener untuk Tombol Hapus
+            // Listener untuk Tombol Hapus
             binding.buttonDelete.setOnClickListener(v -> {
                 if (actionListener != null) {
-                    // Kirim posisi item yang diklik
-                    actionListener.onDeleteClick(position);
+                    // PERBAIKAN UTAMA: Gunakan getAdapterPosition()
+                    // Ini akan selalu memberikan posisi yang paling update.
+                    int currentPosition = getAdapterPosition();
+
+                    // PENTING: Lakukan pengecekan ini sebelum memanggil listener
+                    // untuk memastikan item belum dihapus oleh proses lain.
+                    if (currentPosition != RecyclerView.NO_POSITION) {
+                        actionListener.onDeleteClick(currentPosition);
+                    }
                 }
             });
         }

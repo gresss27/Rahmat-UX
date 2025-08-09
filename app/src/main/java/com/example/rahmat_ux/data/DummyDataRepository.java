@@ -141,6 +141,24 @@ public class DummyDataRepository {
                 new ArrayList<>(), "", ""
         ));
 
+        // BARU: Campaign ke-8 (Edisi Banjir Kocak)
+        campaignList.add(new Campaign(
+                8,
+                "WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!",
+                R.drawable.campaign_banjir,
+
+                "10 Agustus 2025", "Sisa 50 hari",
+                1000000L, 50000000L,
+                "Pakaian", 20, 100, "karung",       // item1, progress1, target1, unit1
+                "Obat-obatan", 10, 50, "kotak",    // item2, progress2, target2, unit2
+                "Makanan", 30, 200, "paket",      // item3, progress3, target3, unit3
+                "Airnya udah sebetis, sandal jepit hanyut entah kemana. Plis help!",
+                "BREAKING NEWS! Desa kami telah terpilih menjadi lokasi syuting 'Waterworld' tanpa pemberitahuan sebelumnya. Sofa udah pasrah, galon air penuh trepidasi, dan koleksi semut di toples gula sudah mengungsi.\n\nKami butuh bantuan Anda untuk menyediakan:\n• Pakaian: Karena jemuran kemarin sore sekarang lagi tur keliling kampung.\n• Obat-obatan: Buat ngobatin pusing mikirin cicilan barang yang kerendam.\n• Makanan: Karena kompor gas menolak bekerja sama dalam kondisi lembab.\n\nDonasimu akan menjadi Super Hero di tengah bencana waterboom dadakan ini!",
+                "Komite Penyelamat Sandal Jepit Nasional", "Divisi Logistik & Hiburan", R.drawable.organizer1,
+                "Laporan diterima! Tim sudah turun untuk menyelamatkan beberapa sandal yang tersisa. Kalian semua pahlawan!",
+                "Berlangsung", 29,
+                new ArrayList<>(), "", ""));
+
         currentUser = new User("John Doe", "Mahasiswa", "john@example.com", 50000, 10000, "");
 
     }
@@ -152,12 +170,32 @@ public class DummyDataRepository {
         return instance;
     }
 
-    public User getCurrentUser() { return currentUser; }
-    public void updateCurrentUserBalance(long newBalance) { currentUser.setBalance(newBalance); }
-    public void updateCurrentUserDonationPerSwipe(long newNominal) { currentUser.setDonationPerSwipe(newNominal); }
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
-    public List<Campaign> getCampaignList() { return campaignList; }
+    public void updateCurrentUserBalance(long newBalance) {
+        currentUser.setBalance(newBalance);
+    }
 
+    public void updateCurrentUserDonationPerSwipe(long newNominal) {
+        currentUser.setDonationPerSwipe(newNominal);
+    }
+
+    public List<Campaign> getCampaignList() {
+        return campaignList;
+    }
+    public List<Campaign> getCampaignsByIdRange(int startId, int endId) {
+        List<Campaign> filtered = new ArrayList<>();
+        for (Campaign c : campaignList) {
+            int currentId = c.getId();
+            // Cek apakah ID campaign berada di antara startId dan endId
+            if (currentId >= startId && currentId <= endId) {
+                filtered.add(c);
+            }
+        }
+        return filtered;
+    }
     public void addCampaign(Campaign campaign) {
         if (campaign.getId() == 0) {
             campaign.setId(campaignList.size() + 1);

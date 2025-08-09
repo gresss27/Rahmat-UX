@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,39 +47,80 @@ public class PengantaranActivity extends AppCompatActivity {
         populateUi(donatedItems, selectedDropPoint);
 
         // Set listener untuk tombol kembali
-        binding.btnBack.setOnClickListener(v -> finish());
-        binding.buttonKembali.setOnClickListener(v -> finish());
+        Class<?> tujuanActivity = DonationDetailActivity.class; // <-- GANTI INI JIKA PERLU
+
+// Listener untuk tombol kembali di toolbar
+        binding.btnBack.setOnClickListener(v -> {
+            Intent backIntent = new Intent(PengantaranActivity.this, tujuanActivity);
+            // Tambahkan flag ini untuk membersihkan tumpukan activity di atasnya
+            backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(backIntent);
+            finish(); // Tutup activity ini
+        });
+
+// Listener untuk tombol "Kembali" di bawah
+        binding.buttonKembali.setOnClickListener(v -> {
+            Intent backIntent = new Intent(PengantaranActivity.this, tujuanActivity);
+            // Tambahkan flag ini untuk membersihkan tumpukan activity di atasnya
+            backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(backIntent);
+            finish(); // Tutup activity ini
+        });
     }
+
+// Di dalam file PengantaranActivity.java
 
     private void populateUi(ArrayList<DonatedItem> items, DropPoint dropPoint) {
         if (items == null || dropPoint == null) {
-            // Handle jika data tidak ada
             return;
         }
 
         // Set jumlah jenis barang
         binding.textItemCount.setText(items.size() + " jenis");
 
-        // Hapus view lama jika ada (untuk keamanan)
+        // Hapus view lama jika ada
         binding.layoutDaftarBarang.removeAllViews();
 
-        // Loop melalui daftar barang dan buat TextView untuk setiap item
+        // Loop melalui daftar barang dan buat layout kompleks untuk setiap item
         for (DonatedItem item : items) {
-            TextView itemTextView = new TextView(this);
-            // Format teks: • Nama Barang (Jumlah)
-            itemTextView.setText("• " + item.getName() + " (" + item.getQuantity() + ")");
-            itemTextView.setTextSize(14f); // Ukuran teks dalam sp
+            // Buat RelativeLayout sebagai container untuk satu baris
+            RelativeLayout itemLayout = new RelativeLayout(this);
+            itemLayout.setLayoutParams(new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            ));
+            itemLayout.setPadding(0, 8, 0, 8); // Beri sedikit padding vertikal
 
-            // Atur margin atas untuk setiap item
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+            // Buat TextView untuk nama barang (di kiri)
+            TextView nameTextView = new TextView(this);
+            nameTextView.setText("• " + item.getName());
+            nameTextView.setTextSize(14f);
+            RelativeLayout.LayoutParams nameParams = new RelativeLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             );
-            params.setMargins(0, 8, 0, 0); // Margin atas 8dp
-            itemTextView.setLayoutParams(params);
+            nameParams.addRule(RelativeLayout.ALIGN_PARENT_START);
+            nameParams.addRule(RelativeLayout.CENTER_VERTICAL);
+            nameTextView.setLayoutParams(nameParams);
 
-            // Tambahkan TextView ke dalam LinearLayout
-            binding.layoutDaftarBarang.addView(itemTextView);
+            // Buat TextView untuk jumlah barang (di kanan)
+            TextView quantityTextView = new TextView(this);
+            quantityTextView.setText(item.getQuantity());
+            quantityTextView.setTextSize(14f);
+            RelativeLayout.LayoutParams quantityParams = new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+            quantityParams.addRule(RelativeLayout.ALIGN_PARENT_END);
+            quantityParams.addRule(RelativeLayout.CENTER_VERTICAL);
+            quantityTextView.setLayoutParams(quantityParams);
+
+            // Tambahkan kedua TextView ke dalam RelativeLayout
+            itemLayout.addView(nameTextView);
+            itemLayout.addView(quantityTextView);
+
+            // Tambahkan RelativeLayout (satu baris lengkap) ke dalam container utama
+            binding.layoutDaftarBarang.addView(itemLayout);
         }
 
         // Set info drop point
