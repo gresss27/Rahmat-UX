@@ -1,5 +1,6 @@
 package com.example.rahmat_ux.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,13 @@ public class CampaignStatusAdapter extends RecyclerView.Adapter<CampaignStatusAd
         Campaign campaign = campaigns.get(position);
 
         holder.title.setText(campaign.getTitle());
-        holder.thumbnail.setImageResource(campaign.getMainImageResId());
+        if (campaign.getCoverImageUri() != null && !campaign.getCoverImageUri().isEmpty()) {
+            holder.thumbnail.setImageURI(Uri.parse(campaign.getCoverImageUri()));
+        } else if (campaign.getMainImageResId() != 0) {
+            holder.thumbnail.setImageResource(campaign.getMainImageResId());
+        } else {
+            holder.thumbnail.setImageResource(R.drawable.ic_image_placeholder); // placeholder default
+        }
 
         String status = campaign.getStatus();
         if ("Draft".equalsIgnoreCase(status)) {
