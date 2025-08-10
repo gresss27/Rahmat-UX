@@ -43,7 +43,7 @@
                         android:foregroundGravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Selamat Datang\nKembali\nRahmuders"
+                        android:text="Selamat Datang\nKembali\nSobat Rahmat"
                         android:textColor="@color/black"
                         android:textSize="28sp"
                         android:textStyle="bold"

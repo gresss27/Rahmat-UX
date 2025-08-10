@@ -31,6 +31,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.rahmat_ux.data.DummyDataRepository;
+import com.example.rahmat_ux.data.UserStorage;
 import com.example.rahmat_ux.model.Campaign;
 import com.example.rahmat_ux.model.User;
 
@@ -171,7 +172,8 @@ public class SwipeFragment extends Fragment {
         if (cardContainer.getChildCount() == 0) return;
         Campaign currentCampaign = campaignList.get(currentIndex);
 
-        User currentUser = DummyDataRepository.getInstance().getCurrentUser();
+//        User currentUser = DummyDataRepository.getInstance().getCurrentUser();
+        User currentUser= UserStorage.getInstance().getLoggedInUser();
         long nominalDonasiPerSwipe = currentUser.getDonationPerSwipe();
         long saldo = currentUser.getBalance();
 

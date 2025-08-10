@@ -94,11 +94,14 @@ public class EditProfileActivity extends AppCompatActivity {
         // DITAMBAHKAN: Ambil objek User dari Intent
         if (getIntent().hasExtra(UserFragment.EXTRA_UPDATED_USER)) {
             userToEdit = getIntent().getParcelableExtra(UserFragment.EXTRA_UPDATED_USER);
+            userToEdit=UserStorage.getInstance().getLoggedInUser();
         } else {
             // Fallback jika tidak ada User yang dikirim
             userToEdit = new User();
+            userToEdit=UserStorage.getInstance().getLoggedInUser();
             Toast.makeText(this, "Memuat profil dummy default.", Toast.LENGTH_SHORT).show();
         }
+        userToEdit=UserStorage.getInstance().getLoggedInUser();
 
         // DITAMBAHKAN: Muat data profil ke UI
         loadUserProfileToUI();

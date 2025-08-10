@@ -141,6 +141,10 @@ public class UserFragment extends Fragment {
     }
 
     private void updateProfileUI() {
+
+        User currentUserProfile=UserStorage.getInstance().getLoggedInUser();
+
+        Toast.makeText(getActivity(), currentUserProfile.getPekerjaan(), Toast.LENGTH_SHORT).show();
         if (currentUserProfile != null) {
             userNameTextView.setText(currentUserProfile.getName());
             userEmailTextView.setText(currentUserProfile.getEmail());
@@ -160,9 +164,11 @@ public class UserFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_EDIT_PROFILE && resultCode == getActivity().RESULT_OK && data != null) {
-            User updatedUser = data.getParcelableExtra(EXTRA_UPDATED_USER);
+//            User updatedUser = data.getParcelableExtra(EXTRA_UPDATED_USER);
+            User updatedUser=UserStorage.getInstance().getLoggedInUser();
             if (updatedUser != null) {
                 currentUserProfile = updatedUser;
+                Toast.makeText(getActivity(),currentUserProfile.getPekerjaan() , Toast.LENGTH_SHORT).show();
                 updateProfileUI();
             }
         }
