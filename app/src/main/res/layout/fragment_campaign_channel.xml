@@ -147,7 +147,7 @@
         android:background="#FFFFFF"
         android:gravity="center"
         android:padding="16dp"
-        android:text="Selalu dapatkan kabar terbaru dari kampanyenya 'Ayo Bantu Bengkulu Pulih dari Gempa'. Hanya penggalang yang dapat memberikan pesan ."
+        android:text="Selalu dapatkan kabar terbaru dari kampanyenya 'WASPADA! INVASi AIR JAHAT! Kulkas Kasur Belajar Berenang!'. Hanya penggalang yang dapat memberikan pesan ."
         android:textColor="#757575"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -186,7 +186,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:scaleType="centerCrop"
-                        tools:src="@drawable/campaign_gempa" />
+                        tools:src="@drawable/logo_organizer" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     app:layout_constraintStart_toStartOf="@+id/card_view_image_2"
@@ -199,7 +199,7 @@
                     android:padding="12dp"
                     android:textSize="10sp"
                     android:textColor="@color/black"
-                    android:text="10 rumah baru telah dibangun bagi warga Bengkulu yang terkena gempa. Rumah-rumah tersebut sekarang telah ditempati dan menjadi tempat bagi korban untuk beristirahat dan melakukan aktivitas sehari-hari. Terima kasih orang-orang baik!"/>
+                    android:text="UPDATE KPSJN: Misi penyelamatan Sandal Jepit tahap pertama sukses! Beberapa pasang sandal yang terpisah dari jodohnya kini telah dipertemukan kembali. Isak tangis haru dan aroma teh manis hangat mewarnai proses evakuasi. Perjuangan masih berlanjut!"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -219,7 +219,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:scaleType="centerCrop"
-                        tools:src="@drawable/campaign_gempa" />
+                        tools:src="@drawable/logo_organizer" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     app:layout_constraintStart_toStartOf="@+id/card_view_image_3"
@@ -232,7 +232,7 @@
                     android:padding="12dp"
                     android:textSize="10sp"
                     android:textColor="@color/black"
-                    android:text="10 rumah baru telah dibangun bagi warga Bengkulu yang terkena gempa. Rumah-rumah tersebut sekarang telah ditempati dan menjadi tempat bagi korban untuk beristirahat dan melakukan aktivitas sehari-hari. Terima kasih orang-orang baik!"/>
+                    android:text="PENGUMUMAN: Obat pusing dan salep anti gatal telah didistribusikan. Warga sudah tidak pusing lagi mikirin cicilan barang elektronik yang lagi spa lumpur. Fokus utama sekarang adalah mengusir ikan lele yang nyasar ke dalam ember."/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -251,7 +251,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:scaleType="centerCrop"
-                        tools:src="@drawable/campaign_gempa" />
+                        tools:src="@drawable/logo_organizer" />
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
                     app:layout_constraintStart_toStartOf="@+id/card_view_image_4"
@@ -267,7 +267,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/channel_gempa" />
+                        android:src="@drawable/foto_banjir_1"></ImageView>
+" />
                 </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

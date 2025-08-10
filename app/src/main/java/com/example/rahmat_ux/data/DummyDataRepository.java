@@ -3,6 +3,7 @@ package com.example.rahmat_ux.data;
 import com.example.rahmat_ux.R;
 import com.example.rahmat_ux.model.Bank;
 import com.example.rahmat_ux.model.Campaign;
+import com.example.rahmat_ux.model.DonationHistory;
 import com.example.rahmat_ux.model.Donator;
 import com.example.rahmat_ux.model.Notification;
 import com.example.rahmat_ux.model.Story;
@@ -27,15 +28,15 @@ public class DummyDataRepository {
                 R.drawable.campaign_difabel,
                 "10 Juli 2025", "Sisa 76 hari",
                 13440231L, 300000000L,
-                "Kursi Roda", 30,
-                "Buku Braille", 50,
-                "Alat Bantu Dengar", 20,
+                "Kursi Roda", 30, 30, "unit",
+                "Buku Braille", 50, 50, "buku",
+                "Alat Bantu Dengar", 20, 20, "unit",
                 "Bantu penuhi kebutuhan akses pendidikan yang layak untuk anak-anak difabel.",
                 "Ratusan anak-anak difabel di berbagai wilayah masih menghadapi kesulitan dalam mengakses pendidikan dan peralatan yang mendukung aktivitas mereka sehari-hari.\n\nKami membuka donasi untuk membantu mereka mendapatkan:\n• Kursi Roda: Mobilitas yang lebih baik bagi anak-anak dengan keterbatasan gerak.\n• Buku Braille: Akses belajar untuk anak-anak tunanetra.\n• Alat Bantu Dengar: Membantu anak-anak dengan gangguan pendengaran dalam berkomunikasi dan belajar.\n\nMari bersama bantu ciptakan lingkungan inklusif bagi mereka. Setiap donasi Anda membuka pintu harapan.",
                 "Yayasan Harapan Bangsa", "Lembaga Sosial", R.drawable.organizer1,
                 "Terima kasih kakak kakak atas bantuannya, semoga Allah SWT memberi berkah",
                 "Berlangsung", 76,
-                new ArrayList<>(), "", "" // stories, coverImageUri, storyTitle
+                new ArrayList<>(), "", ""
         ));
 
         campaignList.add(new Campaign(
@@ -44,9 +45,9 @@ public class DummyDataRepository {
                 R.drawable.banner5,
                 "15 Juni 2025", "Sisa 76 hari",
                 3500000L, 25000000L,
-                "Beras", 90,
-                "Minyak", 10,
-                "Gula", 5,
+                "Beras", 90, 100, "kg",
+                "Minyak", 10, 20, "liter",
+                "Gula", 5, 10, "kg",
                 "Bantu pulihkan masa depan mereka dengan memenuhi kebutuhan pangan pokok.",
                 "Banyak keluarga prasejahtera masih kesulitan memenuhi kebutuhan pangan dasar mereka. Di tengah kondisi ekonomi yang sulit, akses terhadap makanan bergizi masih menjadi tantangan besar.\n\nKami mengajak Anda untuk berdonasi:\n• Beras: Makanan pokok yang sangat dibutuhkan.\n• Minyak: Untuk memasak makanan sehari-hari.\n• Gula: Sebagai sumber energi tambahan.\n\nSedekah subuhmu bisa menjadi penyelamat bagi banyak keluarga. Yuk bantu mereka mulai hari dengan penuh harapan.",
                 "Sedekah Subuh", "Komunitas Relawan", R.drawable.organizer2,
@@ -61,9 +62,9 @@ public class DummyDataRepository {
                 R.drawable.banner3,
                 "01 Juli 2025", "Sisa 76 hari",
                 10140251L, 250000000L,
-                "Susu", 85,
-                "Vitamin", 40,
-                "Biskuit Bayi", 60,
+                "Susu", 85, 100, "kotak",
+                "Vitamin", 40, 50, "botol",
+                "Biskuit Bayi", 60, 70, "pak",
                 "DARURAT Stunting & Gizi Buruk Kronis. Cegah stunting dengan memberikan gizi terbaik.",
                 "Stunting atau gagal tumbuh akibat kekurangan gizi masih menjadi masalah serius di Indonesia. Anak-anak yang mengalami stunting akan kesulitan berkembang secara fisik dan mental.\n\nMari bantu cegah stunting dengan memberikan:\n• Susu: Asupan kalsium dan protein penting untuk pertumbuhan.\n• Vitamin: Menjaga daya tahan tubuh anak-anak.\n• Biskuit Bayi: Makanan tambahan bergizi tinggi.\n\nDonasi Anda adalah investasi bagi masa depan generasi penerus bangsa. Bersama kita bisa cegah stunting!",
                 "Anak Sehat Indonesia", "Organisasi Kesehatan", R.drawable.organizer3,
@@ -78,9 +79,9 @@ public class DummyDataRepository {
                 R.drawable.banner2,
                 "20 Juni 2025", "Sisa 76 hari",
                 5250000L, 50000000L,
-                "Buku Cerita", 10,
-                "Buku Pelajaran", 95,
-                "Alat Tulis", 15,
+                "Buku Cerita", 10, 20, "buku",
+                "Buku Pelajaran", 95, 100, "buku",
+                "Alat Tulis", 15, 30, "pak",
                 "Tanpa keluarga, mereka butuh uluran tangan kita. Buku adalah jendela dunia...",
                 "Anak-anak yatim piatu dengan disabilitas membutuhkan dukungan kita agar tetap bisa belajar dan meraih masa depan yang cerah.\n\nMelalui donasi ini, Anda dapat membantu mereka mendapatkan:\n• Buku Cerita: Untuk membangkitkan imajinasi dan semangat belajar.\n• Buku Pelajaran: Mendukung proses belajar formal.\n• Alat Tulis: Kebutuhan dasar dalam kegiatan belajar mengajar.\n\nMari hadirkan harapan lewat pendidikan. Setiap buku adalah cahaya bagi masa depan mereka.",
                 "Pustaka Harapan", "Gerakan Literasi", R.drawable.organizer4,
@@ -95,9 +96,9 @@ public class DummyDataRepository {
                 R.drawable.banner4,
                 "27 Mei 2025", "Sisa 23 hari",
                 203324000L, 250000000L,
-                "Paket Sembako", 75,
-                "Pakaian dan Selimut", 75,
-                "Obat-obatan", 75,
+                "Paket Sembako", 75, 100, "paket",
+                "Pakaian dan Selimut", 75, 100, "paket",
+                "Obat-obatan", 75, 100, "kotak",
                 "Bantu pembangunan kembali rumah warga yang hancur akibat gempa.",
                 "Banjir bandang yang melanda Ternate telah menghancurkan banyak rumah dan fasilitas umum. Ribuan warga kini tinggal di pengungsian dan membutuhkan bantuan segera.\n\nKami mengajak Anda berdonasi:\n• Paket Sembako: Untuk memenuhi kebutuhan makan sehari-hari.\n• Pakaian dan Selimut: Melindungi dari dingin dan penyakit.\n• Obat-obatan: Menjaga kesehatan di tengah kondisi darurat.\n\nMari bersama bangkitkan kembali Ternate. Solidaritas Anda sangat berarti!",
                 "Bantuanmu Team", "Tim Tanggap Bencana", R.drawable.organizer5,
@@ -112,9 +113,9 @@ public class DummyDataRepository {
                 R.drawable.campaign_gempa,
                 "18 Juli 2025", "Sisa 45 hari",
                 0L, 100000000L,
-                "Papan Tulis", 0,
-                "Bangku", 0,
-                "Atap Sekolah", 0,
+                "Papan Tulis", 0, 5, "unit",
+                "Bangku", 0, 20, "unit",
+                "Atap Sekolah", 0, 50, "lembar",
                 "Sekolah di pedalaman masih kekurangan fasilitas belajar. Yuk bantu wujudkan ruang belajar yang layak.",
                 "Di pelosok negeri, masih banyak sekolah yang tidak layak pakai. Anak-anak belajar di ruang kelas yang rusak tanpa fasilitas memadai.\n\nBantu mereka mendapatkan:\n• Papan Tulis: Sarana utama dalam proses belajar mengajar.\n• Bangku: Tempat duduk yang nyaman untuk belajar.\n• Atap Sekolah: Melindungi dari panas dan hujan.\n\nMari wujudkan ruang belajar yang aman dan nyaman. Donasi Anda adalah harapan mereka untuk masa depan lebih baik.",
                 "Aksi Cerdas Nusantara", "Komunitas Pendidikan", R.drawable.organizer6,
@@ -129,9 +130,9 @@ public class DummyDataRepository {
                 R.drawable.campaign_gempa,
                 "01 Mei 2025", "Selesai",
                 125000000L, 125000000L,
-                "Tandon Air", 100,
-                "Pompa", 100,
-                "Selang", 100,
+                "Tandon Air", 100, 100, "unit",
+                "Pompa", 100, 100, "unit",
+                "Selang", 100, 100, "meter",
                 "Kekeringan melanda desa kami. Terima kasih atas bantuannya yang telah mengalirkan air kehidupan.",
                 "Musim kemarau yang panjang menyebabkan kekeringan parah di desa kami. Akses terhadap air bersih menjadi sangat sulit dan berdampak pada kesehatan warga.\n\nDengan donasi Anda, kami dapat menyediakan:\n• Tandon Air: Menyimpan air untuk kebutuhan sehari-hari.\n• Pompa: Mengalirkan air dari sumber.\n• Selang: Distribusi air ke rumah-rumah warga.\n\nTerima kasih telah menjadi bagian dari gerakan mengalirkan kehidupan. Air bersih adalah hak semua orang.",
                 "Gerakan Air Untuk Semua", "Organisasi Sosial", R.drawable.organizer7,
@@ -139,7 +140,26 @@ public class DummyDataRepository {
                 "Selesai", 0,
                 new ArrayList<>(), "", ""
         ));
-        currentUser = new User("John Doe","Mas Supir","JohnDoe@gmail.com","08123812","passwordJohnDoe", 50000, 10000);
+
+        // BARU: Campaign ke-8 (Edisi Banjir Kocak)
+        campaignList.add(new Campaign(
+                8,
+                "WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!",
+                R.drawable.campaign_banjir,
+
+                "10 Agustus 2025", "Sisa 50 hari",
+                1000000L, 50000000L,
+                "Pakaian", 20, 100, "karung",       // item1, progress1, target1, unit1
+                "Obat-obatan", 10, 50, "kotak",    // item2, progress2, target2, unit2
+                "Makanan", 30, 200, "paket",      // item3, progress3, target3, unit3
+                "Airnya udah sebetis, sandal jepit hanyut entah kemana. Plis help!",
+                "BREAKING NEWS! Desa kami telah terpilih menjadi lokasi syuting 'Waterworld' tanpa pemberitahuan sebelumnya. Sofa udah pasrah, galon air penuh trepidasi, dan koleksi semut di toples gula sudah mengungsi.\n\nKami butuh bantuan Anda untuk menyediakan:\n• Pakaian: Karena jemuran kemarin sore sekarang lagi tur keliling kampung.\n• Obat-obatan: Buat ngobatin pusing mikirin cicilan barang yang kerendam.\n• Makanan: Karena kompor gas menolak bekerja sama dalam kondisi lembab.\n\nDonasimu akan menjadi Super Hero di tengah bencana waterboom dadakan ini!",
+                "Komite Penyelamat Sandal Jepit Nasional", "Divisi Logistik & Hiburan", R.drawable.organizer1,
+                "Laporan diterima! Tim sudah turun untuk menyelamatkan beberapa sandal yang tersisa. Kalian semua pahlawan!",
+                "Berlangsung", 29,
+                new ArrayList<>(), "", ""));
+
+        currentUser = new User("John Doe","Mas Supir","JohnDoe@gmail.com","08123812","passwordJohnDoe", 50000, 10000,"");
 
     }
 
@@ -150,12 +170,32 @@ public class DummyDataRepository {
         return instance;
     }
 
-    public User getCurrentUser() { return currentUser; }
-    public void updateCurrentUserBalance(long newBalance) { currentUser.setBalance(newBalance); }
-    public void updateCurrentUserDonationPerSwipe(long newNominal) { currentUser.setDonationPerSwipe(newNominal); }
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
-    public List<Campaign> getCampaignList() { return campaignList; }
+    public void updateCurrentUserBalance(long newBalance) {
+        currentUser.setBalance(newBalance);
+    }
 
+    public void updateCurrentUserDonationPerSwipe(long newNominal) {
+        currentUser.setDonationPerSwipe(newNominal);
+    }
+
+    public List<Campaign> getCampaignList() {
+        return campaignList;
+    }
+    public List<Campaign> getCampaignsByIdRange(int startId, int endId) {
+        List<Campaign> filtered = new ArrayList<>();
+        for (Campaign c : campaignList) {
+            int currentId = c.getId();
+            // Cek apakah ID campaign berada di antara startId dan endId
+            if (currentId >= startId && currentId <= endId) {
+                filtered.add(c);
+            }
+        }
+        return filtered;
+    }
     public void addCampaign(Campaign campaign) {
         if (campaign.getId() == 0) {
             campaign.setId(campaignList.size() + 1);
@@ -231,6 +271,68 @@ public class DummyDataRepository {
         list.add(new Bank("Bank BRI", R.drawable.bank_bri));
         list.add(new Bank("Bank BNI", R.drawable.bank_bni));
         list.add(new Bank("Bank Syariah Indonesia", R.drawable.bank_syariah));
+        return list;
+    }
+
+    public List<DonationHistory> getDonationHistoryList() {
+        List<DonationHistory> list = new ArrayList<>();
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Berhasil",
+                "-10.000",
+                R.drawable.banner1,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "Top Up Saldo",
+                "Top Up Berhasil",
+                "+500.000",
+                R.drawable.bank_bca,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Diterima",
+                "3 stel pakaian",
+                R.drawable.banner1,
+                "barang"
+        ));
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Berhasil",
+                "-25.000",
+                R.drawable.banner1,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Diterima",
+                "2 paket obat",
+                R.drawable.banner1,
+                "barang"
+        ));
+
+        list.add(new DonationHistory(
+                "Top Up Saldo",
+                "Top Up Berhasil",
+                "+100.000",
+                R.drawable.bank_bca,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Donasi Diterima",
+                "5 kg beras",
+                R.drawable.banner1,
+                "barang"
+        ));
+
         return list;
     }
 }

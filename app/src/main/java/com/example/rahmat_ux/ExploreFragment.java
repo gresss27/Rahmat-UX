@@ -1,7 +1,9 @@
 package com.example.rahmat_ux;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import android.widget.Toast;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,12 +14,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.view.View;
 
-import com.example.rahmat_ux.adapter.CarouselBannerAdapter; // Ensure this path is correct
-import com.example.rahmat_ux.adapter.CardExploreAdapter; // Your adapter for RecyclerView
-import com.example.rahmat_ux.data.DummyDataRepository; // Repository to fetch dummy data
-import com.example.rahmat_ux.model.Campaign; // Your model class for campaigns
-import androidx.recyclerview.widget.RecyclerView;
+
+
+import com.example.rahmat_ux.adapter.CarouselBannerAdapter;
+import com.example.rahmat_ux.adapter.CardExploreAdapter;
+import com.example.rahmat_ux.data.DummyDataRepository;
+import com.example.rahmat_ux.model.Campaign;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,26 +39,31 @@ public class ExploreFragment extends Fragment {
     private ViewPager2 viewPager;
     private Handler handler;
     private Runnable runnable;
-    private int delay = 5000; // Delay per slide (5 seconds)
-    private List<Integer> imageResources; // List of image resources for carousel
+    private int delay = 5000;
+    private List<Integer> imageResources;
 
-    // RecyclerView for campaign cards
+
     private RecyclerView campaignRecyclerView;
     private RecyclerView newCampaignRecyclerView;
 
     // Adapters
     private CardExploreAdapter campaignAdapter;
     private CardExploreAdapter newCampaignAdapter;
+
     public ExploreFragment() {
-        // Required public empty constructor
+
+
+
     }
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_explore, container, false);
 
-//        NOTIFIKASI
+
+
         ImageView iconKanan = rootView.findViewById(R.id.icon_kanan);
         iconKanan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,18 +73,18 @@ public class ExploreFragment extends Fragment {
             }
         });
 
-//        REKOMENDASI DONASI
+
+
         CardView bannerRekomendasi = rootView.findViewById(R.id.bannerRekomendasi);
         bannerRekomendasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
-                intent.putExtra("campaign_id", 5);
                 startActivity(intent);
             }
         });
 
-        // Initialize ViewPager2 for banner carousel
+
         viewPager = rootView.findViewById(R.id.viewPager);
         handler = new Handler(Looper.getMainLooper());
 
@@ -125,10 +140,13 @@ public class ExploreFragment extends Fragment {
         newCampaignRecyclerView = rootView.findViewById(R.id.newCampaignRecyclerView);
         newCampaignRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        // Panggil updateCampaigns untuk pertama kali
+
         updateCampaigns();
 
         return rootView;
+
+
+
     }
 
     @Override
@@ -159,28 +177,115 @@ public class ExploreFragment extends Fragment {
         imageResources = null;
     }
 
-    // Metode baru untuk mengambil dan memperbarui data campaign
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+        ImageView iconKiri = view.findViewById(R.id.icon_kiri);
+
+        iconKiri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomNavigationView bottomNav = requireActivity().findViewById(R.id.bottom_navigation);
+                bottomNav.setSelectedItemId(R.id.navigation_user);
+            }
+        });
+
+
+        EditText searchView = view.findViewById(R.id.kolom_pencarian);
+
+        searchView.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                    (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN)) {
+
+                String keyword = v.getText().toString().trim().toLowerCase();
+
+                if (keyword.equalsIgnoreCase("Banjir")) {
+                    // Pindah ke UrgentFragment
+                    UrgentFragment urgentFragment = UrgentFragment.newInstance(keyword);
+                    requireActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, urgentFragment)
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    Toast.makeText(getContext(), "Keyword tidak ditemukan", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+            return false;
+        });
+
+
+
+
+
+
+        ImageView iconKesehatan = view.findViewById(R.id.iconKesehatan);
+        ImageView iconBencana = view.findViewById(R.id.iconBencana);
+        ImageView iconPendidikan = view.findViewById(R.id.iconPendidikan);
+        ImageView iconSosial = view.findViewById(R.id.iconSosial);
+        ImageView iconInfrastruktur = view.findViewById(R.id.iconInfrastruktur);
+
+        iconKesehatan.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
+            intent.putExtra("category", "Kesehatan");
+            startActivity(intent);
+        });
+
+        iconBencana.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
+            intent.putExtra("category", "Bencana Alam");
+            startActivity(intent);
+        });
+
+        iconPendidikan.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
+            intent.putExtra("category", "Pendidikan");
+            startActivity(intent);
+        });
+
+        iconSosial.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
+            intent.putExtra("category", "Kegiatan Sosial");
+            startActivity(intent);
+        });
+
+        iconInfrastruktur.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
+            intent.putExtra("category", "Infrastruktur");
+            startActivity(intent);
+        });
+
+    }
+
+
+
+
+
+
+
     private void updateCampaigns() {
-        // Ambil data terbaru dari repository menggunakan instance singleton
         List<Campaign> ongoingCampaigns = DummyDataRepository.getInstance().getCampaignsByStatus("Berlangsung");
         List<Campaign> newCampaigns = DummyDataRepository.getInstance().getCampaignsByStatus("Diajukan");
 
-        // Perbarui adapter untuk ongoing campaigns
+
         if (campaignAdapter == null) {
             campaignAdapter = new CardExploreAdapter(requireContext(), ongoingCampaigns);
             campaignRecyclerView.setAdapter(campaignAdapter);
         } else {
-            // Jika adapter sudah ada, berikan data baru
             campaignAdapter.setCampaigns(ongoingCampaigns);
             campaignAdapter.notifyDataSetChanged();
         }
 
-        // Perbarui adapter untuk new campaigns
+
         if (newCampaignAdapter == null) {
             newCampaignAdapter = new CardExploreAdapter(requireContext(), newCampaigns);
             newCampaignRecyclerView.setAdapter(newCampaignAdapter);
         } else {
-            // Jika adapter sudah ada, berikan data baru
+
             newCampaignAdapter.setCampaigns(newCampaigns);
             newCampaignAdapter.notifyDataSetChanged();
         }

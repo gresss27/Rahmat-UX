@@ -44,6 +44,7 @@ public class CreateStoryActivity extends AppCompatActivity {
     private boolean isUndoingOrRedoing = false;
 
     private ActivityResultLauncher<Intent> galleryLauncher;
+    private int currentFocusIndex = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,12 +85,21 @@ public class CreateStoryActivity extends AppCompatActivity {
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                         Uri imageUri = result.getData().getData();
-                        addImage(imageUri); // Panggilan yang sudah diperbaiki
+                        String localPath = saveImageToLocal(imageUri);
+                        if (localPath != null) {
+                            addImage(Uri.fromFile(new java.io.File(localPath)), true);
+                        }
                     }
                 }
         );
     }
-
+    private void setupParagraphFocus(EditText paragraph) {
+        paragraph.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                currentFocusIndex = storyEditorContainer.indexOfChild(paragraph);
+            }
+        });
+    }
     @Override
     protected void onPause() {
         super.onPause();
@@ -150,7 +160,10 @@ public class CreateStoryActivity extends AppCompatActivity {
                 if (story.getType().equals("text")) {
                     addParagraph(story.getContent());
                 } else if (story.getType().equals("image")) {
-                    addImage(Uri.parse(story.getContent()));
+                    java.io.File file = new java.io.File(story.getContent());
+                    if (file.exists()) {
+                        addImage(Uri.fromFile(file), false);
+                    }
                 }
             }
         } else {
@@ -202,7 +215,7 @@ public class CreateStoryActivity extends AppCompatActivity {
         storyEditorContainer.addView(newParagraph, index + 1);
     }
 
-    private void addImage(Uri uri) {
+    private void addImage(Uri uri, boolean addParagraphAfterImage) {
         ImageView imageView = new ImageView(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -212,17 +225,48 @@ public class CreateStoryActivity extends AppCompatActivity {
         imageView.setLayoutParams(params);
         imageView.setAdjustViewBounds(true);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-        // Menggunakan setImageURI standar
         imageView.setImageURI(uri);
 
-        imageView.setTag(uri.toString());
-        storyEditorContainer.addView(imageView);
-    }
+        java.io.File file = new java.io.File(uri.getPath());
+        imageView.setTag(file.getAbsolutePath());
 
+        int insertIndex = currentFocusIndex >= 0 ? currentFocusIndex + 1 : storyEditorContainer.getChildCount();
+        storyEditorContainer.addView(imageView, insertIndex);
+
+        if (addParagraphAfterImage) {
+            addParagraphAfter(insertIndex);
+        }
+    }
     private void launchGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         galleryLauncher.launch(intent);
+    }
+
+    private String saveImageToLocal(Uri uri) {
+        try {
+            // Nama file unik
+            String fileName = "story_image_" + System.currentTimeMillis() + ".jpg";
+            java.io.File file = new java.io.File(getFilesDir(), fileName);
+
+            // Buka InputStream dari Uri
+            java.io.InputStream inputStream = getContentResolver().openInputStream(uri);
+            java.io.OutputStream outputStream = new java.io.FileOutputStream(file);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            outputStream.close();
+            inputStream.close();
+
+            return file.getAbsolutePath(); // path lokal
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Gagal menyimpan gambar", Toast.LENGTH_SHORT).show();
+            return null;
+        }
     }
 
     private void saveStateForUndo() {
@@ -253,7 +297,7 @@ public class CreateStoryActivity extends AppCompatActivity {
                 if (story.getType().equals("text")) {
                     addParagraph(story.getContent());
                 } else if (story.getType().equals("image")) {
-                    addImage(Uri.parse(story.getContent()));
+                    addImage(Uri.parse(story.getContent()), false);
                 }
             }
         }

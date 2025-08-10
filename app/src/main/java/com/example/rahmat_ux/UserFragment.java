@@ -3,6 +3,8 @@ package com.example.rahmat_ux;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,61 +17,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rahmat_ux.data.UserStorage;
+import com.example.rahmat_ux.model.User;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link UserFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.rahmat_ux.SettingActivity;
+import com.example.rahmat_ux.EditProfileActivity;
+import com.example.rahmat_ux.TopUpActivity;
+import com.example.rahmat_ux.MenungguPenyelesaianActivity;
+import com.example.rahmat_ux.StatusDonasiActivity;
+import com.example.rahmat_ux.DonationHistoryActivity;
+
+
 public class UserFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public static final String EXTRA_UPDATED_USER = "extra_updated_user";
+    public static final int REQUEST_CODE_EDIT_PROFILE = 1001;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    // Perbaikan: Konstruktor User disesuaikan dengan 5 argumen yang ada di model
+    private static User currentUserProfile = new User("Rahmat Hidayat", "Mahasiswa", "rahmat.hidayat@example.com","123123", 100000, 5000, "");
+
+    private TextView userNameTextView;
+    private TextView userEmailTextView;
+    private TextView userJobTextView;
+    private ImageView profileImageView;
+    private Button topUpButton; // Deklarasi untuk tombol top up
 
     public UserFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UserFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UserFragment newInstance(String param1, String param2) {
-        UserFragment fragment = new UserFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_user, container, false);
-
-
     }
     private String formatCurrency(String amount) {
         try {
@@ -81,14 +59,21 @@ public class UserFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        userNameTextView = view.findViewById(R.id.userNameTextView);
+        userEmailTextView = view.findViewById(R.id.userEmailTextView);
+        userJobTextView = view.findViewById(R.id.userJobTextView);
+        profileImageView = view.findViewById(R.id.profileImageView);
 
         ImageView settingIcon = view.findViewById(R.id.settingIcon);
         ImageView editProfile = view.findViewById(R.id.editProfile);
-
         LinearLayout column1 = view.findViewById(R.id.column1);
         LinearLayout column2 = view.findViewById(R.id.column2);
+        LinearLayout column3 = view.findViewById(R.id.column3); // DITAMBAHKAN
+        topUpButton = view.findViewById(R.id.topUpButton); // INISIALISASI UNTUK TOMBOL TOP UP
+
 
         LinearLayout loggedOutButton=view.findViewById(R.id.LogOutButton);
 
@@ -107,40 +92,79 @@ public class UserFragment extends Fragment {
             Intent intent= new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         });
+        if (settingIcon != null) {
+            settingIcon.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
+            });
+        }
+        if (editProfile != null) {
+            editProfile.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                intent.putExtra(EXTRA_UPDATED_USER, currentUserProfile);
+                startActivityForResult(intent, REQUEST_CODE_EDIT_PROFILE);
+            });
+        }
 
-        settingIcon.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), SettingActivity.class);
-            startActivity(intent);
-        });
+        if (column1 != null) {
+            column1.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), MenungguPenyelesaianActivity.class);
+                startActivity(intent);
+            });
+        }
 
-        editProfile.setOnClickListener(v -> {
+        if (column2 != null) {
+            column2.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), StatusDonasiActivity.class);
+                startActivity(intent);
+            });
+        }
 
-            Intent intent = new Intent(getActivity(), EditProfileActivity.class);
-            startActivity(intent);
-        });
-
-        column1.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), MenungguPenyelesaianActivity.class); // Ganti dengan Activity tujuan Rahmat
-            startActivity(intent);
-        });
-
-        // Mengatur OnClickListener untuk column2 (Status Donasi)
-        column2.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), StatusDonasiActivity.class); // Ganti dengan Activity tujuan Rahmat
-            startActivity(intent);
-        });
-
-//        NAVIGATE TO TOP UP ACTIVITY
-        Button topUpButton = view.findViewById(R.id.topUpButton);
-
-        topUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        // LOGIKA UNTUK TOP UP DI DALAM onViewCreated
+        if (topUpButton != null) {
+            topUpButton.setOnClickListener(v -> {
                 Intent intent = new Intent(requireContext(), TopUpActivity.class);
                 startActivity(intent);
-            }
-        });
+            });
+        }
 
+        // LOGIKA UNTUK DONATION HISTORY DI DALAM onViewCreated
+        if (column3 != null) {
+            column3.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), DonationHistoryActivity.class);
+                startActivity(intent);
+            });
+        }
+
+
+        updateProfileUI();
     }
 
+    private void updateProfileUI() {
+        if (currentUserProfile != null) {
+            userNameTextView.setText(currentUserProfile.getName());
+            userEmailTextView.setText(currentUserProfile.getEmail());
+            userJobTextView.setText(currentUserProfile.getPekerjaan());
+
+            String imageUri = currentUserProfile.getProfileImageUri();
+            if (imageUri != null && !imageUri.isEmpty()) {
+                profileImageView.setImageURI(android.net.Uri.parse(imageUri));
+            } else {
+                profileImageView.setImageResource(R.drawable.profile); // fallback image
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_EDIT_PROFILE && resultCode == getActivity().RESULT_OK && data != null) {
+            User updatedUser = data.getParcelableExtra(EXTRA_UPDATED_USER);
+            if (updatedUser != null) {
+                currentUserProfile = updatedUser;
+                updateProfileUI();
+            }
+        }
+    }
 }

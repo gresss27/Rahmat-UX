@@ -215,12 +215,14 @@ public class DonationDetailActivity extends AppCompatActivity {
                 // Handle the close button inside the dialog
                 ImageView btnClose = dialogView.findViewById(R.id.btnClose);
                 btnClose.setOnClickListener(view -> dialog.dismiss());
-
+                Campaign campaign = DummyDataRepository.getInstance().getDonationById(donationId);
                 AppCompatButton btnDonasiBarang = dialogView.findViewById(R.id.btnDonasiBarang);
                 btnDonasiBarang.setOnClickListener(buttonView -> {
                     dialog.dismiss();
                     // Memulai alur dengan membuka halaman Tambah Barang
                     Intent intent = new Intent(DonationDetailActivity.this, AddEditItemActivity.class);
+                    intent.putExtra("EXTRA_CAMPAIGN", campaign);
+                    intent.putExtra("IS_FIRST_ADD", true);
                     startActivity(intent);
                 });
 

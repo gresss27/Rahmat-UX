@@ -50,6 +50,12 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".UrgentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateStoryActivity"
             android:exported="false" />
 
@@ -62,7 +68,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
+        <activity
+            android:name=".PengantaranActivity"
+            android:exported="false" />
         <activity
             android:name=".DonationHistoryActivity"
             android:exported="false" />
@@ -121,6 +129,16 @@
         <activity
             android:name=".DeliveryDetailsActivity"
             android:exported="true" />
+        <activity android:name=".MenungguPenyelesaianActivity" />
+        <activity android:name=".StatusDonasiActivity" />
+        <activity
+            android:name=".DetailStatusDonasiBarangActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DetailStatusDonasiUangActivity"
+            android:exported="true" />
+
+
     </application>
 
 </manifest>

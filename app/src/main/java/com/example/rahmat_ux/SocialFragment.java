@@ -32,8 +32,12 @@ public class SocialFragment extends Fragment implements ChannelListAdapter.OnIte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        List<Campaign> campaignList = DummyDataRepository.getInstance().getCampaignList();
-        ChannelListAdapter adapter = new ChannelListAdapter(campaignList);
+        DummyDataRepository repository = DummyDataRepository.getInstance();
+
+// Untuk mengambil campaign 6-8
+        List<Campaign> campaigns6to8 = repository.getCampaignsByIdRange(6, 8);
+
+        ChannelListAdapter adapter = new ChannelListAdapter(campaigns6to8);
 
         // --- PERUBAHAN 2: Daftarkan listener-nya di sini ---
         adapter.setOnItemClickListener(this);
