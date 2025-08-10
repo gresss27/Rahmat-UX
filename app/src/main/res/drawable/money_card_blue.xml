@@ -11,7 +11,7 @@
     <corners android:radius="16dp" />
 
     <!-- Border color and width -->
-    <stroke
-        android:width="2dp"
-        android:color="@color/black" />
+<!--    <stroke-->
+<!--        android:width="2dp"-->
+<!--        android:color="@color/black" />-->
 </shape>
