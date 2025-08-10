@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/popup_background"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="50dp"
+    >
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvFaqTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Tentang Rahmat"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="8dp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rahmat adalah platform yang dirancang untuk memberikan kemudahan dan kenyamanan dalam memenuhi kebutuhan pengguna secara cepat, aman, dan andal. Dengan mengedepankan inovasi dan kualitas layanan, Rahmat berkomitmen untuk menghadirkan pengalaman terbaik bagi setiap penggunanya."
+                android:textSize="14sp"
+                android:layout_marginBottom="2dp"/>
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kami percaya bahwa pelayanan yang baik berawal dari kepercayaan, oleh karena itu Rahmat selalu berusaha menjaga keamanan data pengguna dan memberikan dukungan terbaik saat dibutuhkan. Visi kami adalah menjadi mitra yang dapat diandalkan, memberikan manfaat nyata, serta mendukung pengguna untuk mencapai tujuan mereka dengan lebih mudah dan efisien."
+                android:textSize="14sp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

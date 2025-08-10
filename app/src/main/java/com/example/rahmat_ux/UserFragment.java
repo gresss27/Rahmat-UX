@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.rahmat_ux.data.UserStorage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,6 +71,14 @@ public class UserFragment extends Fragment {
 
 
     }
+    private String formatCurrency(String amount) {
+        try {
+            long number = Long.parseLong(amount.replace(".", "").replace(",", ""));
+            return String.format("%,d", number).replace(',', '.');
+        } catch (NumberFormatException e) {
+            return amount;
+        }
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -78,10 +90,29 @@ public class UserFragment extends Fragment {
         LinearLayout column1 = view.findViewById(R.id.column1);
         LinearLayout column2 = view.findViewById(R.id.column2);
 
+        LinearLayout loggedOutButton=view.findViewById(R.id.LogOutButton);
+
+        TextView profileName=view.findViewById(R.id.profileName);
+        profileName.setText(UserStorage.getInstance().getLoggedInUser().getName());
+
+
+        if(UserStorage.getInstance().getLoggedInUser()!=null){
+            TextView totalBalanceValue = view.findViewById(R.id.totalBalanceValue);
+            totalBalanceValue.setText(formatCurrency(String.valueOf(UserStorage.getInstance().getLoggedInUser().getBalance())));
+        }
+
+
+        loggedOutButton.setOnClickListener(v->{
+            UserStorage.getInstance().logout();
+            Intent intent= new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        });
+
         settingIcon.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), SettingActivity.class);
             startActivity(intent);
         });
+
         editProfile.setOnClickListener(v -> {
 
             Intent intent = new Intent(getActivity(), EditProfileActivity.class);

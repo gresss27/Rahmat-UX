@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setting"
+    android:background="@color/background"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/green_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        android:paddingHorizontal="15dp"
+        android:id="@+id/TopAtas"
+
+        >
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_back"
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="Pengaturan"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="normal"
+            android:textFontWeight="600"
+            android:font="@font/poppins"
+            android:textColor="@color/black"
+            >
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/TopAtas"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/donasiSebagaiAnonim"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_margin="5dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Donasi sebagai Anonim"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    android:textFontWeight="600"
+                    android:font="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/customSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/donasiSebagaiAnonim"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="16dp"
+        android:id="@+id/kebijakanPrivasi"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_margin="5dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="5dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kebijakan Privasi"
+                        android:textSize="16dp"
+                        android:textStyle="normal"
+                        android:textFontWeight="600"
+                        android:font="@font/poppins_semibold"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:text="Diperbarui terakhir: 1 Juni 2025"
+                        android:textSize="10dp"
+                        android:textStyle="normal"
+                        android:textFontWeight="600"
+                        android:font="@font/poppins"
+                        android:textColor="@color/gray"
+                        />
+                    <TextView
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:text="Selamat datang di aplikasi Rahmat. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat menggunakan aplikasi ini. Aplikasi Rahmat disediakan oleh perusahaan bernama Rahmat (“kami”)."
+                        android:textSize="10dp"
+                        android:textStyle="normal"
+                        android:textFontWeight="600"
+                        android:font="@font/poppins"
+                        android:textColor="@color/gray"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/ic_right_green"
+                    android:id="@+id/KebijakanPrivasiButton"
+                    />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/kebijakanPrivasi"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="16dp"
+        android:id="@+id/syaratdanketentuan"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_margin="5dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="5dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Syarat dan Ketentuan"
+                        android:textSize="16dp"
+                        android:textStyle="normal"
+                        android:textFontWeight="600"
+                        android:font="@font/poppins_semibold"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:text="Diperbarui terakhir: 1 Juni 2025"
+                        android:textSize="10dp"
+                        android:textStyle="normal"
+                        android:textFontWeight="600"
+                        android:font="@font/poppins"
+                        android:textColor="@color/gray"
+                        />
+                    <TextView
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:text="Harap baca Syarat dan Ketentuan ini dengan saksama sebelum menggunakan aplikasi Rahmat yang disediakan oleh perusahaan Rahmat (“kami”, “kita”)."
+                        android:textSize="10dp"
+                        android:textStyle="normal"
+                        android:textFontWeight="600"
+                        android:font="@font/poppins"
+                        android:textColor="@color/gray"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/ic_right_green"
+                    android:id="@+id/SyaratdanKetentuanButton"
+                    />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/syaratdanketentuan"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="16dp"
+        android:id="@+id/tentangRahmat"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_margin="5dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="5dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tentang Rahmat"
+                        android:textSize="16dp"
+                        android:textStyle="normal"
+                        android:textFontWeight="600"
+                        android:font="@font/poppins_semibold"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:text="Rahmat adalah aplikasi outfit harian yang menyesuaikan pakaian dengan cuaca dan gaya Anda. Tanpa iklan, aman untuk anak-anak, dan mendukung pembelian fitur premium."
+                        android:textSize="10dp"
+                        android:textStyle="normal"
+                        android:textFontWeight="600"
+                        android:font="@font/poppins"
+                        android:textColor="@color/gray"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:background="@drawable/ic_right_green"
+                    android:id="@+id/TentangRahmatButton"
+                    />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tentangRahmat"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="16dp"
+        android:id="@+id/FAQ"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_margin="5dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:id="@+id/FAQButton"
+
+                >
+                <TextView
+                    android:layout_gravity="start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FAQ"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    android:textFontWeight="600"
+                    android:font="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    />
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/ic_right_green"
+                    />
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/FAQ"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="5dp"
+        android:id="@+id/deleteAcc"
+        android:gravity="center"
+
+        >
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="200dp"
+            android:layout_height="38dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_margin="10dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:background="@color/red_primary"
+                android:id="@+id/DeleteAccountButton"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Delete Account"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    android:textFontWeight="600"
+                    android:font="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

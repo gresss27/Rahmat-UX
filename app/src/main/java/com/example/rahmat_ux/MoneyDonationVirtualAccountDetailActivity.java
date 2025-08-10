@@ -20,7 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.rahmat_ux.data.UserStorage;
 import com.google.android.material.button.MaterialButton;
 
-public class TopUpDetailActivity extends AppCompatActivity {
+public class MoneyDonationVirtualAccountDetailActivity extends AppCompatActivity {
 
     private TextView textVA;
     private Button btnSalin;
@@ -29,19 +29,19 @@ public class TopUpDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_top_up_detail);
+        setContentView(R.layout.activity_money_donation_virtual_account_detail);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-//        CROSS BUTTON
+        //        CROSS BUTTON
         ImageView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TopUpDetailActivity.this, TopUpActivity.class);
+                Intent intent = new Intent(MoneyDonationVirtualAccountDetailActivity.this, MoneyDonationVirtualAccountActivity.class);
                 // Optional: clear the back stack so InputBalanceActivity is not revisited
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
@@ -70,13 +70,9 @@ public class TopUpDetailActivity extends AppCompatActivity {
         btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                long userBalance=UserStorage.getInstance().addBalance(Long.parseLong(amount));
-                Toast.makeText(TopUpDetailActivity.this, String.valueOf(userBalance), Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(TopUpDetailActivity.this, TopUpDetail2Activity.class);
+                Intent intent = new Intent(MoneyDonationVirtualAccountDetailActivity.this, MoneyDonationVirtualAccountDetail2Activity.class);
                 intent.putExtra("bank_name", bankName); // pass the bank name
                 intent.putExtra("amount", amount);       // pass the amount too
-
                 startActivity(intent);
             }
         });

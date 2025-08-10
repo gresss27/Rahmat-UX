@@ -139,7 +139,7 @@ public class DummyDataRepository {
                 "Selesai", 0,
                 new ArrayList<>(), "", ""
         ));
-        currentUser = new User("John Doe", 50000, 10000);
+        currentUser = new User("John Doe","Mas Supir","JohnDoe@gmail.com","08123812","passwordJohnDoe", 50000, 10000);
 
     }
 

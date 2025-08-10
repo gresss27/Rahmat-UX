@@ -8,13 +8,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@color/green_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
         android:paddingHorizontal="15dp"
         android:id="@+id/TopAtas"
+        android:paddingTop="10dp"
 
         >
         <ImageView
@@ -91,6 +92,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
+                    android:background="@color/white"
+                    android:id="@+id/ten"
                     >
                     <ImageView
                         app:layout_constraintStart_toStartOf="parent"
@@ -139,6 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
+                    android:id="@+id/twenty"
                     >
                     <ImageView
                         app:layout_constraintStart_toStartOf="parent"
@@ -187,6 +191,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
+                    android:id="@+id/fifty"
                     >
                     <ImageView
                         app:layout_constraintStart_toStartOf="parent"
@@ -225,11 +230,11 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/nominal50rebo"
                 app:layout_constraintStart_toStartOf="parent"
-                android:background="@color/white"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
                 android:orientation="horizontal"
                 android:id="@+id/nominalisisendiri"
+                android:background="@color/white"
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_marginVertical="10dp"
@@ -282,15 +287,16 @@
                         <View
                             android:layout_width="0dp"
                             android:layout_height="1dp"
-                            android:layout_weight="1" />
+                             />
 
                         <!-- User Input -->
                         <EditText
+                            android:layout_weight="1"
                             android:id="@+id/editTextAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:inputType="number"
-                            android:text="100.000"
+                            android:hint="100000"
                             android:textSize="12dp"
                             android:textStyle="normal"
                             android:textFontWeight="600"
@@ -348,11 +354,11 @@
                         app:cardElevation="4dp"
                         android:layout_marginVertical="5dp"
                         android:layout_marginHorizontal="5dp"
+                        android:id="@+id/VirtualAccount"
                         >
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/money_amount_card"
                             android:orientation="horizontal"
                             android:padding="10dp"
                             >
@@ -385,11 +391,11 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginHorizontal="5dp"
                         android:layout_marginBottom="10dp"
+                        android:id="@+id/Saldo"
                         >
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/money_amount_card"
                             android:orientation="horizontal"
                             android:padding="10dp"
                             >
@@ -410,14 +416,14 @@
                                 android:textFontWeight="600"
                                 android:font="@font/poppins_semibold"
                                 android:textColor="@color/black"
+                                android:layout_weight="1"
                                 />
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="45dp"
-                                android:layout_marginRight="20dp"
+
                                 >
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -440,6 +446,7 @@
                                     android:textFontWeight="600"
                                     android:font="@font/poppins_semibold"
                                     android:textColor="@color/black"
+                                    android:id="@+id/userBalance"
                                     />
 
                             </LinearLayout>
@@ -465,6 +472,7 @@
                                         android:background="@drawable/money_card_blue"
                                         android:orientation="horizontal"
                                         android:padding="10dp"
+                                        android:id="@+id/topUpButton"
                                         >
                                         <TextView
                                             android:layout_gravity="center"
@@ -509,13 +517,16 @@
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             android:layout_marginHorizontal="5dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/green_primary"
+            android:id="@+id/ButtonBayar"
             >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green_primary"
+                android:padding="4dp"
+
                 >
                 <TextView
                     android:layout_width="match_parent"
