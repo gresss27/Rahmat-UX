@@ -70,13 +70,19 @@ public class SwipeFragment extends Fragment {
         btnDonasi = view.findViewById(R.id.btnDonasi);
         btnTopUp = view.findViewById(R.id.btnTopUp);
 
-        btnTopUp.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getBalance()));
-        btnDonasi.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getDonationPerSwipe()));
+//        btnTopUp.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getBalance()));
+        btnTopUp.setText(formatRupiah(UserStorage.getInstance().getLoggedInUser().getBalance()));
+//        btnDonasi.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getDonationPerSwipe()));
+        btnDonasi.setText(formatRupiah(UserStorage.getInstance().getLoggedInUser().getDonationPerSwipe()));
 
 
         btnDecline.setOnClickListener(v -> swipeLeft());
         btnAccept.setOnClickListener(v -> swipeRight());
         btnDonasi.setOnClickListener(v -> showDonationNominalDialog());
+        btnTopUp.setOnClickListener(v->{
+            Intent intent = new Intent(requireContext(), TopUpActivity.class);
+            startActivity(intent);
+        });
 
         showNextCard();
 
@@ -188,6 +194,7 @@ public class SwipeFragment extends Fragment {
         // Kurangi saldo
         long newSaldo = saldo - nominalDonasiPerSwipe;
         DummyDataRepository.getInstance().updateCurrentUserBalance(newSaldo);
+        currentUser.setBalance(currentUser.getBalance()-currentUser.getDonationPerSwipe());
         btnTopUp.setText(formatRupiah(newSaldo));
 
         View topCard = cardContainer.getChildAt(cardContainer.getChildCount() - 1);
@@ -341,7 +348,8 @@ public class SwipeFragment extends Fragment {
     }
 
     private void updateNominalAndDismiss(long nominal, Dialog dialog) {
-        DummyDataRepository.getInstance().updateCurrentUserDonationPerSwipe(nominal);
+//        DummyDataRepository.getInstance().updateCurrentUserDonationPerSwipe(nominal);
+        UserStorage.getInstance().getLoggedInUser().setDonationPerSwipe(nominal);
         btnDonasi.setText(formatRupiah(nominal));
         dialog.dismiss();
     }

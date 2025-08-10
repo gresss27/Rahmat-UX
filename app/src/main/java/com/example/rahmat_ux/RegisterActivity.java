@@ -87,12 +87,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             // Register user (default balance = 100000, donationPerSwipe = 5000)
-            User newUser = new User(username, pekerjaan,email,phoneNumber, password, 100000, 5000,"");
+            User newUser = new User(username, pekerjaan,email,phoneNumber, password, 0, 10000,"");
             UserStorage.getInstance().addUser(newUser);
             UserStorage.getInstance().authenticate(email,password);
 
-            Toast.makeText(this, "Registered!\nEmail: " + email + "\nUsername: " + username, Toast.LENGTH_LONG).show();
-            Toast.makeText(this, String.valueOf(UserStorage.getInstance().getLoggedInUser().getBalance()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Registered!", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, String.valueOf(UserStorage.getInstance().getLoggedInUser().getBalance()), Toast.LENGTH_SHORT).show();
             User nowUser=UserStorage.getInstance().findUserbyEmail(email);
 //            if(nowUser!=null && nowUser.getEmail()!=null){
 //                Toast.makeText(this, "ada nih bwang", Toast.LENGTH_SHORT).show();
