@@ -46,7 +46,7 @@ public class UserStorage {
 
     public User getLoggedInUser(){
         if(loggedInUser==null){
-            loggedInUser=new User("test001","kuli","test001@gmail.com","08123192","password123",100000,10000);
+            loggedInUser=new User("test001","kuli","test001@gmail.com","08123192","password123",100000,10000,"");
             addUser(loggedInUser);
         }
         return loggedInUser;

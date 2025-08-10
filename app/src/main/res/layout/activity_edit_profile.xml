@@ -225,6 +225,32 @@
                         android:inputType="textEmailAddress"/>
                 </com.google.android.material.card.MaterialCardView>
 
+                <TextView
+                    style="@style/LabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nomor Telepon"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_marginBottom="16dp">
+                    <EditText
+                        android:id="@+id/inputPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="081231231"
+                        android:drawablePadding="12dp"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:background="@android:color/white"
+                        android:inputType="number" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     style="@style/LabelStyle"

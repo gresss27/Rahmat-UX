@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             // Register user (default balance = 100000, donationPerSwipe = 5000)
-            User newUser = new User(username, pekerjaan,email,phoneNumber, password, 100000, 5000);
+            User newUser = new User(username, pekerjaan,email,phoneNumber, password, 100000, 5000,"");
             UserStorage.getInstance().addUser(newUser);
             UserStorage.getInstance().authenticate(email,password);
 

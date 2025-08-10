@@ -33,7 +33,7 @@ public class UserFragment extends Fragment {
     public static final int REQUEST_CODE_EDIT_PROFILE = 1001;
 
     // Perbaikan: Konstruktor User disesuaikan dengan 5 argumen yang ada di model
-    private static User currentUserProfile = new User("Rahmat Hidayat", "Mahasiswa", "rahmat.hidayat@example.com","123123", 100000, 5000, "");
+    private static User currentUserProfile = new User("Rahmat Hidayat", "Mahasiswa", "rahmat.hidayat@example.com","123123","password123", 100000, 5000, "");
 
     private TextView userNameTextView;
     private TextView userEmailTextView;
@@ -77,7 +77,7 @@ public class UserFragment extends Fragment {
 
         LinearLayout loggedOutButton=view.findViewById(R.id.LogOutButton);
 
-        TextView profileName=view.findViewById(R.id.profileName);
+        TextView profileName=userNameTextView;
         profileName.setText(UserStorage.getInstance().getLoggedInUser().getName());
 
 
