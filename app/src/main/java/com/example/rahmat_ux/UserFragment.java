@@ -144,7 +144,7 @@ public class UserFragment extends Fragment {
 
         User currentUserProfile=UserStorage.getInstance().getLoggedInUser();
 
-        Toast.makeText(getActivity(), currentUserProfile.getPekerjaan(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), currentUserProfile.getPekerjaan(), Toast.LENGTH_SHORT).show();
         if (currentUserProfile != null) {
             userNameTextView.setText(currentUserProfile.getName());
             userEmailTextView.setText(currentUserProfile.getEmail());
@@ -168,7 +168,7 @@ public class UserFragment extends Fragment {
             User updatedUser=UserStorage.getInstance().getLoggedInUser();
             if (updatedUser != null) {
                 currentUserProfile = updatedUser;
-                Toast.makeText(getActivity(),currentUserProfile.getPekerjaan() , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(),currentUserProfile.getPekerjaan() , Toast.LENGTH_SHORT).show();
                 updateProfileUI();
             }
         }

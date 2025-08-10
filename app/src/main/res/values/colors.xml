@@ -4,6 +4,7 @@
     <color name="white">#F5F5F5</color>
     <color name="background">#F2F0E3</color>
     <color name="green_primary">#C1E762</color>
+    <color name="green_text">#9EC43E</color>
     <color name="light_grey">#E5E5E5</color>
     <color name="grey_font">#888888</color>
     <color name="red_primary">#FF6F6A</color>

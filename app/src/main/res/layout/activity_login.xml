@@ -43,7 +43,7 @@
                         android:foregroundGravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Selamat Datang\nKembali\nSobat Rahmat"
+                        android:text="Selamat Datang\nKembali\nSobat Rahmat!"
                         android:textColor="@color/black"
                         android:textSize="28sp"
                         android:textStyle="bold"
@@ -76,7 +76,7 @@
                         android:text="Login"
                         android:textSize="22sp"
                         android:textStyle="bold"
-                        android:textColor="@color/green_primary"
+                        android:textColor="@color/green_text"
                         android:layout_marginBottom="16dp"
                         android:textAlignment="center"
                         android:elevation="40dp"
@@ -141,7 +141,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Didn't have an account?"
+                        android:text="Belum punya akun?"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
                         />
@@ -158,7 +158,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Here"
+                            android:text="di sini"
                             android:textStyle="bold"
                             android:id="@+id/redirectToRegister"
                             />
@@ -182,8 +182,9 @@
                             android:layout_height="wrap_content"
                             android:text="Login"
                             android:backgroundTint="#006D5B"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"/>
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"/>
                     </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>

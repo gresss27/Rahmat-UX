@@ -22,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RahmatUX"
         tools:targetApi="31">
+
         <activity
             android:name=".MoneyDonationVirtualAccountDetail2Activity"
             android:exported="false" />
@@ -36,25 +37,18 @@
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="false">
+            android:exported="false" />
 
-            <!-- android:exported="true"> -->
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+        <!-- LOGIN ACTIVITY AS LAUNCHER -->
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".UrgentActivity"
             android:exported="false" />
@@ -74,6 +68,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <activity
             android:name=".PengantaranActivity"
             android:exported="false" />
@@ -97,8 +92,7 @@
             android:exported="false" />
         <activity
             android:name=".MoneyDonationActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".TopUpActivity"
             android:exported="false" />
@@ -117,10 +111,12 @@
         <activity
             android:name=".DonationDetailActivity"
             android:exported="false" />
+
+        <!-- MAIN ACTIVITY - NO LONGER LAUNCHER -->
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
+
         <activity
             android:name=".AddEditItemActivity"
             android:exported="true" />
@@ -138,7 +134,6 @@
         <activity
             android:name=".DetailStatusDonasiUangActivity"
             android:exported="true" />
-
 
     </application>
 

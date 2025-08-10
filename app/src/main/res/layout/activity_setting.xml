@@ -21,19 +21,18 @@
         >
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_back"
-            >
-        </ImageView>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_gravity="center"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14dp"
             android:text="Pengaturan"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginStart="16dp"
             android:textStyle="normal"
             android:textFontWeight="600"
             android:font="@font/poppins"
@@ -371,37 +370,37 @@
         android:gravity="center"
 
         >
-        <androidx.cardview.widget.CardView
+<!--        <androidx.cardview.widget.CardView-->
 
-            android:layout_width="200dp"
-            android:layout_height="38dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            android:layout_margin="10dp"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                android:orientation="horizontal"
-                android:paddingHorizontal="10dp"
-                android:background="@color/red_primary"
-                android:id="@+id/DeleteAccountButton"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Delete Account"
-                    android:textSize="16dp"
-                    android:textStyle="normal"
-                    android:textFontWeight="600"
-                    android:font="@font/poppins_semibold"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"
-                    />
-            </LinearLayout>
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="38dp"-->
+<!--            app:cardCornerRadius="16dp"-->
+<!--            app:cardElevation="4dp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingVertical="10dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:paddingHorizontal="10dp"-->
+<!--                android:background="@color/red_primary"-->
+<!--                android:id="@+id/DeleteAccountButton"-->
+<!--                >-->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="Delete Account"-->
+<!--                    android:textSize="16dp"-->
+<!--                    android:textStyle="normal"-->
+<!--                    android:textFontWeight="600"-->
+<!--                    android:font="@font/poppins_semibold"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textAlignment="center"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
 
-        </androidx.cardview.widget.CardView>
+<!--        </androidx.cardview.widget.CardView>-->
 
     </LinearLayout>
 

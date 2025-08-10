@@ -122,23 +122,23 @@ public class MoneyDonationActivity extends AppCompatActivity {
         buttonBayar.setOnClickListener(vi->{
             if(totalDonasi==-2){
                 if(userInput.getText().toString().isEmpty()){
-                    Toast.makeText(this, "Kosong Koplak", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Nominal donasi belum diisi.", Toast.LENGTH_SHORT).show();
                 }else {
                     totalDonasi = Integer.valueOf(userInput.getText().toString().trim());
                 }
             } else if(totalDonasi==-1){
-                Toast.makeText(this, "Pilih dong mau donasi berapa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Nominal donasi belum dipilih.", Toast.LENGTH_SHORT).show();
             } else if (totalDonasi<1000) {
-                Toast.makeText(this, "Kan udh dibilang ga bole lebih kecil dari 1000", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Nominal donasi paling sedikit Rp1000.", Toast.LENGTH_SHORT).show();
             } else if (setPembayaran==0) {
-                Toast.makeText(this, "Pilih gmn bayarnya kocag", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Metode pembayaran belum diisi.", Toast.LENGTH_SHORT).show();
             } else if (setPembayaran==1) {
-                Toast.makeText(this, "VA nihhh", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Virtual Account", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(MoneyDonationActivity.this,MoneyDonationVirtualAccountActivity.class);
                 intent.putExtra("donation_amount",totalDonasi);
                 startActivity(intent);
             } else if (totalDonasi>UserStorage.getInstance().getLoggedInUser().getBalance()){
-                Toast.makeText(this, "Duid luh kaga cukup jir", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Saldo tidak cukup.", Toast.LENGTH_SHORT).show();
             } else{
                 UserStorage.getInstance().substractBalance(totalDonasi);
                 userBalance.setText("Rp"+formatCurrency(String.valueOf(UserStorage.getInstance().getLoggedInUser().getBalance())));

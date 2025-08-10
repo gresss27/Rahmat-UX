@@ -96,6 +96,17 @@ public class SwipeFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadBalance(); // your method to get the latest balance and update the TextView
+    }
+
+    private void loadBalance() {
+        btnTopUp.setText(formatRupiah(UserStorage.getInstance().getLoggedInUser().getBalance()));
+    }
+
     @SuppressLint("DefaultLocale")
     private String formatRupiah(long amount) {
         // Simple formatting for demonstration
