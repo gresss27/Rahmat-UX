@@ -10,6 +10,7 @@ import com.example.rahmat_ux.model.Story;
 import com.example.rahmat_ux.model.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DummyDataRepository {
@@ -25,7 +26,7 @@ public class DummyDataRepository {
         campaignList.add(new Campaign(
                 1,
                 "Bantu Saya Beli iPhone 16 Pro Max",
-                R.drawable.campaign_difabel,
+                R.drawable.campaign1,
                 "11 Agustus 2025", "Sisa 30 hari",
                 5000000L, 30000000L,
                 "Casing iPhone 16 Pro Max", 20, 10, "unit",
@@ -33,7 +34,7 @@ public class DummyDataRepository {
                 "AirPods Pro 3", 0, 3, "unit",
                 "Mendukung pengadaan perangkat iPhone 16 Pro Max beserta perlengkapan pendukung untuk menunjang produktivitas dan kualitas konten digital.",
                 "Perangkat iPhone 16 Pro Max diharapkan menjadi sarana utama dalam mendokumentasikan kegiatan, membuat konten digital, serta memperlancar komunikasi secara profesional.\n\nKami membuka penggalangan dana untuk membantu memenuhi kebutuhan berikut:\n• Casing iPhone 16 Pro Max: Perlindungan optimal untuk perangkat.\n• Charger 120W Original: Mendukung pengisian cepat dan aman.\n• AirPods Pro 3: Memudahkan komunikasi dan monitoring audio berkualitas tinggi.\n\nDukungan Anda akan sangat membantu dalam mewujudkan sarana teknologi yang memadai.",
-                "Fajar Santoso", "Content Creator", R.drawable.organizer1,
+                "Willies", "Content Creator", R.drawable.organizer1,
                 "Terima kasih atas partisipasi dan dukungan yang diberikan. Setiap kontribusi membawa kami lebih dekat pada tujuan.",
                 "Berlangsung", 30,
                 new ArrayList<>(), "", ""
@@ -43,7 +44,7 @@ public class DummyDataRepository {
         campaignList.add(new Campaign(
                 2,
                 "Bantu Pemulihan Saudara Andi yang Mengalami Patah Kaki",
-                R.drawable.banner5,
+                R.drawable.campaign2,
                 "11 Agustus 2025", "Sisa 45 hari",
                 2750000L, 15000000L,
                 "Kursi Roda", 50, 1, "unit",
@@ -61,7 +62,7 @@ public class DummyDataRepository {
         campaignList.add(new Campaign(
                 3,
                 "Bantu Biaya Perawatan Ibu Siti yang Terkena Penyakit Paru-Paru",
-                R.drawable.banner3,
+                R.drawable.campaign3,
                 "11 Agustus 2025", "Sisa 60 hari",
                 4500000L, 25000000L,
                 "Biaya Rawat Inap", 90, 10, "hari",
@@ -87,7 +88,7 @@ public class DummyDataRepository {
                 "Makanan", 30, 200, "paket",      // item3, progress3, target3, unit3
                 "Airnya udah sebetis, sandal jepit hanyut entah kemana. Plis help!",
                 "BREAKING NEWS! Desa kami telah terpilih menjadi lokasi syuting 'Waterworld' tanpa pemberitahuan sebelumnya. Sofa udah pasrah, galon air penuh trepidasi, dan koleksi semut di toples gula sudah mengungsi.\n\nKami butuh bantuan Anda untuk menyediakan:\n• Pakaian: Karena jemuran kemarin sore sekarang lagi tur keliling kampung.\n• Obat-obatan: Buat ngobatin pusing mikirin cicilan barang yang kerendam.\n• Makanan: Karena kompor gas menolak bekerja sama dalam kondisi lembab.\n\nDonasimu akan menjadi Super Hero di tengah bencana waterboom dadakan ini!",
-                "Komite Penyelamat Sandal Jepit Nasional", "Divisi Logistik & Hiburan", R.drawable.organizer1,
+                "Komite Penyelamat Sandal Jepit Nasional", "Divisi Logistik & Hiburan", R.drawable.organizer4,
                 "Laporan diterima! Tim sudah turun untuk menyelamatkan beberapa sandal yang tersisa. Kalian semua pahlawan!",
                 "Berlangsung", 29,
                 new ArrayList<>(), "", ""
@@ -97,7 +98,7 @@ public class DummyDataRepository {
         campaignList.add(new Campaign(
                 5,
                 "Bantuan Darurat untuk Korban Banjir di Desa Mekar Jaya",
-                R.drawable.banner5,
+                R.drawable.campaign5,
                 "11 Agustus 2025", "Sisa 20 hari",
                 6500000L, 25000000L,
                 "Paket Sembako", 50, 200, "paket",
@@ -105,7 +106,7 @@ public class DummyDataRepository {
                 "Peralatan Kebersihan", 10, 100, "paket",
                 "Membantu memenuhi kebutuhan dasar warga Desa Mekar Jaya yang terdampak banjir.",
                 "Banjir bandang melanda Desa Mekar Jaya dan merendam ratusan rumah. Banyak warga kehilangan harta benda dan membutuhkan bantuan segera berupa makanan, pakaian, dan peralatan kebersihan.\n\nKami membuka donasi untuk membantu kebutuhan berikut:\n• Paket Sembako: Memenuhi kebutuhan pangan selama masa darurat.\n• Selimut dan Pakaian: Menjaga warga tetap hangat dan sehat.\n• Peralatan Kebersihan: Membantu pembersihan rumah pasca banjir.\n\nSetiap bantuan akan sangat berarti bagi warga yang terdampak.",
-                "Relawan Desa Mekar Jaya", "Relawan", R.drawable.organizer6,
+                "Relawan Desa Mekar Jaya", "Relawan", R.drawable.organizer5,
                 "Terima kasih atas bantuan dan doa yang diberikan.",
                 "Berlangsung", 20,
                 new ArrayList<>(), "", ""
@@ -115,7 +116,7 @@ public class DummyDataRepository {
         campaignList.add(new Campaign(
                 6,
                 "Pemulihan Sekolah SD Harapan Baru Pasca Banjir",
-                R.drawable.banner4,
+                R.drawable.campaign6,
                 "11 Agustus 2025", "Sisa 35 hari",
                 2800000L, 15000000L,
                 "Meja dan Kursi", 15, 50, "unit",
@@ -123,7 +124,7 @@ public class DummyDataRepository {
                 "Peralatan Kebersihan", 45, 20, "paket",
                 "Mendukung pemulihan fasilitas belajar mengajar di SD Harapan Baru setelah terkena banjir.",
                 "Banjir besar telah merusak ruang kelas, peralatan, dan buku-buku di SD Harapan Baru. Anak-anak membutuhkan dukungan untuk dapat kembali belajar dengan nyaman dan aman.\n\nKami membuka donasi untuk membantu kebutuhan berikut:\n• Meja dan Kursi: Mengganti perabot yang rusak.\n• Buku dan Alat Tulis: Memulihkan sarana belajar siswa.\n• Peralatan Kebersihan: Membersihkan sekolah dari lumpur dan kotoran.\n\nMari bersama-sama membantu anak-anak agar kembali bersekolah tanpa hambatan.",
-                "Komite Sekolah SD Harapan Baru", "Komite Sekolah", R.drawable.organizer7,
+                "Komite Sekolah SD Harapan Baru", "Komite Sekolah", R.drawable.organizer6,
                 "Terima kasih telah berkontribusi dalam memulihkan semangat belajar anak-anak.",
                 "Berlangsung", 35,
                 new ArrayList<>(), "", ""
@@ -133,7 +134,7 @@ public class DummyDataRepository {
         campaignList.add(new Campaign(
                 7,
                 "Bantu Biaya Operasi Katarak Pak Darman",
-                R.drawable.banner2,
+                R.drawable.campaign7,
                 "11 Agustus 2025", "Sisa 40 hari",
                 3200000L, 18000000L,
                 "Biaya Operasi", 50, 1, "tindakan",
@@ -141,7 +142,7 @@ public class DummyDataRepository {
                 "Kacamata Khusus", 80, 1, "unit",
                 "Mendukung biaya operasi katarak untuk mengembalikan penglihatan Pak Darman.",
                 "Pak Darman, seorang pensiunan guru, mengalami penurunan penglihatan akibat katarak di kedua matanya. Kondisi ini membuatnya kesulitan beraktivitas dan membaca. Operasi katarak menjadi satu-satunya cara untuk memulihkan penglihatannya.\n\nKami membuka donasi untuk membantu memenuhi kebutuhan berikut:\n• Biaya Operasi: Mengangkat katarak di kedua mata.\n• Obat Pasca Operasi: Mendukung proses penyembuhan.\n• Kacamata Khusus: Membantu penglihatan pasca operasi.\n\nDukungan Anda akan sangat berarti bagi Pak Darman untuk kembali melihat dengan jelas.",
-                "Keluarga Pak Darman", "Keluarga Pasien", R.drawable.organizer2,
+                "Keluarga Pak Darman", "Keluarga Pasien", R.drawable.organizer7,
                 "Terima kasih telah membantu. Setiap sumbangan berarti untuk kesembuhan beliau.",
                 "Berlangsung", 40,
                 new ArrayList<>(), "", ""
@@ -151,7 +152,7 @@ public class DummyDataRepository {
         campaignList.add(new Campaign(
                 8,
                 "Bantu Pengobatan Adik Farel yang Menderita Leukemia",
-                R.drawable.banner1,
+                R.drawable.campaign8,
                 "11 Agustus 2025", "Sisa 90 hari",
                 7800000L, 50000000L,
                 "Kemoterapi", 20, 12, "sesi",
@@ -159,7 +160,7 @@ public class DummyDataRepository {
                 "Nutrisi Khusus", 10, 60, "paket",
                 "Mendukung biaya pengobatan Adik Farel agar dapat melawan penyakit leukemia.",
                 "Farel, bocah berusia 8 tahun, didiagnosa menderita leukemia dan membutuhkan pengobatan jangka panjang. Saat ini ia memerlukan kemoterapi, obat-obatan, serta asupan gizi khusus untuk memperkuat daya tahan tubuhnya.\n\nKami membuka donasi untuk membantu kebutuhan berikut:\n• Kemoterapi: Menekan perkembangan sel kanker.\n• Obat Harian: Mengurangi efek samping dan menjaga kondisi tubuh.\n• Nutrisi Khusus: Memenuhi kebutuhan gizi selama pengobatan.\n\nDukungan Anda akan memberi Farel kesempatan untuk sembuh dan menjalani masa depan yang lebih cerah.",
-                "Keluarga Farel", "Keluarga Pasien", R.drawable.organizer4,
+                "Keluarga Farel", "Keluarga Pasien", R.drawable.organizer8,
                 "Setiap doa dan bantuan Anda adalah harapan bagi kesembuhan Farel.",
                 "Berlangsung", 90,
                 new ArrayList<>(), "", ""
@@ -169,7 +170,7 @@ public class DummyDataRepository {
         campaignList.add(new Campaign(
                 9,
                 "Bantu Perawatan Nenek Rukiyah yang Mengalami Stroke",
-                R.drawable.banner3,
+                R.drawable.campaign9,
                 "11 Agustus 2025", "Sisa 50 hari",
                 4200000L, 20000000L,
                 "Biaya Fisioterapi", 30, 15, "sesi",
@@ -177,7 +178,7 @@ public class DummyDataRepository {
                 "Kursi Roda", 60, 1, "unit",
                 "Membantu perawatan Nenek Rukiyah agar dapat kembali beraktivitas pasca stroke.",
                 "Nenek Rukiyah, usia 72 tahun, mengalami stroke yang mengakibatkan kelumpuhan sebagian tubuh. Saat ini ia membutuhkan fisioterapi intensif, obat harian, dan kursi roda untuk menunjang mobilitas.\n\nKami membuka donasi untuk membantu memenuhi kebutuhan berikut:\n• Biaya Fisioterapi: Mengembalikan kekuatan otot dan koordinasi tubuh.\n• Obat Harian: Menjaga tekanan darah dan kesehatan jantung.\n• Kursi Roda: Memudahkan mobilitas selama pemulihan.\n\nSetiap bantuan akan sangat membantu meringankan beban keluarga dan mempercepat pemulihan beliau.",
-                "Keluarga Nenek Rukiyah", "Keluarga Pasien", R.drawable.organizer5,
+                "Keluarga Nenek Rukiyah", "Keluarga Pasien", R.drawable.organizer9,
                 "Terima kasih atas perhatian dan dukungan yang diberikan.",
                 "Berlangsung", 50,
                 new ArrayList<>(), "", ""
@@ -187,7 +188,7 @@ public class DummyDataRepository {
         campaignList.add(new Campaign(
                 10,
                 "Perbaikan Sumur Air Bersih untuk Desa Sukamaju",
-                R.drawable.banner4,
+                R.drawable.campaign10,
                 "11 Agustus 2025", "Sisa 25 hari",
                 20000000L, 20000000L,
                 "Pompa Air", 100, 1, "unit",
@@ -195,7 +196,7 @@ public class DummyDataRepository {
                 "Biaya Pengerjaan", 100, 1, "proyek",
                 "Mendukung perbaikan sumur air bersih agar warga Desa Sukamaju kembali mendapatkan akses air layak.",
                 "Warga Desa Sukamaju selama ini mengandalkan sumur utama untuk kebutuhan sehari-hari. Namun, pompa airnya rusak dan saluran pipa mengalami kebocoran sehingga pasokan air terhenti. Situasi ini mengganggu aktivitas warga, mulai dari memasak hingga mandi.\n\nKami membuka donasi untuk membantu memenuhi kebutuhan berikut:\n• Pompa Air: Mengganti pompa lama yang rusak.\n• Pipa dan Saluran: Memperbaiki jaringan distribusi air.\n• Biaya Pengerjaan: Menutupi ongkos tukang dan material pendukung.\n\nSetiap dukungan Anda akan membantu warga kembali mendapatkan akses air bersih yang layak.",
-                "Tanggap Air Bersih", "Organisasi Masyarakat", R.drawable.organizer7,
+                "Tanggap Air Bersih", "Organisasi Masyarakat", R.drawable.organizer10,
                 "Terima kasih atas bantuan yang telah diberikan. Setiap sumbangan adalah langkah menuju kehidupan yang lebih sehat.",
                 "Selesai", 25,
                 new ArrayList<>(), "", ""
@@ -300,11 +301,11 @@ public class DummyDataRepository {
     public List<Notification> getNotificationList() {
         List<Notification> list = new ArrayList<>();
         int imageResId = R.drawable.campaign_yatim; // Same image for all
-        list.add(new Notification("18 Feb 2020", "Donasi Berhasil: Ayo Bantu Bengkulu Pulih dari Gempa", "Kamu berdonasi sebesar Rp10.000", imageResId));
-        list.add(new Notification("18 Feb 2020", "Donasi Menunggu: Ayo Bantu Bengkulu Pulih dari Gempa", "Yuk antar donasi barangmu ke drop point dalam 3 hari!", imageResId));
-        list.add(new Notification("18 Feb 2020", "Donasi Diterima: Ayo Bantu Bengkulu Pulih dari Gempa", "Donasi barangmu telah kami terima. Terima kasih!", imageResId));
-        list.add(new Notification("18 Feb 2020", "Waktu Pengantaran Habis: Ayo Bantu Bengkulu Pulih dari Gempa", "Barang belum dikirim ke drop point. Silakan jadwalkan ulang pengantaran.", imageResId));
-        list.add(new Notification("18 Feb 2020", "Kampanye Baru: Akses Nutrisi Masih Terbatas, Donasi Beras Sekarang! Bantu Pulihkan Masa Depan Mereka", "Yuk jadi donatur pertama dan bantu selamatkan nyawa anak-anak.", imageResId));
+        list.add(new Notification("14 Agt 2025", "Donasi Diproses: WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!", "Barang donasimu telah dikirim ke lokasi kampanye.", R.drawable.campaign_banjir));
+        list.add(new Notification("14 Agt 2025", "Donasi Diterima: WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!", "Donasi barangmu telah kami terima. Terima kasih!", R.drawable.campaign_banjir));
+        list.add(new Notification("14 Agt 2025", "Donasi Menunggu: WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!", "Yuk antar donasi barangmu ke drop point dalam 3 hari!", R.drawable.campaign_banjir));
+        list.add(new Notification("14 Agt 2025", "Donasi Berhasil: WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!", "Kamu berdonasi sebesar Rp10.000", R.drawable.campaign_banjir));
+        list.add(new Notification("14 Agt 2025", "Kampanye Baru: Pemulihan Sekolah SD Harapan Baru Pasca Banjir", "Yuk jadi donatur pertama dan bantu selamatkan nyawa anak-anak.", R.drawable.campaign9));
         return list;
     }
 
@@ -322,14 +323,6 @@ public class DummyDataRepository {
         List<DonationHistory> list = new ArrayList<>();
 
         list.add(new DonationHistory(
-                "Ayo Bantu Bengkulu Pulih dari Gempa",
-                "Donasi Berhasil",
-                "-10.000",
-                R.drawable.banner1,
-                "uang"
-        ));
-
-        list.add(new DonationHistory(
                 "Top Up Saldo",
                 "Top Up Berhasil",
                 "+500.000",
@@ -338,26 +331,50 @@ public class DummyDataRepository {
         ));
 
         list.add(new DonationHistory(
-                "Ayo Bantu Bengkulu Pulih dari Gempa",
-                "Donasi Diterima",
-                "3 stel pakaian",
-                R.drawable.banner1,
-                "barang"
-        ));
-
-        list.add(new DonationHistory(
-                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Bantu Pemulihan Saudara Andi yang Mengalami Patah Kaki",
                 "Donasi Berhasil",
-                "-25.000",
-                R.drawable.banner1,
+                "-10.000",
+                R.drawable.campaign2,
                 "uang"
         ));
 
         list.add(new DonationHistory(
-                "Ayo Bantu Bengkulu Pulih dari Gempa",
+                "Bantu Biaya Perawatan Ibu Siti yang Terkena Penyakit Paru-Paru",
+                "Donasi Berhasil",
+                "-10.000",
+                R.drawable.campaign3,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!",
+                "Donasi Berhasil",
+                "-480.000",
+                R.drawable.campaign_banjir,
+                "uang"
+        ));
+
+        list.add(new DonationHistory(
+                "WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!",
+                "Donasi Diterima",
+                "3 stel pakaian",
+                R.drawable.campaign_banjir,
+                "barang"
+        ));
+
+        list.add(new DonationHistory(
+                "WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!",
                 "Donasi Diterima",
                 "2 paket obat",
-                R.drawable.banner1,
+                R.drawable.campaign_banjir,
+                "barang"
+        ));
+
+        list.add(new DonationHistory(
+                "WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!",
+                "Donasi Diterima",
+                "5 kg beras",
+                R.drawable.campaign_banjir,
                 "barang"
         ));
 
@@ -369,13 +386,7 @@ public class DummyDataRepository {
                 "uang"
         ));
 
-        list.add(new DonationHistory(
-                "Ayo Bantu Bengkulu Pulih dari Gempa",
-                "Donasi Diterima",
-                "5 kg beras",
-                R.drawable.banner1,
-                "barang"
-        ));
+        Collections.reverse(list);
 
         return list;
     }

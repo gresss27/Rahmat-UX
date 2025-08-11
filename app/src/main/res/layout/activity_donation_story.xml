@@ -72,10 +72,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rumah Mereka Runtuh, Harapan Jangan Ikut Runtuh"
-                        android:textStyle="bold"
+                        android:text="Banjir Tanpa Tiket Masuk: Saat Desa Jadi Waterboom Dadakan"
+                        android:textAlignment="center"
                         android:textSize="16sp"
-                        android:textAlignment="center"/>
+                        android:textStyle="bold" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -87,14 +87,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/campaign_gempa"
+                            android:src="@drawable/campaign5"
                             android:scaleType="centerCrop" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Gempa yang terjadi di Bengkulu beberapa waktu lalu telah memberikan dampak yang cukup besar bagi masyarakat di sejumlah wilayah. Guncangan kuat menyebabkan banyak rumah warga mengalami keretakan parah hingga roboh, memaksa mereka untuk meninggalkan tempat tinggal dan mengungsi ke lokasi-lokasi darurat yang kondisinya serba terbatas. Tidak sedikit warga yang kini tinggal di tenda-tenda sementara, dengan fasilitas yang sangat minim."
+                        android:text="Hujan deras yang tak kunjung berhenti telah mengubah desa kami menjadi kolam renang raksasa tanpa tiket masuk. Air mulai merayap masuk ke rumah-rumah, pelan tapi pasti, seperti tamu tak diundang yang tiba-tiba betah berlama-lama. Dapur yang dulu jadi tempat masak kini jadi arena lomba perahu sendok, dan halaman rumah sudah resmi jadi habitat baru untuk ikan-ikan tetangga yang kabur dari kolam."
                         android:textSize="12sp"
                         android:justificationMode="inter_word"
                         android:layout_marginVertical="8dp"/>
@@ -109,14 +109,14 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/campaign_gempa"
+                            android:src="@drawable/campaign6"
                             android:scaleType="centerCrop" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Di banyak titik pengungsian, kebutuhan dasar masih belum terpenuhi secara memadai. Akses terhadap air bersih terganggu, pasokan listrik tidak stabil, dan makanan hanya tersedia dalam jumlah terbatas. Anak-anak, lansia, dan ibu hamil menjadi kelompok paling rentan dalam situasi ini. Mereka membutuhkan lingkungan yang aman dan layak untuk bertahan selama masa pemulihan berlangsung.\n\nSelain kebutuhan sehari-hari seperti makanan, pakaian hangat, dan obat-obatan, warga juga membutuhkan bantuan untuk memperbaiki tempat tinggal mereka yang rusak agar bisa kembali menjalani kehidupan dengan lebih stabil dan aman. Banyak dari mereka kehilangan sumber penghasilan karena tempat usaha turut terdampak atau akses ke pekerjaan terganggu akibat kerusakan infrastruktur.\n\nMeski semangat gotong royong masih terasa kuat di antara warga, mereka tidak bisa menghadapi semua ini sendirian. Bantuan dan dukungan dari berbagai pihak sangat dibutuhkan untuk mempercepat proses pemulihan, memulihkan rasa aman, dan membantu mereka membangun kembali kehidupan yang lebih baik setelah bencana."
+                        android:text="Namun, banjir ini bukan sekadar cerita lucu yang bisa dibagikan di grup WhatsApp. Banyak keluarga kehilangan tempat tidur, pakaian, dan peralatan sehari-hari. Kasur yang biasanya jadi tempat beristirahat kini malah ikut “berenang”, sementara kulkas, entah bagaimana, tampak pasrah menerima nasibnya mengapung di sudut ruangan. Beberapa warga terpaksa mengungsi dengan membawa apa saja yang bisa diselamatkan, bahkan ada yang harus meninggalkan sandal jepit favoritnya hanyut tanpa pamit. \n\nKondisi kesehatan pun mulai mengkhawatirkan. Air yang kotor membawa risiko penyakit, dan obat-obatan semakin menipis. Anak-anak mulai terserang demam, orang tua kelelahan, dan persediaan makanan makin menurun karena sulit memasak di tengah genangan. Beberapa dapur kini hanya berfungsi sebagai museum peralatan masak yang “pensiun dini” akibat lembab.\n\nKami sangat membutuhkan bantuan untuk bertahan menghadapi bencana ini. Pakaian kering untuk menghangatkan tubuh, obat-obatan untuk mengatasi penyakit, dan makanan untuk memastikan setiap perut tetap terisi. Donasimu akan menjadi sinar harapan di tengah ‘waterboom’ dadakan ini, mengembalikan tawa yang sempat tenggelam bersama kasur dan kulkas kami."
                         android:textSize="12sp"
                         android:justificationMode="inter_word"
                         android:layout_marginVertical="8dp"/>

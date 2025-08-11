@@ -5,10 +5,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -271,19 +273,38 @@ public class DonationDetailActivity extends AppCompatActivity {
 //        SHARE
         MaterialCardView cardShare = findViewById(R.id.cardShare);
 
-        cardShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String shareText = "Yuk berdonasi untuk kampanye ini: Ayo Bantu Bengkulu Pulih dari Gempa\nhttps://example.com/campaign/bengkulu";
+        if (cardShare != null) {
+            cardShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        String shareText = "Yuk berdonasi untuk kampanye ini: Ayo Bantu Bengkulu Pulih dari Gempa\n" +
+                                "https://example.com/campaign/bengkulu";
 
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Donasi Sekarang");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                        shareIntent.setType("text/plain");
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Donasi Sekarang");
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
 
-                startActivity(Intent.createChooser(shareIntent, "Bagikan melalui"));
-            }
-        });
+                        Intent chooser = Intent.createChooser(shareIntent, "Bagikan melalui");
+
+                        // Only start if there is an app to handle it
+                        if (shareIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(chooser);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Tidak ada aplikasi untuk membagikan", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat membagikan", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } else {
+            Log.e("ShareButton", "cardShare view is null! Periksa ID di layout.");
+        }
+
 
     }
 

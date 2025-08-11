@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/sample_thumbnail" />
+                android:src="@drawable/campaign_banjir" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -249,7 +249,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/sample_thumbnail" />
+                android:src="@drawable/campaign5" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -375,7 +375,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/sample_thumbnail" />
+                android:src="@drawable/campaign6" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,23 +22,24 @@ import com.example.rahmat_ux.data.UserStorage;
 import com.example.rahmat_ux.model.User;
 import com.example.rahmat_ux.UserFragment;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class EditProfileActivity extends AppCompatActivity {
 
     private ImageView profileImage;
-
     private EditText inputName, inputJob, inputEmail, inputPhone, donasiPerSwipe;
     private TextView profileName, profileJob;
-
-    private ActivityResultLauncher<String> pickImageLauncher;
-
-    private ImageView backButton;
-    private ImageView editProfileImage;
+    private ImageView backButton, editProfileImage;
     private Button updateProfileButton;
     private TextView pageTitle;
 
+    private ActivityResultLauncher<String> pickImageLauncher;
     private User userToEdit;
 
-    // PERUBAHAN: Menambahkan variabel untuk menyimpan URI gambar sementara
+    // Store permanent URI here
     private Uri tempProfileImageUri = null;
 
     @Override
@@ -54,7 +54,7 @@ public class EditProfileActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Inisialisasi Views
+        // Init views
         inputName = findViewById(R.id.inputName);
         inputEmail = findViewById(R.id.inputEmail);
         inputJob = findViewById(R.id.inputJob);
@@ -69,29 +69,30 @@ public class EditProfileActivity extends AppCompatActivity {
         pageTitle = findViewById(R.id.pageTitle);
         pageTitle.setText("Edit Profil");
 
-        // PERUBAHAN: Mengambil userToEdit langsung dari UserStorage
+        // Get logged-in user
         userToEdit = UserStorage.getInstance().getLoggedInUser();
-
-        // PERUBAHAN: Memuat data profil ke UI
         loadUserProfileToUI();
 
-        // Mengatur listener untuk tombol kembali
+        // Back button
         backButton.setOnClickListener(v -> onBackPressed());
 
-        // Mengatur launcher untuk memilih gambar profil
+        // Image picker
         pickImageLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 uri -> {
                     if (uri != null) {
-                        profileImage.setImageURI(uri);
-                        // PERUBAHAN: Menyimpan URI gambar sementara
-                        tempProfileImageUri = uri;
-                        Toast.makeText(this, "Gambar profil berhasil diubah sementara!", Toast.LENGTH_SHORT).show();
+                        Uri savedUri = copyImageToInternalStorage(uri);
+                        if (savedUri != null) {
+                            profileImage.setImageURI(savedUri);
+                            tempProfileImageUri = savedUri;
+                            Toast.makeText(this, "Gambar profil disimpan permanen!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Gagal menyimpan gambar", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
         editProfileImage.setOnClickListener(v -> pickImageLauncher.launch("image/*"));
 
-        // PERUBAHAN: Logika update profil dipindahkan ke metode updateProfile()
         updateProfileButton.setOnClickListener(v -> updateProfile());
     }
 
@@ -106,7 +107,6 @@ public class EditProfileActivity extends AppCompatActivity {
             profileName.setText(userToEdit.getName());
             profileJob.setText(userToEdit.getPekerjaan());
 
-            // PERUBAHAN: Memuat gambar profil dari UserStorage
             String profileUriString = userToEdit.getProfileImageUri();
             if (profileUriString != null && !profileUriString.isEmpty()) {
                 profileImage.setImageURI(Uri.parse(profileUriString));
@@ -127,7 +127,11 @@ public class EditProfileActivity extends AppCompatActivity {
                 return;
             }
 
-            // Memperbarui objek userToEdit dengan data baru dari input
+            if (!Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
+                Toast.makeText(this, "Email tidak valid.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             userToEdit.setName(newName);
             userToEdit.setPekerjaan(newJob);
             userToEdit.setEmail(newEmail);
@@ -136,18 +140,48 @@ public class EditProfileActivity extends AppCompatActivity {
                 userToEdit.setDonationPerSwipe(Long.valueOf(newDonasiString));
             }
 
-            // PERUBAHAN: Memperbarui gambar profil jika ada yang baru
+            // Save permanent URI
             if (tempProfileImageUri != null) {
                 userToEdit.setProfileImageUri(tempProfileImageUri.toString());
             }
 
-            // PERUBAHAN: Logika untuk mengirim data kembali ke UserFragment
             Intent resultIntent = new Intent();
             resultIntent.putExtra(UserFragment.EXTRA_UPDATED_USER, userToEdit);
             setResult(RESULT_OK, resultIntent);
 
             Toast.makeText(this, "Profil berhasil diperbarui!", Toast.LENGTH_SHORT).show();
             finish();
+        }
+    }
+
+    /**
+     * Copy image into internal storage so it stays available
+     */
+    private Uri copyImageToInternalStorage(Uri sourceUri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(sourceUri);
+            if (inputStream == null) return null;
+
+            File directory = new File(getFilesDir(), "profile_images");
+            if (!directory.exists()) directory.mkdirs();
+
+            File file = new File(directory, "profile.jpg");
+            FileOutputStream outputStream = new FileOutputStream(file);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            outputStream.close();
+            inputStream.close();
+
+            return Uri.fromFile(file);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

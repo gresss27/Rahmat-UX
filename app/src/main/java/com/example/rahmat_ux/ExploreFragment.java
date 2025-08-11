@@ -1,38 +1,38 @@
 package com.example.rahmat_ux;
+
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import android.widget.Toast;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.view.View;
-
-
 
 import com.example.rahmat_ux.adapter.CarouselBannerAdapter;
 import com.example.rahmat_ux.adapter.CardExploreAdapter;
 import com.example.rahmat_ux.data.DummyDataRepository;
+import com.example.rahmat_ux.data.UserStorage;
 import com.example.rahmat_ux.model.Campaign;
+import com.example.rahmat_ux.model.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 
 public class ExploreFragment extends Fragment {
 
@@ -42,48 +42,47 @@ public class ExploreFragment extends Fragment {
     private int delay = 5000;
     private List<Integer> imageResources;
 
-
     private RecyclerView campaignRecyclerView;
     private RecyclerView newCampaignRecyclerView;
 
-    // Adapters
     private CardExploreAdapter campaignAdapter;
     private CardExploreAdapter newCampaignAdapter;
 
-    public ExploreFragment() {
+    private ImageView profileImageView;
 
-
-
-    }
-
-
+    public ExploreFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_explore, container, false);
 
-
-
         ImageView iconKanan = rootView.findViewById(R.id.icon_kanan);
-        iconKanan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NotificationActivity.class);
-                startActivity(intent);
-            }
+        iconKanan.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), NotificationActivity.class);
+            startActivity(intent);
         });
 
+        // ✅ FIX: Use rootView instead of "view"
+        profileImageView = rootView.findViewById(R.id.icon_kiri);
 
+        // Load profile image safely
+        User currentUser = UserStorage.getInstance().getLoggedInUser();
+        String imageUri = currentUser != null ? currentUser.getProfileImageUri() : null;
+        if (imageUri != null && !imageUri.isEmpty()) {
+            try {
+                profileImageView.setImageURI(Uri.parse(imageUri));
+            } catch (SecurityException e) {
+                profileImageView.setImageResource(R.drawable.profile); // fallback
+            }
+        } else {
+            profileImageView.setImageResource(R.drawable.profile);
+        }
 
         CardView bannerRekomendasi = rootView.findViewById(R.id.bannerRekomendasi);
-        bannerRekomendasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
-                startActivity(intent);
-            }
+        bannerRekomendasi.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), DonationDetailActivity.class);
+            startActivity(intent);
         });
-
 
         viewPager = rootView.findViewById(R.id.viewPager);
         handler = new Handler(Looper.getMainLooper());
@@ -96,23 +95,16 @@ public class ExploreFragment extends Fragment {
                 R.drawable.banner5
         );
 
-        List<Integer> donationIdList = Arrays.asList(
-                1, 4, 3, 5, 2
-        );
-
+        List<Integer> donationIdList = Arrays.asList(1, 4, 3, 5, 2);
         CarouselBannerAdapter carouselAdapter = new CarouselBannerAdapter(imageResources, donationIdList);
         viewPager.setAdapter(carouselAdapter);
 
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                if (viewPager == null || imageResources == null || imageResources.isEmpty()) {
-                    return;
-                }
+        runnable = () -> {
+            if (viewPager != null && imageResources != null && !imageResources.isEmpty()) {
                 int currentItem = viewPager.getCurrentItem();
-                int nextItem = (currentItem + 1) % imageResources.size(); // Loop to the beginning
+                int nextItem = (currentItem + 1) % imageResources.size();
                 viewPager.setCurrentItem(nextItem, true);
-                handler.postDelayed(this, delay);
+                handler.postDelayed(runnable, delay);
             }
         };
 
@@ -133,20 +125,15 @@ public class ExploreFragment extends Fragment {
             handler.postDelayed(runnable, delay);
         }
 
-        // Initialize RecyclerViews and their adapters
+        // Campaign lists
         campaignRecyclerView = rootView.findViewById(R.id.campaignRecyclerView);
         campaignRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         newCampaignRecyclerView = rootView.findViewById(R.id.newCampaignRecyclerView);
         newCampaignRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-
         updateCampaigns();
-
         return rootView;
-
-
-
     }
 
     @Override
@@ -160,7 +147,7 @@ public class ExploreFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (handler != null && runnable != null && !imageResources.isEmpty()) {
+        if (handler != null && runnable != null && imageResources != null && !imageResources.isEmpty()) {
             handler.postDelayed(runnable, delay);
         }
     }
@@ -181,29 +168,19 @@ public class ExploreFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         ImageView iconKiri = view.findViewById(R.id.icon_kiri);
-
-        iconKiri.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BottomNavigationView bottomNav = requireActivity().findViewById(R.id.bottom_navigation);
-                bottomNav.setSelectedItemId(R.id.navigation_user);
-            }
+        iconKiri.setOnClickListener(v -> {
+            BottomNavigationView bottomNav = requireActivity().findViewById(R.id.bottom_navigation);
+            bottomNav.setSelectedItemId(R.id.navigation_user);
         });
 
-
         EditText searchView = view.findViewById(R.id.kolom_pencarian);
-
         searchView.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                     (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN)) {
 
                 String keyword = v.getText().toString().trim().toLowerCase();
-
                 if (keyword.equalsIgnoreCase("Banjir")) {
-                    // Pindah ke UrgentFragment
                     UrgentFragment urgentFragment = UrgentFragment.newInstance(keyword);
                     requireActivity().getSupportFragmentManager()
                             .beginTransaction()
@@ -218,59 +195,23 @@ public class ExploreFragment extends Fragment {
             return false;
         });
 
-
-
-
-
-
-        ImageView iconKesehatan = view.findViewById(R.id.iconKesehatan);
-        ImageView iconBencana = view.findViewById(R.id.iconBencana);
-        ImageView iconPendidikan = view.findViewById(R.id.iconPendidikan);
-        ImageView iconSosial = view.findViewById(R.id.iconSosial);
-        ImageView iconInfrastruktur = view.findViewById(R.id.iconInfrastruktur);
-
-        iconKesehatan.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
-            intent.putExtra("category", "Kesehatan");
-            startActivity(intent);
-        });
-
-        iconBencana.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
-            intent.putExtra("category", "Bencana Alam");
-            startActivity(intent);
-        });
-
-        iconPendidikan.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
-            intent.putExtra("category", "Pendidikan");
-            startActivity(intent);
-        });
-
-        iconSosial.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
-            intent.putExtra("category", "Kegiatan Sosial");
-            startActivity(intent);
-        });
-
-        iconInfrastruktur.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
-            intent.putExtra("category", "Infrastruktur");
-            startActivity(intent);
-        });
-
+        // Category buttons
+        view.findViewById(R.id.iconKesehatan).setOnClickListener(v -> openCategory("Kesehatan"));
+        view.findViewById(R.id.iconBencana).setOnClickListener(v -> openCategory("Bencana Alam"));
+        view.findViewById(R.id.iconPendidikan).setOnClickListener(v -> openCategory("Pendidikan"));
+        view.findViewById(R.id.iconSosial).setOnClickListener(v -> openCategory("Kegiatan Sosial"));
+        view.findViewById(R.id.iconInfrastruktur).setOnClickListener(v -> openCategory("Infrastruktur"));
     }
 
-
-
-
-
-
+    private void openCategory(String category) {
+        Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
+        intent.putExtra("category", category);
+        startActivity(intent);
+    }
 
     private void updateCampaigns() {
         List<Campaign> ongoingCampaigns = DummyDataRepository.getInstance().getCampaignsByStatus("Berlangsung");
         List<Campaign> newCampaigns = DummyDataRepository.getInstance().getCampaignsByIdRange(5, 9);
-
 
         if (campaignAdapter == null) {
             campaignAdapter = new CardExploreAdapter(requireContext(), ongoingCampaigns);
@@ -280,12 +221,10 @@ public class ExploreFragment extends Fragment {
             campaignAdapter.notifyDataSetChanged();
         }
 
-
         if (newCampaignAdapter == null) {
             newCampaignAdapter = new CardExploreAdapter(requireContext(), newCampaigns);
             newCampaignRecyclerView.setAdapter(newCampaignAdapter);
         } else {
-
             newCampaignAdapter.setCampaigns(newCampaigns);
             newCampaignAdapter.notifyDataSetChanged();
         }

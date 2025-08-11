@@ -148,7 +148,7 @@
         android:background="#FFFFFF"
         android:gravity="center"
         android:padding="16dp"
-        android:text="Selalu dapatkan kabar terbaru dari kampanyenya 'WASPADA! INVASi AIR JAHAT! Kulkas Kasur Belajar Berenang!'. Hanya penggalang yang dapat memberikan pesan ."
+        android:text="Selalu dapatkan kabar terbaru dari kampanye: 'WASPADA! INVASi AIR JAHAT! Kulkas Kasur Belajar Berenang!' Hanya penggalang yang dapat memberikan pesan."
         android:textColor="#757575"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -187,7 +187,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:scaleType="centerCrop"
-                        tools:src="@drawable/logo_organizer" />
+                        android:src="@drawable/organizer4" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     app:layout_constraintStart_toStartOf="@+id/card_view_image_2"
@@ -220,7 +220,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:scaleType="centerCrop"
-                        tools:src="@drawable/logo_organizer" />
+                        android:src="@drawable/organizer4" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     app:layout_constraintStart_toStartOf="@+id/card_view_image_3"
@@ -252,7 +252,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:scaleType="centerCrop"
-                        tools:src="@drawable/logo_organizer" />
+                        android:src="@drawable/organizer4" />
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
                     app:layout_constraintStart_toStartOf="@+id/card_view_image_4"
