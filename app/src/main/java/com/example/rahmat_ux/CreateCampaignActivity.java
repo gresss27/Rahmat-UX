@@ -36,7 +36,10 @@ import com.example.rahmat_ux.model.Story;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,6 +57,7 @@ public class CreateCampaignActivity extends AppCompatActivity {
     private Button btnAddStory;
 
     private Uri selectedImageUri;
+    private String savedImagePath;
 
     private ActivityResultLauncher<Intent> galleryLauncher;
     private ActivityResultLauncher<Uri> cameraLauncher;
@@ -324,12 +328,51 @@ public class CreateCampaignActivity extends AppCompatActivity {
             }
 
             if (selectedImageUri != null) {
-                currentDraftCampaign.setCoverImageUri(selectedImageUri.toString());
+                try {
+                    // Salin gambar dari URI sementara ke penyimpanan internal
+                    File destinationFile = copyImageToInternalStorage(selectedImageUri);
+                    if (destinationFile != null) {
+                        // Simpan jalur file absolut ke coverImageUri
+                        currentDraftCampaign.setCoverImageUri(destinationFile.getAbsolutePath());
+                    }
+                    // Reset selectedImageUri setelah disimpan
+                    selectedImageUri = null;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Gagal menyimpan gambar", Toast.LENGTH_SHORT).show();
+                }
             }
+
 
             DummyDataRepository.getInstance().updateCampaign(currentDraftCampaign);
             Toast.makeText(this, "Draft tersimpan", Toast.LENGTH_SHORT).show();
         }
+    }
+    private File copyImageToInternalStorage(Uri uri) throws IOException {
+        File destinationFile = getUniqueImageFile();
+        try (
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                OutputStream outputStream = new FileOutputStream(destinationFile)
+        ) {
+            if (inputStream != null) {
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, length);
+                }
+            }
+        }
+        return destinationFile;
+    }
+
+    private File getUniqueImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", java.util.Locale.getDefault()).format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = new File(getFilesDir(), "campaign_images");
+        if (!storageDir.exists()) {
+            storageDir.mkdirs();
+        }
+        return File.createTempFile(imageFileName, ".jpg", storageDir);
     }
     private void submitCampaign() {
         if (inputTitle.getText().toString().trim().isEmpty() ||
@@ -393,7 +436,16 @@ public class CreateCampaignActivity extends AppCompatActivity {
 
         // Set gambar
         if (selectedImageUri != null) {
-            currentDraftCampaign.setCoverImageUri(selectedImageUri.toString());
+            try {
+                // Salin gambar dan simpan jalur file-nya
+                File destinationFile = copyImageToInternalStorage(selectedImageUri);
+                if (destinationFile != null) {
+                    currentDraftCampaign.setCoverImageUri(destinationFile.getAbsolutePath());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Gagal menyimpan gambar", Toast.LENGTH_SHORT).show();
+            }
         }
 
         currentDraftCampaign.setStatus("Diajukan");
@@ -472,4 +524,5 @@ public class CreateCampaignActivity extends AppCompatActivity {
             imagePlaceholder.setImageResource(R.drawable.ic_image_placeholder);
         }
     }
+
 }

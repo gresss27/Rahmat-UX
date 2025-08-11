@@ -5,67 +5,79 @@ import android.os.Parcelable;
 
 public class User implements Parcelable {
     private String name;
-    private String job;
-    private String email;
     private long balance;
+
+    private String email;
+    private String password;
+
+    private String pekerjaan;
+    private String phoneNumber;
     private long donationPerSwipe;
     private String profileImageUri;
-
     public User() {
         this.name = "";
-        this.job = "";
+        this.pekerjaan = "";
         this.email = "";
         this.balance = 0;
+        this.phoneNumber="";
+        this.password="";
         this.donationPerSwipe = 0;
         this.profileImageUri = null;
     }
 
-
-    public User(String name, String job, String email, long balance, long donationPerSwipe, String profileImageUri) {
+    public User(String name,String pekerjaan, String email,String phoneNumber,String password ,long balance, long donationPerSwipe, String uri) {
         this.name = name;
-        this.job = job;
-        this.email = email;
+        this.email=email;
+        this.password=password;
         this.balance = balance;
         this.donationPerSwipe = donationPerSwipe;
-        this.profileImageUri = profileImageUri;
+        this.pekerjaan=pekerjaan;
+        this.phoneNumber=phoneNumber;
+        this.profileImageUri=uri;
     }
 
-    // --- Getters ---
     public String getName() {
         return name;
     }
 
-    public String getJob() {
-        return job;
+    public boolean checkPassword(String password){
+        return password.equals(this.password);
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmail(){
+        return this.email;
     }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setPekerjaan(String pekerjaan) {
+        this.pekerjaan = pekerjaan;
+    }
+    public void setphoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPekerjaan(){
+        return this.pekerjaan;
+    }
+    public String getPhoneNumber(){
+        return this.phoneNumber;
+    }
+
 
     public long getBalance() {
         return balance;
     }
 
-    public long getDonationPerSwipe() {
-        return donationPerSwipe;
-    }
-
-    // --- Setters ---
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void setBalance(long balance) {
         this.balance = balance;
+    }
+
+    public long getDonationPerSwipe() {
+        return donationPerSwipe;
     }
 
     public void setDonationPerSwipe(long donationPerSwipe) {
@@ -85,11 +97,13 @@ public class User implements Parcelable {
 
     protected User(Parcel in) {
         name = in.readString();
-        job = in.readString();
+        pekerjaan = in.readString();
         email = in.readString();
         balance = in.readLong();
         donationPerSwipe = in.readLong();
         profileImageUri = in.readString();
+        password=in.readString();
+        phoneNumber=in.readString();
     }
 
 
@@ -114,11 +128,14 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
-        dest.writeString(job);
+        dest.writeString(pekerjaan);
         dest.writeString(email);
         dest.writeLong(balance);
         dest.writeLong(donationPerSwipe);
         dest.writeString(profileImageUri);
+        dest.writeString(password);
+        dest.writeString(phoneNumber);
+
     }
 }
 

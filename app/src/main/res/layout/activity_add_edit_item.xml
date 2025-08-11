@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".AddEditItemActivity">
+    tools:context=".AddEditItemActivity"
+    android:fitsSystemWindows="true">
 
     <!-- 1. HEADER (Fixed di Atas) -->
     <LinearLayout

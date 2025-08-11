@@ -31,6 +31,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.rahmat_ux.data.DummyDataRepository;
+import com.example.rahmat_ux.data.UserStorage;
 import com.example.rahmat_ux.model.Campaign;
 import com.example.rahmat_ux.model.User;
 
@@ -69,13 +70,19 @@ public class SwipeFragment extends Fragment {
         btnDonasi = view.findViewById(R.id.btnDonasi);
         btnTopUp = view.findViewById(R.id.btnTopUp);
 
-        btnTopUp.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getBalance()));
-        btnDonasi.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getDonationPerSwipe()));
+//        btnTopUp.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getBalance()));
+        btnTopUp.setText(formatRupiah(UserStorage.getInstance().getLoggedInUser().getBalance()));
+//        btnDonasi.setText(formatRupiah(DummyDataRepository.getInstance().getCurrentUser().getDonationPerSwipe()));
+        btnDonasi.setText(formatRupiah(UserStorage.getInstance().getLoggedInUser().getDonationPerSwipe()));
 
 
         btnDecline.setOnClickListener(v -> swipeLeft());
         btnAccept.setOnClickListener(v -> swipeRight());
         btnDonasi.setOnClickListener(v -> showDonationNominalDialog());
+        btnTopUp.setOnClickListener(v->{
+            Intent intent = new Intent(requireContext(), TopUpActivity.class);
+            startActivity(intent);
+        });
 
         showNextCard();
 
@@ -89,6 +96,17 @@ public class SwipeFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadBalance(); // your method to get the latest balance and update the TextView
+    }
+
+    private void loadBalance() {
+        btnTopUp.setText(formatRupiah(UserStorage.getInstance().getLoggedInUser().getBalance()));
+    }
+
     @SuppressLint("DefaultLocale")
     private String formatRupiah(long amount) {
         // Simple formatting for demonstration
@@ -171,7 +189,8 @@ public class SwipeFragment extends Fragment {
         if (cardContainer.getChildCount() == 0) return;
         Campaign currentCampaign = campaignList.get(currentIndex);
 
-        User currentUser = DummyDataRepository.getInstance().getCurrentUser();
+//        User currentUser = DummyDataRepository.getInstance().getCurrentUser();
+        User currentUser= UserStorage.getInstance().getLoggedInUser();
         long nominalDonasiPerSwipe = currentUser.getDonationPerSwipe();
         long saldo = currentUser.getBalance();
 
@@ -186,6 +205,7 @@ public class SwipeFragment extends Fragment {
         // Kurangi saldo
         long newSaldo = saldo - nominalDonasiPerSwipe;
         DummyDataRepository.getInstance().updateCurrentUserBalance(newSaldo);
+        currentUser.setBalance(currentUser.getBalance()-currentUser.getDonationPerSwipe());
         btnTopUp.setText(formatRupiah(newSaldo));
 
         View topCard = cardContainer.getChildAt(cardContainer.getChildCount() - 1);
@@ -339,7 +359,8 @@ public class SwipeFragment extends Fragment {
     }
 
     private void updateNominalAndDismiss(long nominal, Dialog dialog) {
-        DummyDataRepository.getInstance().updateCurrentUserDonationPerSwipe(nominal);
+//        DummyDataRepository.getInstance().updateCurrentUserDonationPerSwipe(nominal);
+        UserStorage.getInstance().getLoggedInUser().setDonationPerSwipe(nominal);
         btnDonasi.setText(formatRupiah(nominal));
         dialog.dismiss();
     }

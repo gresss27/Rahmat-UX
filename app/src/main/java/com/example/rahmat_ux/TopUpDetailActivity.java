@@ -17,6 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.rahmat_ux.data.UserStorage;
 import com.google.android.material.button.MaterialButton;
 
 public class TopUpDetailActivity extends AppCompatActivity {
@@ -69,9 +70,13 @@ public class TopUpDetailActivity extends AppCompatActivity {
         btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                long userBalance=UserStorage.getInstance().addBalance(Long.parseLong(amount));
+                Toast.makeText(TopUpDetailActivity.this, String.valueOf(userBalance), Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(TopUpDetailActivity.this, TopUpDetail2Activity.class);
                 intent.putExtra("bank_name", bankName); // pass the bank name
                 intent.putExtra("amount", amount);       // pass the amount too
+
                 startActivity(intent);
             }
         });

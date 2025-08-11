@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.rahmat_ux.data.UserStorage;
 import com.google.android.material.button.MaterialButton;
 
 import java.text.DecimalFormat;
@@ -45,6 +47,12 @@ public class InputBalanceActivity extends AppCompatActivity {
         // Back button
         ImageView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> onBackPressed());
+
+        TextView name = findViewById(R.id.name);
+        name.setText(String.valueOf(UserStorage.getInstance().getLoggedInUser().getName()));
+
+        TextView currentBalance = findViewById(R.id.currentBalance);
+        currentBalance.setText("Rp"+formatCurrency(String.valueOf(UserStorage.getInstance().getLoggedInUser().getBalance())));
 
         // Get bank data from intent
         bankName = getIntent().getStringExtra("selected_bank_name");
@@ -129,5 +137,14 @@ public class InputBalanceActivity extends AppCompatActivity {
             intent.putExtra("amount", amount.replace(".", "")); // remove dots
             startActivity(intent);
         });
+    }
+
+    private String formatCurrency(String amount) {
+        try {
+            long number = Long.parseLong(amount.replace(".", "").replace(",", ""));
+            return String.format("%,d", number).replace(',', '.');
+        } catch (NumberFormatException e) {
+            return amount;
+        }
     }
 }

@@ -21,132 +21,65 @@ public class DummyDataRepository {
     private DummyDataRepository() {
         campaignList = new ArrayList<>();
 
-// Data 1: Anak Difabel
+        // Data 1: IPhone 16 Pro Max
         campaignList.add(new Campaign(
                 1,
-                "URGENT! Puluhan Anak-anak Difabel Butuh Bantuanmu",
+                "Bantu Saya Beli iPhone 16 Pro Max",
                 R.drawable.campaign_difabel,
-                "10 Juli 2025", "Sisa 76 hari",
-                13440231L, 300000000L,
-                "Kursi Roda", 30, 30, "unit",
-                "Buku Braille", 50, 50, "buku",
-                "Alat Bantu Dengar", 20, 20, "unit",
-                "Bantu penuhi kebutuhan akses pendidikan yang layak untuk anak-anak difabel.",
-                "Ratusan anak-anak difabel di berbagai wilayah masih menghadapi kesulitan dalam mengakses pendidikan dan peralatan yang mendukung aktivitas mereka sehari-hari.\n\nKami membuka donasi untuk membantu mereka mendapatkan:\n• Kursi Roda: Mobilitas yang lebih baik bagi anak-anak dengan keterbatasan gerak.\n• Buku Braille: Akses belajar untuk anak-anak tunanetra.\n• Alat Bantu Dengar: Membantu anak-anak dengan gangguan pendengaran dalam berkomunikasi dan belajar.\n\nMari bersama bantu ciptakan lingkungan inklusif bagi mereka. Setiap donasi Anda membuka pintu harapan.",
-                "Yayasan Harapan Bangsa", "Lembaga Sosial", R.drawable.organizer1,
-                "Terima kasih kakak kakak atas bantuannya, semoga Allah SWT memberi berkah",
-                "Berlangsung", 76,
+                "11 Agustus 2025", "Sisa 30 hari",
+                5000000L, 30000000L,
+                "Casing iPhone 16 Pro Max", 20, 10, "unit",
+                "Charger 120W Original", 10, 5, "unit",
+                "AirPods Pro 3", 0, 3, "unit",
+                "Mendukung pengadaan perangkat iPhone 16 Pro Max beserta perlengkapan pendukung untuk menunjang produktivitas dan kualitas konten digital.",
+                "Perangkat iPhone 16 Pro Max diharapkan menjadi sarana utama dalam mendokumentasikan kegiatan, membuat konten digital, serta memperlancar komunikasi secara profesional.\n\nKami membuka penggalangan dana untuk membantu memenuhi kebutuhan berikut:\n• Casing iPhone 16 Pro Max: Perlindungan optimal untuk perangkat.\n• Charger 120W Original: Mendukung pengisian cepat dan aman.\n• AirPods Pro 3: Memudahkan komunikasi dan monitoring audio berkualitas tinggi.\n\nDukungan Anda akan sangat membantu dalam mewujudkan sarana teknologi yang memadai.",
+                "Fajar Santoso", "Content Creator", R.drawable.organizer1,
+                "Terima kasih atas partisipasi dan dukungan yang diberikan. Setiap kontribusi membawa kami lebih dekat pada tujuan.",
+                "Berlangsung", 30,
                 new ArrayList<>(), "", ""
         ));
 
+        // Data 2: Patah Kaki
         campaignList.add(new Campaign(
                 2,
-                "Akses Nutrisi Masih Terbatas, Donasi Beras Sekarang! Bantu Pulihkan Masa Depan Mereka",
+                "Bantu Pemulihan Saudara Andi yang Mengalami Patah Kaki",
                 R.drawable.banner5,
-                "15 Juni 2025", "Sisa 76 hari",
-                3500000L, 25000000L,
-                "Beras", 90, 100, "kg",
-                "Minyak", 10, 20, "liter",
-                "Gula", 5, 10, "kg",
-                "Bantu pulihkan masa depan mereka dengan memenuhi kebutuhan pangan pokok.",
-                "Banyak keluarga prasejahtera masih kesulitan memenuhi kebutuhan pangan dasar mereka. Di tengah kondisi ekonomi yang sulit, akses terhadap makanan bergizi masih menjadi tantangan besar.\n\nKami mengajak Anda untuk berdonasi:\n• Beras: Makanan pokok yang sangat dibutuhkan.\n• Minyak: Untuk memasak makanan sehari-hari.\n• Gula: Sebagai sumber energi tambahan.\n\nSedekah subuhmu bisa menjadi penyelamat bagi banyak keluarga. Yuk bantu mereka mulai hari dengan penuh harapan.",
-                "Sedekah Subuh", "Komunitas Relawan", R.drawable.organizer2,
-                "Beras sudah diberikan kepada seluruh orang yang membutuhkan, terima kasih orang baik!",
-                "Berlangsung", 76,
+                "11 Agustus 2025", "Sisa 45 hari",
+                2750000L, 15000000L,
+                "Kursi Roda", 50, 1, "unit",
+                "Tongkat Penyangga", 30, 2, "unit",
+                "Biaya Rehabilitasi", 70, 10, "sesi",
+                "Bantu mendukung proses pemulihan Andi agar dapat kembali beraktivitas secara normal.",
+                "Andi, seorang pekerja harian, mengalami kecelakaan lalu lintas yang mengakibatkan patah tulang kaki bagian kanan. Saat ini, ia membutuhkan bantuan untuk menunjang mobilitas serta biaya perawatan medis.\n\nKami membuka donasi untuk membantu memenuhi kebutuhan berikut:\n• Kursi Roda: Membantu mobilitas sementara selama proses pemulihan.\n• Tongkat Penyangga: Alat bantu berjalan pasca operasi.\n• Biaya Rehabilitasi: Mendukung terapi fisik untuk mengembalikan kekuatan dan fungsi kaki.\n\nSetiap dukungan yang Anda berikan akan membawa Andi selangkah lebih dekat pada kesembuhan.",
+                "Keluarga Andi", "Keluarga Pasien", R.drawable.organizer2,
+                "Terima kasih atas setiap doa dan dukungan yang diberikan. Semoga Tuhan membalas kebaikan Anda.",
+                "Berlangsung", 45,
                 new ArrayList<>(), "", ""
         ));
 
+        // Data 3: Paru-paru
         campaignList.add(new Campaign(
                 3,
-                "Akses Nutrisi yang Masih Terbatas bagi Anak dengan Risiko Stunting",
+                "Bantu Biaya Perawatan Ibu Siti yang Terkena Penyakit Paru-Paru",
                 R.drawable.banner3,
-                "01 Juli 2025", "Sisa 76 hari",
-                10140251L, 250000000L,
-                "Susu", 85, 100, "kotak",
-                "Vitamin", 40, 50, "botol",
-                "Biskuit Bayi", 60, 70, "pak",
-                "DARURAT Stunting & Gizi Buruk Kronis. Cegah stunting dengan memberikan gizi terbaik.",
-                "Stunting atau gagal tumbuh akibat kekurangan gizi masih menjadi masalah serius di Indonesia. Anak-anak yang mengalami stunting akan kesulitan berkembang secara fisik dan mental.\n\nMari bantu cegah stunting dengan memberikan:\n• Susu: Asupan kalsium dan protein penting untuk pertumbuhan.\n• Vitamin: Menjaga daya tahan tubuh anak-anak.\n• Biskuit Bayi: Makanan tambahan bergizi tinggi.\n\nDonasi Anda adalah investasi bagi masa depan generasi penerus bangsa. Bersama kita bisa cegah stunting!",
-                "Anak Sehat Indonesia", "Organisasi Kesehatan", R.drawable.organizer3,
-                "Bantuanmu sudah menyelamatkan nasib banyak anak dari stunting dan kekurangan gizi!",
-                "Berlangsung", 76,
+                "11 Agustus 2025", "Sisa 60 hari",
+                4500000L, 25000000L,
+                "Biaya Rawat Inap", 90, 10, "hari",
+                "Obat dan Suplemen", 80, 60, "hari",
+                "Biaya Terapi Pernapasan", 70, 12, "sesi",
+                "Mendukung biaya pengobatan dan pemulihan Ibu Siti yang menderita penyakit paru-paru akibat paparan asap rokok.",
+                "Ibu Siti, seorang ibu rumah tangga, didiagnosa menderita penyakit paru-paru kronis setelah bertahun-tahun menghirup asap rokok dari suaminya. Saat ini, kondisinya memerlukan perawatan intensif, pengobatan rutin, serta terapi pernapasan untuk memperbaiki kualitas hidupnya.\n\nKami membuka donasi untuk membantu memenuhi kebutuhan berikut:\n• Biaya Rawat Inap: Mendukung perawatan di rumah sakit untuk stabilisasi kondisi.\n• Obat dan Suplemen: Mengurangi gejala dan membantu proses penyembuhan.\n• Biaya Terapi Pernapasan: Melatih dan memperkuat fungsi paru-paru.\n\nSetiap bantuan Anda akan sangat berarti dalam meringankan beban keluarga dan memberikan harapan kesembuhan bagi Ibu Siti.",
+                "Keluarga Ibu Siti", "Keluarga Pasien", R.drawable.organizer3,
+                "Terima kasih atas doa dan bantuan yang diberikan. Semoga setiap kebaikan dibalas berlipat ganda.",
+                "Berlangsung", 60,
                 new ArrayList<>(), "", ""
         ));
 
+        // Data 4: Invasi Air Jahat
         campaignList.add(new Campaign(
                 4,
-                "Anak Yatim Difabel Butuh Dukungan! Donasi Buku, Hadirkan Harapan Lewat Pendidikan",
-                R.drawable.banner2,
-                "20 Juni 2025", "Sisa 76 hari",
-                5250000L, 50000000L,
-                "Buku Cerita", 10, 20, "buku",
-                "Buku Pelajaran", 95, 100, "buku",
-                "Alat Tulis", 15, 30, "pak",
-                "Tanpa keluarga, mereka butuh uluran tangan kita. Buku adalah jendela dunia...",
-                "Anak-anak yatim piatu dengan disabilitas membutuhkan dukungan kita agar tetap bisa belajar dan meraih masa depan yang cerah.\n\nMelalui donasi ini, Anda dapat membantu mereka mendapatkan:\n• Buku Cerita: Untuk membangkitkan imajinasi dan semangat belajar.\n• Buku Pelajaran: Mendukung proses belajar formal.\n• Alat Tulis: Kebutuhan dasar dalam kegiatan belajar mengajar.\n\nMari hadirkan harapan lewat pendidikan. Setiap buku adalah cahaya bagi masa depan mereka.",
-                "Pustaka Harapan", "Gerakan Literasi", R.drawable.organizer4,
-                "5000 buku sudah diberikan kepada anak-anak yang gemar membaca, bantuanmu sangat diapresiasi!",
-                "Berlangsung", 76,
-                new ArrayList<>(), "", ""
-        ));
-
-        campaignList.add(new Campaign(
-                5,
-                "Solidaritas untuk Ternate: Mari Bersama Pulihkan Kehidupan Pasca Banjir Bandang",
-                R.drawable.banner4,
-                "27 Mei 2025", "Sisa 23 hari",
-                203324000L, 250000000L,
-                "Paket Sembako", 75, 100, "paket",
-                "Pakaian dan Selimut", 75, 100, "paket",
-                "Obat-obatan", 75, 100, "kotak",
-                "Bantu pembangunan kembali rumah warga yang hancur akibat gempa.",
-                "Banjir bandang yang melanda Ternate telah menghancurkan banyak rumah dan fasilitas umum. Ribuan warga kini tinggal di pengungsian dan membutuhkan bantuan segera.\n\nKami mengajak Anda berdonasi:\n• Paket Sembako: Untuk memenuhi kebutuhan makan sehari-hari.\n• Pakaian dan Selimut: Melindungi dari dingin dan penyakit.\n• Obat-obatan: Menjaga kesehatan di tengah kondisi darurat.\n\nMari bersama bangkitkan kembali Ternate. Solidaritas Anda sangat berarti!",
-                "Bantuanmu Team", "Tim Tanggap Bencana", R.drawable.organizer5,
-                "10 rumah baru telah dibangun dan banyak keluarga sudah mendapatkan tempat tinggal!",
-                "Berlangsung", 23,
-                new ArrayList<>(), "", ""
-        ));
-
-        campaignList.add(new Campaign(
-                6,
-                "Bantu Renovasi Sekolah Rusak di Pelosok",
-                R.drawable.campaign_gempa,
-                "18 Juli 2025", "Sisa 45 hari",
-                0L, 100000000L,
-                "Papan Tulis", 0, 5, "unit",
-                "Bangku", 0, 20, "unit",
-                "Atap Sekolah", 0, 50, "lembar",
-                "Sekolah di pedalaman masih kekurangan fasilitas belajar. Yuk bantu wujudkan ruang belajar yang layak.",
-                "Di pelosok negeri, masih banyak sekolah yang tidak layak pakai. Anak-anak belajar di ruang kelas yang rusak tanpa fasilitas memadai.\n\nBantu mereka mendapatkan:\n• Papan Tulis: Sarana utama dalam proses belajar mengajar.\n• Bangku: Tempat duduk yang nyaman untuk belajar.\n• Atap Sekolah: Melindungi dari panas dan hujan.\n\nMari wujudkan ruang belajar yang aman dan nyaman. Donasi Anda adalah harapan mereka untuk masa depan lebih baik.",
-                "Aksi Cerdas Nusantara", "Komunitas Pendidikan", R.drawable.organizer6,
-                "Aajwndjanwdawdawjdnj",
-                "Diajukan", 45,
-                new ArrayList<>(), "", ""
-        ));
-
-        campaignList.add(new Campaign(
-                7,
-                "Donasi Air Bersih untuk Warga Kekeringan",
-                R.drawable.campaign_gempa,
-                "01 Mei 2025", "Selesai",
-                125000000L, 125000000L,
-                "Tandon Air", 100, 100, "unit",
-                "Pompa", 100, 100, "unit",
-                "Selang", 100, 100, "meter",
-                "Kekeringan melanda desa kami. Terima kasih atas bantuannya yang telah mengalirkan air kehidupan.",
-                "Musim kemarau yang panjang menyebabkan kekeringan parah di desa kami. Akses terhadap air bersih menjadi sangat sulit dan berdampak pada kesehatan warga.\n\nDengan donasi Anda, kami dapat menyediakan:\n• Tandon Air: Menyimpan air untuk kebutuhan sehari-hari.\n• Pompa: Mengalirkan air dari sumber.\n• Selang: Distribusi air ke rumah-rumah warga.\n\nTerima kasih telah menjadi bagian dari gerakan mengalirkan kehidupan. Air bersih adalah hak semua orang.",
-                "Gerakan Air Untuk Semua", "Organisasi Sosial", R.drawable.organizer7,
-                "asemlah",
-                "Selesai", 0,
-                new ArrayList<>(), "", ""
-        ));
-
-        // BARU: Campaign ke-8 (Edisi Banjir Kocak)
-        campaignList.add(new Campaign(
-                8,
                 "WASPADA! INVASi AIR JAHAT! Kulkas & Kasur Belajar Berenang!",
                 R.drawable.campaign_banjir,
-
                 "10 Agustus 2025", "Sisa 50 hari",
                 1000000L, 50000000L,
                 "Pakaian", 20, 100, "karung",       // item1, progress1, target1, unit1
@@ -157,9 +90,120 @@ public class DummyDataRepository {
                 "Komite Penyelamat Sandal Jepit Nasional", "Divisi Logistik & Hiburan", R.drawable.organizer1,
                 "Laporan diterima! Tim sudah turun untuk menyelamatkan beberapa sandal yang tersisa. Kalian semua pahlawan!",
                 "Berlangsung", 29,
-                new ArrayList<>(), "", ""));
+                new ArrayList<>(), "", ""
+        ));
 
-        currentUser = new User("John Doe", "Mahasiswa", "john@example.com", 50000, 10000, "");
+        // Data 5: Bantuan Darurat Korban Banjir
+        campaignList.add(new Campaign(
+                5,
+                "Bantuan Darurat untuk Korban Banjir di Desa Mekar Jaya",
+                R.drawable.banner5,
+                "11 Agustus 2025", "Sisa 20 hari",
+                6500000L, 25000000L,
+                "Paket Sembako", 50, 200, "paket",
+                "Selimut dan Pakaian", 30, 150, "set",
+                "Peralatan Kebersihan", 10, 100, "paket",
+                "Membantu memenuhi kebutuhan dasar warga Desa Mekar Jaya yang terdampak banjir.",
+                "Banjir bandang melanda Desa Mekar Jaya dan merendam ratusan rumah. Banyak warga kehilangan harta benda dan membutuhkan bantuan segera berupa makanan, pakaian, dan peralatan kebersihan.\n\nKami membuka donasi untuk membantu kebutuhan berikut:\n• Paket Sembako: Memenuhi kebutuhan pangan selama masa darurat.\n• Selimut dan Pakaian: Menjaga warga tetap hangat dan sehat.\n• Peralatan Kebersihan: Membantu pembersihan rumah pasca banjir.\n\nSetiap bantuan akan sangat berarti bagi warga yang terdampak.",
+                "Relawan Desa Mekar Jaya", "Relawan", R.drawable.organizer6,
+                "Terima kasih atas bantuan dan doa yang diberikan.",
+                "Berlangsung", 20,
+                new ArrayList<>(), "", ""
+        ));
+
+        // Data 6: Pemulihan Sekolah Pasca Banjir
+        campaignList.add(new Campaign(
+                6,
+                "Pemulihan Sekolah SD Harapan Baru Pasca Banjir",
+                R.drawable.banner4,
+                "11 Agustus 2025", "Sisa 35 hari",
+                2800000L, 15000000L,
+                "Meja dan Kursi", 15, 50, "unit",
+                "Buku dan Alat Tulis", 20, 200, "paket",
+                "Peralatan Kebersihan", 45, 20, "paket",
+                "Mendukung pemulihan fasilitas belajar mengajar di SD Harapan Baru setelah terkena banjir.",
+                "Banjir besar telah merusak ruang kelas, peralatan, dan buku-buku di SD Harapan Baru. Anak-anak membutuhkan dukungan untuk dapat kembali belajar dengan nyaman dan aman.\n\nKami membuka donasi untuk membantu kebutuhan berikut:\n• Meja dan Kursi: Mengganti perabot yang rusak.\n• Buku dan Alat Tulis: Memulihkan sarana belajar siswa.\n• Peralatan Kebersihan: Membersihkan sekolah dari lumpur dan kotoran.\n\nMari bersama-sama membantu anak-anak agar kembali bersekolah tanpa hambatan.",
+                "Komite Sekolah SD Harapan Baru", "Komite Sekolah", R.drawable.organizer7,
+                "Terima kasih telah berkontribusi dalam memulihkan semangat belajar anak-anak.",
+                "Berlangsung", 35,
+                new ArrayList<>(), "", ""
+        ));
+
+        // Data 7: Biaya Operasi Katarak
+        campaignList.add(new Campaign(
+                7,
+                "Bantu Biaya Operasi Katarak Pak Darman",
+                R.drawable.banner2,
+                "11 Agustus 2025", "Sisa 40 hari",
+                3200000L, 18000000L,
+                "Biaya Operasi", 50, 1, "tindakan",
+                "Obat Pasca Operasi", 50, 30, "hari",
+                "Kacamata Khusus", 80, 1, "unit",
+                "Mendukung biaya operasi katarak untuk mengembalikan penglihatan Pak Darman.",
+                "Pak Darman, seorang pensiunan guru, mengalami penurunan penglihatan akibat katarak di kedua matanya. Kondisi ini membuatnya kesulitan beraktivitas dan membaca. Operasi katarak menjadi satu-satunya cara untuk memulihkan penglihatannya.\n\nKami membuka donasi untuk membantu memenuhi kebutuhan berikut:\n• Biaya Operasi: Mengangkat katarak di kedua mata.\n• Obat Pasca Operasi: Mendukung proses penyembuhan.\n• Kacamata Khusus: Membantu penglihatan pasca operasi.\n\nDukungan Anda akan sangat berarti bagi Pak Darman untuk kembali melihat dengan jelas.",
+                "Keluarga Pak Darman", "Keluarga Pasien", R.drawable.organizer2,
+                "Terima kasih telah membantu. Setiap sumbangan berarti untuk kesembuhan beliau.",
+                "Berlangsung", 40,
+                new ArrayList<>(), "", ""
+        ));
+
+        // Data 8: Pengobatan Anak Penderita Leukemia
+        campaignList.add(new Campaign(
+                8,
+                "Bantu Pengobatan Adik Farel yang Menderita Leukemia",
+                R.drawable.banner1,
+                "11 Agustus 2025", "Sisa 90 hari",
+                7800000L, 50000000L,
+                "Kemoterapi", 20, 12, "sesi",
+                "Obat Harian", 15, 90, "hari",
+                "Nutrisi Khusus", 10, 60, "paket",
+                "Mendukung biaya pengobatan Adik Farel agar dapat melawan penyakit leukemia.",
+                "Farel, bocah berusia 8 tahun, didiagnosa menderita leukemia dan membutuhkan pengobatan jangka panjang. Saat ini ia memerlukan kemoterapi, obat-obatan, serta asupan gizi khusus untuk memperkuat daya tahan tubuhnya.\n\nKami membuka donasi untuk membantu kebutuhan berikut:\n• Kemoterapi: Menekan perkembangan sel kanker.\n• Obat Harian: Mengurangi efek samping dan menjaga kondisi tubuh.\n• Nutrisi Khusus: Memenuhi kebutuhan gizi selama pengobatan.\n\nDukungan Anda akan memberi Farel kesempatan untuk sembuh dan menjalani masa depan yang lebih cerah.",
+                "Keluarga Farel", "Keluarga Pasien", R.drawable.organizer4,
+                "Setiap doa dan bantuan Anda adalah harapan bagi kesembuhan Farel.",
+                "Berlangsung", 90,
+                new ArrayList<>(), "", ""
+        ));
+
+        // Data 9: Perawatan Lansia dengan Stroke
+        campaignList.add(new Campaign(
+                9,
+                "Bantu Perawatan Nenek Rukiyah yang Mengalami Stroke",
+                R.drawable.banner3,
+                "11 Agustus 2025", "Sisa 50 hari",
+                4200000L, 20000000L,
+                "Biaya Fisioterapi", 30, 15, "sesi",
+                "Obat Harian", 20, 60, "hari",
+                "Kursi Roda", 60, 1, "unit",
+                "Membantu perawatan Nenek Rukiyah agar dapat kembali beraktivitas pasca stroke.",
+                "Nenek Rukiyah, usia 72 tahun, mengalami stroke yang mengakibatkan kelumpuhan sebagian tubuh. Saat ini ia membutuhkan fisioterapi intensif, obat harian, dan kursi roda untuk menunjang mobilitas.\n\nKami membuka donasi untuk membantu memenuhi kebutuhan berikut:\n• Biaya Fisioterapi: Mengembalikan kekuatan otot dan koordinasi tubuh.\n• Obat Harian: Menjaga tekanan darah dan kesehatan jantung.\n• Kursi Roda: Memudahkan mobilitas selama pemulihan.\n\nSetiap bantuan akan sangat membantu meringankan beban keluarga dan mempercepat pemulihan beliau.",
+                "Keluarga Nenek Rukiyah", "Keluarga Pasien", R.drawable.organizer5,
+                "Terima kasih atas perhatian dan dukungan yang diberikan.",
+                "Berlangsung", 50,
+                new ArrayList<>(), "", ""
+        ));
+
+        // Data 10: Sumur Air Bersih
+        campaignList.add(new Campaign(
+                10,
+                "Perbaikan Sumur Air Bersih untuk Desa Sukamaju",
+                R.drawable.banner4,
+                "11 Agustus 2025", "Sisa 25 hari",
+                20000000L, 20000000L,
+                "Pompa Air", 100, 1, "unit",
+                "Pipa dan Saluran", 100, 50, "meter",
+                "Biaya Pengerjaan", 100, 1, "proyek",
+                "Mendukung perbaikan sumur air bersih agar warga Desa Sukamaju kembali mendapatkan akses air layak.",
+                "Warga Desa Sukamaju selama ini mengandalkan sumur utama untuk kebutuhan sehari-hari. Namun, pompa airnya rusak dan saluran pipa mengalami kebocoran sehingga pasokan air terhenti. Situasi ini mengganggu aktivitas warga, mulai dari memasak hingga mandi.\n\nKami membuka donasi untuk membantu memenuhi kebutuhan berikut:\n• Pompa Air: Mengganti pompa lama yang rusak.\n• Pipa dan Saluran: Memperbaiki jaringan distribusi air.\n• Biaya Pengerjaan: Menutupi ongkos tukang dan material pendukung.\n\nSetiap dukungan Anda akan membantu warga kembali mendapatkan akses air bersih yang layak.",
+                "Tanggap Air Bersih", "Organisasi Masyarakat", R.drawable.organizer7,
+                "Terima kasih atas bantuan yang telah diberikan. Setiap sumbangan adalah langkah menuju kehidupan yang lebih sehat.",
+                "Selesai", 25,
+                new ArrayList<>(), "", ""
+        ));
+
+
+
+        currentUser = new User("John Doe","Mas Supir","JohnDoe@gmail.com","08123812","passwordJohnDoe", 50000, 10000,"");
 
     }
 

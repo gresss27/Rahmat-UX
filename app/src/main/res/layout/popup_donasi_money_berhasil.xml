@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/popup_donasi_money_berhasil_background"
+    android:gravity="center"
+    >
+    <TextView
+        android:id="@+id/tvFaqTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Donasi Berhasil"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:fontFamily="@font/poppins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Terima kasih telah berperan"
+        android:textSize="14sp" />
+
+    <TextView
+        android:fontFamily="@font/poppins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dalam aksi kemanusiaan ini"
+        android:textSize="14sp" />
+
+
+</LinearLayout>

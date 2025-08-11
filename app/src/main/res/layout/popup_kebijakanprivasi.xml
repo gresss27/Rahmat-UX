@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/popup_background"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="50dp"
+    >
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvFaqTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Kebijakan Privasi"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="8dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terakhir diperbarui pada 1 Juni 2025"
+                android:textSize="12sp"
+                android:textColor="@color/gray"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="8dp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PT Rahmat Digital Indonesia (“Kami”) menghargai privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat menggunakan layanan kami."
+                android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.1 Informasi yang Kami Kumpulkan"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Pribadi: Nama, alamat email, nomor telepon, alamat, dan informasi identitas lainnya yang Anda berikan secara sukarela."
+                android:textSize="14sp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Otomatis: Data teknis seperti alamat IP, jenis browser, sistem operasi, dan aktivitas di situs/aplikasi kami."
+                android:textSize="14sp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Transaksi: Riwayat pembelian, metode pembayaran, dan detail transaksi."
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.2 Penggunaan Informasi"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kami menggunakan informasi Anda untuk"
+                android:textSize="14sp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menyediakan, mengoperasikan, dan meningkatkan layanan kami."
+                android:textSize="14sp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Memproses transaksi dan mengirimkan konfirmasi."
+                android:textSize="14sp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mengirimkan pembaruan, penawaran, dan informasi promosi."
+                android:textSize="14sp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mencegah aktivitas penipuan, pelanggaran hukum, dan pelanggaran syarat layanan."
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.3 Perlindungan Data"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kami menerapkan langkah-langkah keamanan fisik, elektronik, dan prosedural untuk melindungi informasi pribadi Anda dari akses, penggunaan, atau pengungkapan yang tidak sah."
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.4 Berbagi Informasi"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kami tidak menjual informasi pribadi Anda. Informasi hanya dibagikan kepada pihak ketiga tepercaya yang membantu kami menjalankan layanan, tunduk pada perjanjian kerahasiaan."
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.5 Hak Anda"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mengakses, memperbarui, atau menghapus data pribadi."
+                android:textSize="14sp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menarik persetujuan penggunaan data."
+                android:textSize="14sp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mengajukan keluhan kepada otoritas perlindungan data."
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.6 Perubahan Kebijakan"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kami dapat memperbarui Kebijakan Privasi ini sewaktu-waktu. Perubahan akan diumumkan melalui situs/aplikasi kami."
+                android:textSize="14sp" />
+
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

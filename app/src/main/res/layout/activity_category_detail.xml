@@ -6,7 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:fitsSystemWindows="true">
 
     <!-- Top Bar with Shadow -->
     <com.google.android.material.card.MaterialCardView
@@ -58,10 +59,10 @@
         android:id="@+id/recyclerCampaigns"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:paddingTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:paddingBottom="80dp"
+        android:clipToPadding="false"
         android:nestedScrollingEnabled="false"
         app:layout_constraintTop_toBottomOf="@id/topBarCard"
         app:layout_constraintBottom_toBottomOf="parent"

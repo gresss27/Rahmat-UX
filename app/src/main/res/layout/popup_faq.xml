@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/popup_background"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="50dp"
+    >
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvFaqTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="FAQ"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. Bagaimana cara mendaftar di Rahmat?"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:fontFamily="@font/poppins"
+        android:id="@+id/tvFaqContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anda dapat mendaftar dengan mengisi nama, email, nomor telepon, pekerjaan, dan membuat kata sandi."
+        android:textSize="14sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\n\n2. Bagaimana cara berdonasi?"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:fontFamily="@font/poppins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anda cukup melakukan swipe pada campaign donasi yang tersedia. Anda dapat menentukan nominal per-swipe atau langsung membuka halaman detail korban untuk berdonasi uang atau barang."
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\n\n3. Apa saja metode pembayaran yang tersedia?"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:fontFamily="@font/poppins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saat ini tersedia dua metode: Saldo dalam aplikasi (top-up via Virtual Account) dan pembayaran langsung melalui Virtual Account."
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\n\n4. Apakah ada minimal donasi?"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:fontFamily="@font/poppins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ya, minimal donasi adalah Rp1.000."
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\n\n6. Apakah aplikasi ini aman digunakan?"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:fontFamily="@font/poppins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ya, data pengguna dijaga kerahasiaannya dan tidak dibagikan ke pihak ketiga."
+        android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\n\n6. Apakah aplikasi ini aman digunakan?"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:fontFamily="@font/poppins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ya, data pengguna dijaga kerahasiaannya dan tidak dibagikan ke pihak ketiga."
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\n\n6. Apakah aplikasi ini aman digunakan?"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:fontFamily="@font/poppins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ya, data pengguna dijaga kerahasiaannya dan tidak dibagikan ke pihak ketiga."
+            android:textSize="14sp" />
+    </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

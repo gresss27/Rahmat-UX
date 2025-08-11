@@ -35,7 +35,7 @@ public class SocialFragment extends Fragment implements ChannelListAdapter.OnIte
         DummyDataRepository repository = DummyDataRepository.getInstance();
 
 // Untuk mengambil campaign 6-8
-        List<Campaign> campaigns6to8 = repository.getCampaignsByIdRange(6, 8);
+        List<Campaign> campaigns6to8 = repository.getCampaignsByIdRange(4, 4);
 
         ChannelListAdapter adapter = new ChannelListAdapter(campaigns6to8);
 
