@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.rahmat_ux"
-        minSdk = 33
+        minSdk = 30
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"

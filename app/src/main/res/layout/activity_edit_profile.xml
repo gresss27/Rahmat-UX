@@ -79,18 +79,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <ImageView
-                    android:id="@+id/profileImage"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/profileImageWrapper"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:src="@drawable/profile"
-                    android:contentDescription="Profile Image"
-                    android:scaleType="centerCrop"
-                    android:clipToOutline="true"
-                    android:background="@drawable/profile"
+                    app:cardCornerRadius="60dp"
+                    app:cardElevation="4dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:strokeColor="@android:color/transparent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/profile"
+                        android:contentDescription="Profile Image"
+                        android:scaleType="centerCrop"
+                        android:clipToOutline="true" />
+
+                </com.google.android.material.card.MaterialCardView>
+
 
                 <ImageView
                     android:id="@+id/editProfileImage"
@@ -99,8 +111,8 @@
                     android:src="@drawable/ic_edit"
                     android:contentDescription="Edit Profile Image"
                     app:tint="@color/black"
-                    app:layout_constraintStart_toEndOf="@id/profileImage"
-                    app:layout_constraintBottom_toBottomOf="@id/profileImage"
+                    app:layout_constraintStart_toEndOf="@id/profileImageWrapper"
+                    app:layout_constraintBottom_toBottomOf="@id/profileImageWrapper"
                     android:layout_marginEnd="4dp"
                     android:layout_marginBottom="4dp"/>
 

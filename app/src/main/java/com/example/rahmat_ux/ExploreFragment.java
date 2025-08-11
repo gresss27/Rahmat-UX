@@ -269,7 +269,7 @@ public class ExploreFragment extends Fragment {
 
     private void updateCampaigns() {
         List<Campaign> ongoingCampaigns = DummyDataRepository.getInstance().getCampaignsByStatus("Berlangsung");
-        List<Campaign> newCampaigns = DummyDataRepository.getInstance().getCampaignsByStatus("Diajukan");
+        List<Campaign> newCampaigns = DummyDataRepository.getInstance().getCampaignsByIdRange(5, 9);
 
 
         if (campaignAdapter == null) {

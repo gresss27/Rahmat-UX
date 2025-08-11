@@ -37,11 +37,13 @@
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
         <!-- LOGIN ACTIVITY AS LAUNCHER -->
         <activity
             android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -86,7 +88,8 @@
             android:exported="false" />
         <activity
             android:name=".EditProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".CreateCampaignActivity"
             android:exported="false" />
